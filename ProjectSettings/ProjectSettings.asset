@@ -138,11 +138,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 11400000, guid: 5083eac384023894ab4062b43c00282d, type: 2}
-  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
-  - {fileID: 5780184311552646587, guid: 2f967122be784c445a343aa1e7c17d75, type: 2}
-  - {fileID: 2779351317582007822, guid: 4da47469b073e194990290d2dc75025d, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -658,7 +654,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: UCLPF-Prototype
   metroPackageVersion: 0.0.0.1
-  metroCertificatePath: C:\Programmierprojekte\Master\UCLPF-Prototype\Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: Aaron Rose
   metroCertificateIssuer: Aaron Rose
