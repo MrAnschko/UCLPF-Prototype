@@ -1,6 +1,7 @@
 DECLARE_EFFECT("Demo Equalizer", Equalizer)
 DECLARE_EFFECT("Demo FirstSteps", FirstSteps)
 DECLARE_EFFECT("Demo FirstFilter", FirstFilter)
+DECLARE_EFFECT("Aarons Custom Spatializer", CustomSpatializer)
 DECLARE_EFFECT("Demo ImpactGenerator", ImpactGenerator)
 DECLARE_EFFECT("Demo ImpulseGenerator", ImpulseGenerator)
 DECLARE_EFFECT("Demo LevelMixer", LevelMixer)

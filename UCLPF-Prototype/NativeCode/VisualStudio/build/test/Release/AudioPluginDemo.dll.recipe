@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\VisualStudio\build\test\Release\AudioPluginDemo.dll</FullPath>
+      <FullPath>C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\VisualStudio\build\test\Release\AudioPluginDemo.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

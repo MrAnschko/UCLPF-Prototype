@@ -184,6 +184,7 @@
     <ClCompile Include="..\hrtftable.cpp" />
     <ClCompile Include="..\Plugin_ConvolutionReverb.cpp" />
     <ClCompile Include="..\Plugin_CorrelationMeter.cpp" />
+    <ClCompile Include="..\Plugin_CustomSpatializer.cpp" />
     <ClCompile Include="..\Plugin_Equalizer.cpp" />
     <ClCompile Include="..\Plugin_FirstFilter.cpp" />
     <ClCompile Include="..\Plugin_FirstSteps.cpp" />

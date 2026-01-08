@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources targetOsVersion="10.0.0" majorVersion="1">
-  <index root="\" startIndexAt="C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\UWP\\build\obj\ARM64\Release\filtered.layout.resfiles">
+  <index root="\" startIndexAt="C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\UWP\\build\obj\ARM64\Release\filtered.layout.resfiles">
     <default>
       <qualifier name="Language" value="en-US" />
       <qualifier name="Contrast" value="standard" />
@@ -15,7 +15,7 @@
     </default>
     <indexer-config type="RESFILES" qualifierDelimiter="." />
   </index>
-  <index root="\" startIndexAt="C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\UWP\\build\obj\ARM64\Release\resources.resfiles">
+  <index root="\" startIndexAt="C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\UWP\\build\obj\ARM64\Release\resources.resfiles">
     <default>
       <qualifier name="Language" value="en-US" />
       <qualifier name="Contrast" value="standard" />
@@ -32,7 +32,7 @@
     <indexer-config type="RESJSON" initialPath="AudioPluginDemo" />
     <indexer-config type="RESFILES" qualifierDelimiter="." />
   </index>
-  <index root="\" startIndexAt="C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\UWP\\build\obj\ARM64\Release\pri.resfiles">
+  <index root="\" startIndexAt="C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\UWP\\build\obj\ARM64\Release\pri.resfiles">
     <default>
       <qualifier name="Language" value="en-US" />
       <qualifier name="Contrast" value="standard" />
@@ -48,7 +48,7 @@
     <indexer-config type="PRI" />
     <indexer-config type="RESFILES" qualifierDelimiter="." />
   </index>
-  <index root="C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\UWP\build\obj\ARM64\Release\embed" startIndexAt="embed.resfiles">
+  <index root="C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\UWP\build\obj\ARM64\Release\embed" startIndexAt="embed.resfiles">
     <default>
       <qualifier name="Language" value="en-US" />
       <qualifier name="Contrast" value="standard" />

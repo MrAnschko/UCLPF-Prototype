@@ -30,7 +30,8 @@
     <ClCompile Include="..\Plugin_Vocoder.cpp" />
     <ClCompile Include="..\Plugin_WahWah.cpp" />
     <ClCompile Include="..\Plugin_FirstSteps.cpp" />
-    <ClCompile Include="..\Plugin_CustomLowpass.cpp" />
+    <ClCompile Include="..\Plugin_CustomSpatializer.cpp" />
+    <ClCompile Include="..\Plugin_FirstFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\AudioPluginInterface.h" />
