@@ -9,7 +9,7 @@ namespace CustomSpatializer
     const float cutoff_initial_freq = 2200; // the highest cutoff frequency
     const float half_angle = AudioPluginUtil::kPI/16; // the angle at which the cutoff frequency reaches half its highest value
     const float cutoff_scale_factor = 1/half_angle; // a scale factor for how much the distance affects the frequency
-    const float seek_speed = 2.0f; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+    const float seek_speed = 1.0f; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
 
     enum
     {
@@ -29,7 +29,7 @@ namespace CustomSpatializer
         {
             float p[P_NUM];
             AudioPluginUtil::BiquadFilter lowpassFilter[2]; // The lowpass filter that's being controlled by head movements
-    
+            float cutoff_frequency_current; // In order to avoid audio artifacts (clicks) it is better when the cutoff frequency is not quickly changed
         };
         union
         {
@@ -150,25 +150,27 @@ namespace CustomSpatializer
 
         //// Based on Point on plane
 
-        float cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + cutoff_scale_factor * angle));
+        float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + cutoff_scale_factor * angle));
 
         ////
         // --------
 
-        // processing with the lowpass filters
-        for (int i = 0; i < inchannels; i++)
-            data->lowpassFilter[i].SetupLowpass(cutoff_frequency, sr, q_factor);
-
+        float cutoff_frequency_current = data->cutoff_frequency_current;
+        
         for (unsigned int n = 0; n < length; n++)
         {
+            cutoff_frequency_current += AudioPluginUtil::FastClip(goal_cutoff_frequency - cutoff_frequency_current ,-seek_speed, seek_speed); // slowly go toward the goal frequency to avoid artifacts
             for (int i = 0; i < outchannels; i++)
             {
+                // processing with the lowpass filters
+                data->lowpassFilter[i].SetupLowpass(cutoff_frequency_current, sr, q_factor);
                 float y = inbuffer[n * inchannels + i];
                 y = data->lowpassFilter[i].Process(y);
                 outbuffer[n * outchannels + i] = y;
             }
         }
 
+        data->cutoff_frequency_current = cutoff_frequency_current;
         //processing done
 
         return UNITY_AUDIODSP_OK;
