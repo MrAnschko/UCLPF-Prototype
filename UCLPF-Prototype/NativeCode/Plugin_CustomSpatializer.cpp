@@ -2,6 +2,7 @@
 
 #include "AudioPluginUtil.h"
 
+float settingbuffer[4] = { 0 };
 
 namespace CustomSpatializer
 {
@@ -31,6 +32,7 @@ namespace CustomSpatializer
             AudioPluginUtil::BiquadFilter lowpassFilter[2]; // The lowpass filter that's being controlled by head movements
             float cutoff_frequency_current; // In order to avoid audio artifacts (clicks) it is better when the cutoff frequency is not quickly changed
         };
+
         union
         {
             Data data;
@@ -157,6 +159,8 @@ namespace CustomSpatializer
 
         float cutoff_frequency_current = data->cutoff_frequency_current;
         
+        const float totalMix = settingbuffer[0];
+
         
         for (unsigned int n = 0; n < length; n++)
         {
@@ -167,7 +171,7 @@ namespace CustomSpatializer
                 data->lowpassFilter[i].SetupLowpass(cutoff_frequency_current, sr, q_factor);
                 float y = inbuffer[n * inchannels + i];
                 y = data->lowpassFilter[i].Process(y);
-                outbuffer[n * outchannels + i] = y;
+                outbuffer[n * outchannels + i] = y*totalMix+(1-totalMix)*inbuffer[n * inchannels + i];
             }
         }
 
