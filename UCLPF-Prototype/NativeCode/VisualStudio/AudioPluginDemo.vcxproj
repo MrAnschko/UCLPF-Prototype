@@ -191,6 +191,8 @@
     <ClCompile Include="..\Plugin_Granulator.cpp" />
     <ClCompile Include="..\Plugin_ImpactGenerator.cpp" />
     <ClCompile Include="..\Plugin_ImpulseGenerator.cpp" />
+    <ClCompile Include="..\Plugin_LearningReceive.cpp" />
+    <ClCompile Include="..\Plugin_LearningSend.cpp" />
     <ClCompile Include="..\Plugin_Lofinator.cpp" />
     <ClCompile Include="..\Plugin_LevelMixer.cpp" />
     <ClCompile Include="..\Plugin_LoudnessMeter.cpp" />
