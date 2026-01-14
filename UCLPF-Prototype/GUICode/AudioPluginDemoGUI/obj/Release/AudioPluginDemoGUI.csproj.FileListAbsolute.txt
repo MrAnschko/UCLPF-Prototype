@@ -1,0 +1,17 @@
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\AudioPluginDemoGUI.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\UnityEditor.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\UnityEngine.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\Unity.Cecil.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\Bee.BeeDriver.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\PlayerBuildProgramLibrary.Data.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\ExCSS.Unity.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\Unity.CompilationPipeline.Common.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\ScriptCompilationBuildProgram.Data.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\BeeBuildProgramCommon.Data.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\UnityEditor.xml
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\bin\Release\UnityEngine.xml
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\obj\Release\AudioPluginDemoGUI.csproj.AssemblyReference.cache
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\obj\Release\AudioPluginDemoGUI.csproj.CoreCompileInputs.cache
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\obj\Release\AudioPlu.B13FC859.Up2Date
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\GUICode\AudioPluginDemoGUI\obj\Release\AudioPluginDemoGUI.dll
+C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\Assets\Editor\AudioPluginDemoGUI.dll
