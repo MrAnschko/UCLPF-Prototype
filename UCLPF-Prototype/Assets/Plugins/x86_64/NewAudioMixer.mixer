@@ -211,8 +211,44 @@ AudioMixerSnapshotController:
     48cc01acfb5a3fb4fa40b25109261182: 45.562447
     a1d76decc2916054cb195d4a78e3d8dd: -30
     9565262ef14c82245b2ba0bc4e164c89: -30
-    9473e1be6e431a544a7ec08a2e9bdead: 1
+    9473e1be6e431a544a7ec08a2e9bdead: -6
   m_TransitionOverrides: {}
+--- !u!244 &1898919817466191121
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: debcefa4ffc50a948a035e8832893a53
+  m_EffectName: Demo ConvolutionReverb
+  m_MixLevel: dd93b3edd6fd91449aa196ebd6941ffa
+  m_Parameters:
+  - m_ParameterName: Wet
+    m_GUID: d85eccc711ff03842b176d7efa23ecca
+  - m_ParameterName: Gain
+    m_GUID: 17ec68b2be5a41741adb2ad7f3b17867
+  - m_ParameterName: Time
+    m_GUID: bfc75e34454fd564485b9795bfad01aa
+  - m_ParameterName: Decay
+    m_GUID: 17440259877e8a643b756eaf8e42fa5f
+  - m_ParameterName: Diffusion
+    m_GUID: 2980080a7a4116e4eb3bc5a654349271
+  - m_ParameterName: StereoSpread
+    m_GUID: 9f309db16d9245c49a0e4e89888648cf
+  - m_ParameterName: Cut High
+    m_GUID: f9e1a2a72e8b6674a8e39e6e66bd218b
+  - m_ParameterName: Cut Low
+    m_GUID: 1eda94d8da61dbe42b192ccd8b2456fd
+  - m_ParameterName: Resonance
+    m_GUID: ac3197e98617a9f41b35072bd5717663
+  - m_ParameterName: Use Sample
+    m_GUID: 15041168ee8cece44ad96d3f90e5872d
+  - m_ParameterName: Reverse
+    m_GUID: 4503fec544c733340b6f16545f7bcf96
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &3908772721414824147
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -229,6 +265,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 5408381795576786744}
   - {fileID: -1305879143025302984}
+  - {fileID: 1898919817466191121}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

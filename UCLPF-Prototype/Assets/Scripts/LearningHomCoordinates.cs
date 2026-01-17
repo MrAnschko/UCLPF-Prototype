@@ -16,11 +16,12 @@ public class LearningHomCoordinates : MonoBehaviour
         Matrix4x4 l2w = Camera.main.transform.localToWorldMatrix;
         Vector4 testing = l2w.MultiplyPoint(Vector3.zero); // w2l -> l2w -> origin in local to origin in world?
         
-        Matrix4x4 w2l_t = Camera.main.transform.worldToLocalMatrix.transpose;
-        Matrix4x4 l2w_d = Camera.main.transform.localToWorldMatrix;
-        Debug.Log($"w2l transposed: \n {w2l_t* (w2l_t.transpose)}");
+        Matrix4x4 w2l = transform.worldToLocalMatrix;
+        Matrix4x4 l2w_d = transform.localToWorldMatrix;
+        Debug.Log($"w2l: \n {w2l}");
         //Debug.Log($"w2l_t calc: \n {w2l_t.MultiplyPoint(Vector3.zero)}");
         Debug.Log($"l2w direct: \n {l2w_d}");
+        
         
         //Vector4 local_pos = w2l_t.GetRow(3);
         //local_pos[3] = 0;

@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &187104781
 AudioSource:
   m_ObjectHideFlags: 0
@@ -432,6 +432,7 @@ GameObject:
   - component: {fileID: 995739520}
   - component: {fileID: 995739519}
   - component: {fileID: 995739525}
+  - component: {fileID: 995739526}
   m_Layer: 0
   m_Name: TestCube
   m_TagString: Untagged
@@ -830,6 +831,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &995739526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995739518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabc62af24c6b7e44819651ec6d55e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1024466123
 PrefabInstance:
   m_ObjectHideFlags: 0

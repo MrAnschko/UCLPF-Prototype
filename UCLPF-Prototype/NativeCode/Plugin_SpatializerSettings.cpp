@@ -4,6 +4,7 @@
 #include "AudioPluginUtil.h"
 
 extern float settingbuffer[];
+extern float debugbuffer[]; // Buffer for debug Purposes. Saved in buffer Callback
 
 namespace SpatializerSettings
 {
@@ -68,6 +69,11 @@ namespace SpatializerSettings
 
     int UNITY_AUDIODSP_CALLBACK GetFloatBufferCallback(UnityAudioEffectState* state, const char* name, float* buffer, int numsamples)
     {
+        if (strncmp(name, "SourcePos", 9) == 0) {
+            if (numsamples != 16)
+                return UNITY_AUDIODSP_ERR_UNSUPPORTED;
+            memcpy(buffer, debugbuffer, sizeof(float) * 16);
+        }
         return UNITY_AUDIODSP_OK;
     }
 

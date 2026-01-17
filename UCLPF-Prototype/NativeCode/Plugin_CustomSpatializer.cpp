@@ -3,6 +3,7 @@
 #include "AudioPluginUtil.h"
 
 float settingbuffer[4] = { 0 };
+float debugbuffer[16] = { 0 }; // Buffer for debug Purposes Currently transmits a Object matrix
 
 namespace CustomSpatializer
 {
@@ -132,6 +133,8 @@ namespace CustomSpatializer
         float* m = state->spatializerdata->listenermatrix;
         float* s = state->spatializerdata->sourcematrix;
 
+        memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix. TODO: make thread safe. (?)
+
         //**** Copied from spatializer example 
         // Currently we ignore source orientation and only use the position
         float px = s[12];
@@ -156,6 +159,8 @@ namespace CustomSpatializer
 
         ////
         // --------
+
+        
 
         float cutoff_frequency_current = data->cutoff_frequency_current;
         
