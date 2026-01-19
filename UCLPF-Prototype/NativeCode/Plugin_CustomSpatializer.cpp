@@ -2,17 +2,14 @@
 
 #include "AudioPluginUtil.h"
 
-float settingbuffer[4] = { 0 };
+
+float settingbuffer[8] = { 0 }; // Make a buffer to save all the settings in.
 float debugbuffer[16] = { 0 }; // Buffer for debug Purposes Currently transmits a Object matrix
 
 namespace CustomSpatializer
 {
-    const float q_factor = 0.707f; // the quality factor of the filter
-    const float cutoff_initial_freq = 2200; // the highest cutoff frequency
-    const float half_angle = AudioPluginUtil::kPI/16; // the angle at which the cutoff frequency reaches half its highest value
-    const float cutoff_scale_factor = 1/half_angle; // a scale factor for how much the distance affects the frequency
-    const float seek_speed = 1.0f; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
-
+    
+    
     enum
     {
         P_AUDIOSRCATTN,
@@ -32,6 +29,7 @@ namespace CustomSpatializer
             float p[P_NUM];
             AudioPluginUtil::BiquadFilter lowpassFilter[2]; // The lowpass filter that's being controlled by head movements
             float cutoff_frequency_current; // In order to avoid audio artifacts (clicks) it is better when the cutoff frequency is not quickly changed
+
         };
 
         union
@@ -128,12 +126,23 @@ namespace CustomSpatializer
             memcpy(outbuffer, inbuffer, length * outchannels * sizeof(float));
             return UNITY_AUDIODSP_OK;
         }
+
+        // Get Settings from the other Plugin
+        const float totalMix = settingbuffer[0];
+        float q_factor = settingbuffer[1]; // the quality factor of the filter
+        float cutoff_initial_freq = settingbuffer[2];; // the highest cutoff frequency
+        float half_angle = settingbuffer[3]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed = settingbuffer[4]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+
+
+
+
         float sr = (float)state->samplerate;
 
         float* m = state->spatializerdata->listenermatrix;
         float* s = state->spatializerdata->sourcematrix;
 
-        memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix. TODO: make thread safe. (?)
+        memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix to the debug buffer. TODO: make thread safe. (?)
 
         //**** Copied from spatializer example 
         // Currently we ignore source orientation and only use the position
@@ -151,9 +160,51 @@ namespace CustomSpatializer
         // forward vector is (0,0,1)
         // dot product of fwd vector and sourcedir accordingly is simply the z direction
         float angle = fabsf(acosf(dir_z/sqrtf(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z + 0.001f))); //angle is given in Radians
+        
+        float cutoff_scale_factor = 1 / half_angle; // a scale factor for how much the distance affects the frequency
+
+        
         ///// Angle end
 
         //// Based on Point on plane
+         
+
+        //Position (of the listener) Creating the last column of the inverse of m. (-> a matrix that transforms from listener to world coordinates.)
+        float l_x = -(m[12] * m[0] + m[13] * m[1] + m[14] * m[2]);
+        float l_y = -(m[12] * m[4] + m[13] * m[5] + m[14] * m[6]);
+        float l_z = -(m[12] * m[8] + m[13] * m[9] + m[14] * m[10]);
+
+
+        //direction of view 
+        // a forward view vector is (0,0,1,0) in listener coordinates
+        // (last one is zero to avoid translation) to transform that forward vector from listener to world the inverse of m is used.
+        // the inverse of the upper left 3x3 block of m (homogenous matrix) is simply its transpose
+        // accordingly multiplication results in the 3rd column vector of m.
+        float d_x = m[2];
+        float d_y = m[6];
+        float d_z = m[10];
+        // Intersection
+        float alpha = (d_y < 0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+
+        // position on the plane
+
+        float g_x = d_x + alpha * l_x;
+        float g_z = d_z + alpha * l_z;
+
+        // distance from point: (on plane)
+        float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
+
+        //// Point on plane end
+
+        // Circle:
+        // distance of object to listener (along plane)
+        float l_dist = sqrtf((l_x - px) * (l_x - px) + (l_z - pz) * (l_z - pz));
+        // distance between gaze point and listener
+        float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
+
+
+
+        // End Circle
 
         float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + cutoff_scale_factor * angle));
 
@@ -164,8 +215,6 @@ namespace CustomSpatializer
 
         float cutoff_frequency_current = data->cutoff_frequency_current;
         
-        const float totalMix = settingbuffer[0];
-
         
         for (unsigned int n = 0; n < length; n++)
         {

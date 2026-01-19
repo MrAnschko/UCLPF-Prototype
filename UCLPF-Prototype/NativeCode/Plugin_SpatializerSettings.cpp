@@ -1,5 +1,4 @@
 // Please note that this will only work on Unity 5.2 or higher.
-// Learning Plugin that sends a sine wave based on the position of an object to another plugin
 
 #include "AudioPluginUtil.h"
 
@@ -11,6 +10,10 @@ namespace SpatializerSettings
     enum
     {
         P_TotalMix,
+        P_QFactor, 
+        P_CutoffInitFeq,
+        P_HalfAngle,
+        P_SeekSpeed,
         P_NUM
     };
 
@@ -25,7 +28,11 @@ namespace SpatializerSettings
         int numparams = P_NUM;
         definition.paramdefs = new UnityAudioParameterDefinition[numparams];
         AudioPluginUtil::RegisterParameter(definition, "Total Mix", "%", 0.0f, 1.0f, 0.0f, 100.0f, 1.0f, P_TotalMix, "How much of the Method should be mixed in");
-        
+        AudioPluginUtil::RegisterParameter(definition, "Q Factor", "", 0.001f, 20.0f, 0.707f, 1.0f, 1.0f, P_QFactor, "The Quality Factor of the lowpass filter.");
+        AudioPluginUtil::RegisterParameter(definition, "Initial Cutoff Frequency", "Hz", 20.0f, 23000.0f, 23000.0f, 1.0f, 1.0f, P_CutoffInitFeq, "The Cutoff Frequency for a distance of 0");
+        AudioPluginUtil::RegisterParameter(definition, "Half Angle", "Degree", 0.001f, AudioPluginUtil::kPI, AudioPluginUtil::kPI / 4, 180/AudioPluginUtil::kPI, 1.0f, P_HalfAngle, "The angle at which the Frequency is halved");
+        AudioPluginUtil::RegisterParameter(definition, "Seek Speed", "Hz/ms", 0.001f, 10000, 1.0f, 1000 / AudioPluginUtil::kMaxSampleRate, 1.0f, P_SeekSpeed, "How fast the actual frequency approaches the goal. Advisable to use in order to avoid Artifacts");
+
         return numparams;
     }
 
@@ -86,7 +93,8 @@ namespace SpatializerSettings
 
         EffectData* data = state->GetEffectData<EffectData>();
 
-        settingbuffer[P_TotalMix] = data->p[P_TotalMix];
+        for(int param=0; param<P_NUM;param++)
+            settingbuffer[param] = data->p[param]; // copy settings into the buffer
         return UNITY_AUDIODSP_OK;
     }
 }
