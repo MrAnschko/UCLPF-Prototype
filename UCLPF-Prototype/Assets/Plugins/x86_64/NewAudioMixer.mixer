@@ -13,6 +13,14 @@ AudioMixerEffectController:
   m_Parameters:
   - m_ParameterName: Total Mix
     m_GUID: 9bd04ea438a47404faec2d3b7028a758
+  - m_ParameterName: Half Angle
+    m_GUID: 974ddf5d227b1db499a0cb33c0696c6d
+  - m_ParameterName: Freq
+    m_GUID: 7db47da78eff4344b93c078a1eb27d8f
+  - m_ParameterName: SeekSpeed
+    m_GUID: 5b44f58faf20bd24e962bc7e5c12e670
+  - m_ParameterName: Q Factor
+    m_GUID: 7d6212d9a7b28124a9970875d2a8621d
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -202,16 +210,20 @@ AudioMixerSnapshotController:
   m_FloatValues:
     2af89ff0f910ad547a19159b17151706: 2364.9065
     32e785d138ab69044a4e53938c8639ba: 1
-    9bd04ea438a47404faec2d3b7028a758: 0
+    9bd04ea438a47404faec2d3b7028a758: 1
     69b2a756fa6e7be4ab5b0be9ac1aa931: 7.5
+    7db47da78eff4344b93c078a1eb27d8f: 24000
     59f83dd8fc645dd49a6177fb9bae5e32: 0.10800299
+    7d6212d9a7b28124a9970875d2a8621d: 0.707
     b8ef63ba2d4b54249984156791650906: 0
     47ac4a3b7b4b0ad4cabc6c65b437109a: -9.8
     38f5b78c901f7ce4a8f45e1805dd0ce1: -0.037667945
     48cc01acfb5a3fb4fa40b25109261182: 45.562447
     a1d76decc2916054cb195d4a78e3d8dd: -30
+    974ddf5d227b1db499a0cb33c0696c6d: 0.71733034
     9565262ef14c82245b2ba0bc4e164c89: -30
     9473e1be6e431a544a7ec08a2e9bdead: -6
+    5b44f58faf20bd24e962bc7e5c12e670: 1
   m_TransitionOverrides: {}
 --- !u!244 &1898919817466191121
 AudioMixerEffectController:

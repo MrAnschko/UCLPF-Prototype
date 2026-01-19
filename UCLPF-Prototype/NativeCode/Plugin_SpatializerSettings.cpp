@@ -29,10 +29,9 @@ namespace SpatializerSettings
         definition.paramdefs = new UnityAudioParameterDefinition[numparams];
         AudioPluginUtil::RegisterParameter(definition, "Total Mix", "%", 0.0f, 1.0f, 0.0f, 100.0f, 1.0f, P_TotalMix, "How much of the Method should be mixed in");
         AudioPluginUtil::RegisterParameter(definition, "Q Factor", "", 0.001f, 20.0f, 0.707f, 1.0f, 1.0f, P_QFactor, "The Quality Factor of the lowpass filter.");
-        AudioPluginUtil::RegisterParameter(definition, "Initial Cutoff Frequency", "Hz", 20.0f, 23000.0f, 23000.0f, 1.0f, 1.0f, P_CutoffInitFeq, "The Cutoff Frequency for a distance of 0");
-        AudioPluginUtil::RegisterParameter(definition, "Half Angle", "Degree", 0.001f, AudioPluginUtil::kPI, AudioPluginUtil::kPI / 4, 180/AudioPluginUtil::kPI, 1.0f, P_HalfAngle, "The angle at which the Frequency is halved");
-        AudioPluginUtil::RegisterParameter(definition, "Seek Speed", "Hz/ms", 0.001f, 10000, 1.0f, 1000 / AudioPluginUtil::kMaxSampleRate, 1.0f, P_SeekSpeed, "How fast the actual frequency approaches the goal. Advisable to use in order to avoid Artifacts");
-
+        AudioPluginUtil::RegisterParameter(definition, "Freq", "Hz", 0.01f, 24000.0f, 22000.0f, 1.0f, 3.0f, P_CutoffInitFeq, "Cutoff frequency of the Filter");
+        AudioPluginUtil::RegisterParameter(definition, "Half Angle", "Degree", 0.01f, AudioPluginUtil::kPI, 0.5f, 180 / AudioPluginUtil::kPI, 1.0f, P_HalfAngle, "Angle at which the cutoff frequency is halved");
+        AudioPluginUtil::RegisterParameter(definition, "SeekSpeed", "", 0.01f, AudioPluginUtil::kMaxSampleRate, 1.0f, 1.0f, 10.0f, P_SeekSpeed, "How much the cutoff frequency may maximally be increased by per sample");
         return numparams;
     }
 
