@@ -32,6 +32,9 @@
     <ClCompile Include="..\Plugin_FirstSteps.cpp" />
     <ClCompile Include="..\Plugin_CustomSpatializer.cpp" />
     <ClCompile Include="..\Plugin_FirstFilter.cpp" />
+    <ClCompile Include="..\Plugin_SpatializerSettings.cpp" />
+    <ClCompile Include="..\Plugin_LearningSend.cpp" />
+    <ClCompile Include="..\Plugin_LearningReceive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\AudioPluginInterface.h" />

@@ -1,2 +1,1 @@
-C:\Programmierprojekte\Master\PluginSDK\NativeAudioPlugins-master\NativeCode\VisualStudio\build\test\Release\AudioPluginDemo.dll
 C:\Programmierprojekte\Master\UCLPF-Prototype\UCLPF-Prototype\NativeCode\VisualStudio\build\test\Release\AudioPluginDemo.dll

@@ -293,6 +293,8 @@
     <ClCompile Include="..\Plugin_Granulator.cpp" />
     <ClCompile Include="..\Plugin_ImpactGenerator.cpp" />
     <ClCompile Include="..\Plugin_ImpulseGenerator.cpp" />
+    <ClCompile Include="..\Plugin_LearningReceive.cpp" />
+    <ClCompile Include="..\Plugin_LearningSend.cpp" />
     <ClCompile Include="..\Plugin_Lofinator.cpp" />
     <ClCompile Include="..\Plugin_LevelMixer.cpp" />
     <ClCompile Include="..\Plugin_LoudnessMeter.cpp" />
@@ -305,6 +307,7 @@
     <ClCompile Include="..\Plugin_Routing.cpp" />
     <ClCompile Include="..\Plugin_Spatializer.cpp" />
     <ClCompile Include="..\Plugin_SpatializerReverb.cpp" />
+    <ClCompile Include="..\Plugin_SpatializerSettings.cpp" />
     <ClCompile Include="..\Plugin_StereoWidener.cpp" />
     <ClCompile Include="..\Plugin_Synthesizer.cpp" />
     <ClCompile Include="..\Plugin_TeeBee.cpp" />

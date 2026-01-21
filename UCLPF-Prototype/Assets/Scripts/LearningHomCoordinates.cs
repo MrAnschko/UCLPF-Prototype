@@ -54,7 +54,7 @@ public class LearningHomCoordinates : MonoBehaviour
         Gizmos.DrawRay(pos, dir*10);
 
         // Intersection
-        float alpha = (d_y <0.001f)? (-1-p_y)/d_y:0;
+        float alpha = (d_y <-0.001f)? (-1-p_y)/d_y:0;
 
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(pos+alpha*dir, 0.3f);

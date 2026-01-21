@@ -133,16 +133,15 @@ namespace CustomSpatializer
         float cutoff_initial_freq = settingbuffer[2];; // the highest cutoff frequency
         float half_angle = settingbuffer[3]; // the angle at which the cutoff frequency reaches half its highest value
         float seek_speed = settingbuffer[4]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
-
-
-
+        float pdist_factor = settingbuffer[5]; // Factor by which point distance is scaled
+        float cdist_factor = settingbuffer[6]; // Factor by which circle distance is scaled
 
         float sr = (float)state->samplerate;
 
         float* m = state->spatializerdata->listenermatrix;
         float* s = state->spatializerdata->sourcematrix;
 
-        memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix to the debug buffer. TODO: make thread safe. (?)
+        //memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix to the debug buffer. TODO: make thread safe. (?)
 
         //**** Copied from spatializer example 
         // Currently we ignore source orientation and only use the position
@@ -184,12 +183,14 @@ namespace CustomSpatializer
         float d_y = m[6];
         float d_z = m[10];
         // Intersection
-        float alpha = (d_y < 0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+        float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
 
         // position on the plane
 
-        float g_x = d_x + alpha * l_x;
-        float g_z = d_z + alpha * l_z;
+        float g_x =  alpha * d_x + l_x;
+        float g_z = alpha * d_z + l_z;
+        debugbuffer[2] = g_x;
+        debugbuffer[3] = g_z;
 
         // distance from point: (on plane)
         float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
@@ -202,11 +203,12 @@ namespace CustomSpatializer
         // distance between gaze point and listener
         float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
 
-
-
+        float c_dist = fabsf(l_dist - l_p_dist);
+        debugbuffer[0] = c_dist;
         // End Circle
 
-        float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + cutoff_scale_factor * angle));
+        float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + c_dist*cdist_factor+p_dist*pdist_factor+cutoff_scale_factor * angle));
+        debugbuffer[1] = goal_cutoff_frequency;
 
         ////
         // --------
