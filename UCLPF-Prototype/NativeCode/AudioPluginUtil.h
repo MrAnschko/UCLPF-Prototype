@@ -243,7 +243,7 @@ public:
     inline void SetupHighpass(float cutoff, float samplerate, float Q);
 
 public:
-    inline float Process(float input)
+    inline float Process(float input) // COMMENT (from Aaron): This calculation is weird because the biquad filter is in canonical form. It is also beautiful and I love it.
     {
         float iir =    input - a1 * z1 - a2 * z2;
         float fir = b0 * iir + b1 * z1 + b2 * z2;

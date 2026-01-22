@@ -185,6 +185,7 @@
     <ClCompile Include="..\Plugin_ConvolutionReverb.cpp" />
     <ClCompile Include="..\Plugin_CorrelationMeter.cpp" />
     <ClCompile Include="..\Plugin_CustomSpatializer.cpp" />
+    <ClCompile Include="..\Plugin_CustomSpatializerHRTF.cpp" />
     <ClCompile Include="..\Plugin_Equalizer.cpp" />
     <ClCompile Include="..\Plugin_FirstFilter.cpp" />
     <ClCompile Include="..\Plugin_FirstSteps.cpp" />
@@ -206,6 +207,7 @@
     <ClCompile Include="..\Plugin_Spatializer.cpp" />
     <ClCompile Include="..\Plugin_SpatializerReverb.cpp" />
     <ClCompile Include="..\Plugin_SpatializerSettings.cpp" />
+    <ClCompile Include="..\Plugin_SpatializerSettingsHRTF.cpp" />
     <ClCompile Include="..\Plugin_StereoWidener.cpp" />
     <ClCompile Include="..\Plugin_Synthesizer.cpp" />
     <ClCompile Include="..\Plugin_TeeBee.cpp" />

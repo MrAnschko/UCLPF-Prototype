@@ -2,11 +2,15 @@
 
 #include "AudioPluginUtil.h"
 
-extern float hrtfSrcData[];
-extern float reverbmixbuffer[];
 
-namespace Spatializer
+float hrtf_settingbuffer[8] = { 0 }; // Make a buffer to save all the settings in.
+float hrtf_debugbuffer[16] = { 0 }; // Buffer for debug Purposes Currently transmits a Object matrix
+extern float hrtfSrcData[]; // Data for the HRTF. (Impulse responses for different elevations and azimuth degrees
+
+namespace CustomSpatializerHRTF
 {
+    
+    
     enum
     {
         P_AUDIOSRCATTN,
@@ -15,6 +19,8 @@ namespace Spatializer
         P_NUM
     };
 
+    
+    //***************************************************************************************************************************************
     const int HRTFLEN = 512;
 
     const float GAINCORRECTION = 2.0f;
@@ -94,10 +100,40 @@ namespace Spatializer
         float buffer[HRTFLEN * 2];
     };
 
+
+    static void GetHRTF(int channel, AudioPluginUtil::UnityComplexNumber* h, float azimuth, float elevation)
+    {
+        float e = AudioPluginUtil::FastClip(elevation * 0.1f + 4, 0, 12);
+        float f = floorf(e);
+        int index1 = (int)f;
+        if (index1 < 0)
+            index1 = 0;
+        else if (index1 > 12)
+            index1 = 12;
+        int index2 = index1 + 1;
+        if (index2 > 12)
+            index2 = 12;
+        sharedData.hrtfChannel[channel][index1].GetHRTF(h, azimuth, 1.0f);
+        sharedData.hrtfChannel[channel][index2].GetHRTF(h, azimuth, e - f);
+    }
+
+//*********************************************************************************************************
+
     struct EffectData
     {
-        float p[P_NUM];
-        InstanceChannel ch[2];
+        struct Data
+        {
+            float p[P_NUM];
+            AudioPluginUtil::BiquadFilter lowpassFilter[2]; // The lowpass filter that's being controlled by head movements
+            float cutoff_frequency_current; // In order to avoid audio artifacts (clicks) it is better when the cutoff frequency is not quickly changed
+            InstanceChannel ch[2];
+        };
+
+        union
+        {
+            Data data;
+            unsigned char pad[(sizeof(Data) + 15) & ~15]; // This entire structure must be a multiple of 16 bytes (and and instance 16 byte aligned) for PS3 SPU DMA requirements
+        };
     };
 
     inline bool IsHostCompatible(UnityAudioEffectState* state)
@@ -122,7 +158,7 @@ namespace Spatializer
 
     static UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK DistanceAttenuationCallback(UnityAudioEffectState* state, float distanceIn, float attenuationIn, float* attenuationOut)
     {
-        EffectData* data = state->GetEffectData<EffectData>();
+        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
         *attenuationOut =
             data->p[P_AUDIOSRCATTN] * attenuationIn +
             data->p[P_FIXEDVOLUME] +
@@ -137,12 +173,12 @@ namespace Spatializer
         state->effectdata = effectdata;
         if (IsHostCompatible(state))
             state->spatializerdata->distanceattenuationcallback = DistanceAttenuationCallback;
-        AudioPluginUtil::InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->p);
+        AudioPluginUtil::InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->data.p);
         return UNITY_AUDIODSP_OK;
     }
 
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ReleaseCallback(UnityAudioEffectState* state)
-    {
+    {   
         EffectData* data = state->GetEffectData<EffectData>();
         delete data;
         return UNITY_AUDIODSP_OK;
@@ -150,7 +186,7 @@ namespace Spatializer
 
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK SetFloatParameterCallback(UnityAudioEffectState* state, int index, float value)
     {
-        EffectData* data = state->GetEffectData<EffectData>();
+        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
         if (index >= P_NUM)
             return UNITY_AUDIODSP_ERR_UNSUPPORTED;
         data->p[index] = value;
@@ -159,7 +195,7 @@ namespace Spatializer
 
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK GetFloatParameterCallback(UnityAudioEffectState* state, int index, float* value, char *valuestr)
     {
-        EffectData* data = state->GetEffectData<EffectData>();
+        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
         if (index >= P_NUM)
             return UNITY_AUDIODSP_ERR_UNSUPPORTED;
         if (value != NULL)
@@ -174,24 +210,12 @@ namespace Spatializer
         return UNITY_AUDIODSP_OK;
     }
 
-    static void GetHRTF(int channel, AudioPluginUtil::UnityComplexNumber* h, float azimuth, float elevation)
-    {
-        float e = AudioPluginUtil::FastClip(elevation * 0.1f + 4, 0, 12);
-        float f = floorf(e);
-        int index1 = (int)f;
-        if (index1 < 0)
-            index1 = 0;
-        else if (index1 > 12)
-            index1 = 12;
-        int index2 = index1 + 1;
-        if (index2 > 12)
-            index2 = 12;
-        sharedData.hrtfChannel[channel][index1].GetHRTF(h, azimuth, 1.0f);
-        sharedData.hrtfChannel[channel][index2].GetHRTF(h, azimuth, e - f);
-    }
+    
 
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
     {
+        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
+
         // Check that I/O formats are right and that the host API supports this feature
         if (inchannels != 2 || outchannels != 2 ||
             !IsHostCompatible(state) || state->spatializerdata == NULL)
@@ -200,13 +224,23 @@ namespace Spatializer
             return UNITY_AUDIODSP_OK;
         }
 
-        EffectData* data = state->GetEffectData<EffectData>();
+        // Get Settings from the other Plugin
+        const float totalMix = hrtf_settingbuffer[0];
+        float q_factor = hrtf_settingbuffer[1]; // the quality factor of the filter
+        float cutoff_initial_freq = hrtf_settingbuffer[2];; // the highest cutoff frequency
+        float half_angle = hrtf_settingbuffer[3]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed = hrtf_settingbuffer[4]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+        float pdist_factor = hrtf_settingbuffer[5]; // Factor by which point distance is scaled
+        float cdist_factor = hrtf_settingbuffer[6]; // Factor by which circle distance is scaled
 
-        static const float kRad2Deg = 180.0f / AudioPluginUtil::kPI;
+        float sr = (float)state->samplerate;
 
         float* m = state->spatializerdata->listenermatrix;
         float* s = state->spatializerdata->sourcematrix;
 
+        //memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix to the debug buffer. TODO: make thread safe. (?)
+
+        //**** Copied from spatializer example 
         // Currently we ignore source orientation and only use the position
         float px = s[12];
         float py = s[13];
@@ -215,11 +249,77 @@ namespace Spatializer
         float dir_x = m[0] * px + m[4] * py + m[8] * pz + m[12];
         float dir_y = m[1] * px + m[5] * py + m[9] * pz + m[13];
         float dir_z = m[2] * px + m[6] * py + m[10] * pz + m[14];
+        //******************************************************
+
+        // Distance Calculation
+        //// Based on Angle
+        // forward vector is (0,0,1)
+        // dot product of fwd vector and sourcedir accordingly is simply the z direction
+        float angle = fabsf(acosf(dir_z/sqrtf(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z + 0.001f))); //angle is given in Radians
+        
+        float cutoff_scale_factor = 1 / half_angle; // a scale factor for how much the distance affects the frequency
+
+        
+        ///// Angle end
+
+        //// Based on Point on plane
+         
+
+        //Position (of the listener) Creating the last column of the inverse of m. (-> a matrix that transforms from listener to world coordinates.)
+        float l_x = -(m[12] * m[0] + m[13] * m[1] + m[14] * m[2]);
+        float l_y = -(m[12] * m[4] + m[13] * m[5] + m[14] * m[6]);
+        float l_z = -(m[12] * m[8] + m[13] * m[9] + m[14] * m[10]);
+
+
+        //direction of view 
+        // a forward view vector is (0,0,1,0) in listener coordinates
+        // (last one is zero to avoid translation) to transform that forward vector from listener to world the inverse of m is used.
+        // the inverse of the upper left 3x3 block of m (homogenous matrix) is simply its transpose
+        // accordingly multiplication results in the 3rd column vector of m.
+        float d_x = m[2];
+        float d_y = m[6];
+        float d_z = m[10];
+        // Intersection
+        float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+
+        // position on the plane
+
+        float g_x =  alpha * d_x + l_x;
+        float g_z = alpha * d_z + l_z;
+        hrtf_debugbuffer[2] = g_x;
+        hrtf_debugbuffer[3] = g_z;
+
+        // distance from point: (on plane)
+        float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
+
+        //// Point on plane end
+
+        // Circle:
+        // distance of object to listener (along plane)
+        float l_dist = sqrtf((l_x - px) * (l_x - px) + (l_z - pz) * (l_z - pz));
+        // distance between gaze point and listener
+        float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
+
+        float c_dist = fabsf(l_dist - l_p_dist);
+        hrtf_debugbuffer[0] = c_dist;
+        // End Circle
+
+        float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + c_dist*cdist_factor+p_dist*pdist_factor+cutoff_scale_factor * angle));
+        hrtf_debugbuffer[1] = goal_cutoff_frequency;
+
+        ////
+        // --------
+        
+        
+        
+        //****************************************************** HRTF PROCESSING (Taken from example Spatializer)
+        static const float kRad2Deg = 180.0f / AudioPluginUtil::kPI;
 
         float azimuth = (fabsf(dir_z) < 0.001f) ? 0.0f : atan2f(dir_x, dir_z);
         if (azimuth < 0.0f)
             azimuth += 2.0f * AudioPluginUtil::kPI;
         azimuth = AudioPluginUtil::FastClip(azimuth * kRad2Deg, 0.0f, 360.0f);
+
 
         float elevation = atan2f(dir_y, sqrtf(dir_x * dir_x + dir_z * dir_z) + 0.001f) * kRad2Deg;
         float spatialblend = state->spatializerdata->spatialblend;
@@ -238,11 +338,17 @@ namespace Spatializer
         float spread = cosf(state->spatializerdata->spread * AudioPluginUtil::kPI / 360.0f);
         float spreadmatrix[2] = { 2.0f - spread, spread };
 
-        float* reverb = reverbmixbuffer;
         for (unsigned int sampleOffset = 0; sampleOffset < length; sampleOffset += HRTFLEN)
         {
+            float cutoff_frequency_current;
+            
             for (int c = 0; c < 2; c++)
             {
+                /// UCLPF. Frequency seeking is a bit different here, since the audio channels aren't in the inner loop. (need to 'reset' at the start of new channel)
+                cutoff_frequency_current = data->cutoff_frequency_current;
+                ///
+
+                
                 // stereopan is in the [-1; 1] range, this acts the way fmod does it for stereo
                 float stereopan = 1.0f - ((c == 0) ? AudioPluginUtil::FastMax(0.0f, state->spatializerdata->stereopan) : AudioPluginUtil::FastMax(0.0f, -state->spatializerdata->stereopan));
 
@@ -250,10 +356,16 @@ namespace Spatializer
 
                 for (int n = 0; n < HRTFLEN; n++)
                 {
-                    float left  = inbuffer[n * 2];
+                    float left = inbuffer[n * 2];
                     float right = inbuffer[n * 2 + 1];
                     ch.buffer[n] = ch.buffer[n + HRTFLEN]; // save previous results and shift them "Back" by one hrtflen
-                    ch.buffer[n + HRTFLEN] = left * spreadmatrix[c] + right * spreadmatrix[1 - c]; //copy
+                    // UCLPF PROCESSING ------------------------------------------------------------
+                    cutoff_frequency_current += AudioPluginUtil::FastClip(goal_cutoff_frequency - cutoff_frequency_current, -seek_speed, seek_speed); // slowly go toward the goal frequency to avoid artifacts
+                    data->lowpassFilter[c].SetupLowpass(cutoff_frequency_current, sr, q_factor);
+                    float y = left * spreadmatrix[c] + right * spreadmatrix[1 - c];
+                    y = totalMix*data->lowpassFilter[c].Process(y)+(1-totalMix)*y;
+                    ch.buffer[n + HRTFLEN] = y;
+                    /// ----------------------------------------------------------------------------------
                 }
 
                 for (int n = 0; n < HRTFLEN * 2; n++)
@@ -274,14 +386,25 @@ namespace Spatializer
                     float s = inbuffer[n * 2 + c] * stereopan;
                     float y = s + (ch.y[n].re * GAINCORRECTION - s) * spatialblend;
                     outbuffer[n * 2 + c] = y;
-                    reverb[n * 2 + c] += y * reverbmix;
+                    
                 }
+
+
+                
+
             }
 
+
+            data->cutoff_frequency_current = cutoff_frequency_current; // save current position when through with both channels
             inbuffer += HRTFLEN * 2;
             outbuffer += HRTFLEN * 2;
-            reverb += HRTFLEN * 2;
         }
+
+
+        //*********************************************************************************************************
+
+        
+        //processing done
 
         return UNITY_AUDIODSP_OK;
     }
