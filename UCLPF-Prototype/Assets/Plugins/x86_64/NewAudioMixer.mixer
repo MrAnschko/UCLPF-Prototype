@@ -15,11 +15,38 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -3351563652507790528}
-  - {fileID: 7435733234235752026}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-3504713440914554948
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 63cd8f5782d90e949898963a0157537a
+  m_EffectName: UCLPF+HRTF Settings
+  m_MixLevel: 833ba007dc9412943b9d01726af3c7a9
+  m_Parameters:
+  - m_ParameterName: Total Mix
+    m_GUID: 9c42e8856699ddb40b6cc43e22b30801
+  - m_ParameterName: Q Factor
+    m_GUID: 8ac48e9fa4406df46a73eb96e3288c0f
+  - m_ParameterName: Freq
+    m_GUID: 78f10dcb9487be94d8175c800098f848
+  - m_ParameterName: Half Angle
+    m_GUID: 1d88cfd486ce379429ef5561b78c1bc2
+  - m_ParameterName: SeekSpeed
+    m_GUID: 6fed829e7c76ee04f8385cf60d6b1881
+  - m_ParameterName: Point SF
+    m_GUID: 0c69c1e6cadc3b545a8feee46097ce29
+  - m_ParameterName: Circle SF
+    m_GUID: 7145fc8f292e04d4b9bb7f2be748b8d4
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-3351563652507790528
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -49,7 +76,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 1d88cfd486ce379429ef5561b78c1bc2
+    name: HalfAngle
+  - guid: 0c69c1e6cadc3b545a8feee46097ce29
+    name: PointSF
+  - guid: 7145fc8f292e04d4b9bb7f2be748b8d4
+    name: CircleSF
   m_AudioMixerGroupViews:
   - guids:
     - d0f0d4ab6ff1e034b81f5bec448cc727
@@ -75,6 +108,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
+  - {fileID: -3504713440914554948}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -112,8 +146,10 @@ AudioMixerSnapshotController:
     61306c739f6a18247b78c74068dda71f: 13212.731
     83a0a044174eb1e478c752e6e5f882f1: 18
     9bd04ea438a47404faec2d3b7028a758: 1
+    1d88cfd486ce379429ef5561b78c1bc2: 31.415928
     69b2a756fa6e7be4ab5b0be9ac1aa931: 7.5
     86149a565b3649e489df2957ea21d332: -16.4
+    0c69c1e6cadc3b545a8feee46097ce29: 0
     7db47da78eff4344b93c078a1eb27d8f: 24000
     e61b9438e4f925a4ebb9f8085f87059a: 23
     7f3507b88758d0a4caa0101c0459d452: 0
@@ -123,6 +159,7 @@ AudioMixerSnapshotController:
     7d6212d9a7b28124a9970875d2a8621d: 11.6
     b8ef63ba2d4b54249984156791650906: 0
     47ac4a3b7b4b0ad4cabc6c65b437109a: -9.8
+    78f10dcb9487be94d8175c800098f848: 24000
     6ee66b7c4b0676d40b605eac9c401af0: 1
     38f5b78c901f7ce4a8f45e1805dd0ce1: 0
     48cc01acfb5a3fb4fa40b25109261182: 45.562447
@@ -130,73 +167,11 @@ AudioMixerSnapshotController:
     974ddf5d227b1db499a0cb33c0696c6d: 0.17453294
     9565262ef14c82245b2ba0bc4e164c89: -30
     0f20415ec6209eb41b918364541ca1cd: 2425.558
+    6fed829e7c76ee04f8385cf60d6b1881: 3
     9473e1be6e431a544a7ec08a2e9bdead: -6
     5b44f58faf20bd24e962bc7e5c12e670: 22050
+    7145fc8f292e04d4b9bb7f2be748b8d4: 10
   m_TransitionOverrides: {}
---- !u!244 &2560250709196389251
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: d746546389068714caeb52db9c6eeabf
-  m_EffectName: Demo Multiband
-  m_MixLevel: 417b687a20e45f6419776233f601d468
-  m_Parameters:
-  - m_ParameterName: MasterGain
-    m_GUID: 058e45bfb6cffa24ab3c517f4d567204
-  - m_ParameterName: LowFreq
-    m_GUID: 01741ef0cb0d51746b806ab69020962d
-  - m_ParameterName: HighFreq
-    m_GUID: 61306c739f6a18247b78c74068dda71f
-  - m_ParameterName: LowGain
-    m_GUID: 8689a92e0115edc49a62e866c8755a0f
-  - m_ParameterName: MidGain
-    m_GUID: 5a429513c7e40d54b958205c1fb4c30b
-  - m_ParameterName: HighGain
-    m_GUID: 83a0a044174eb1e478c752e6e5f882f1
-  - m_ParameterName: LowAttackTime
-    m_GUID: aa991c6920c5ef042bcb8d0863c1994f
-  - m_ParameterName: MidAttackTime
-    m_GUID: 3703a7d09b66bc24cb52265cfe5cffc5
-  - m_ParameterName: HighAttackTime
-    m_GUID: b9d26a48376627f4e8955b8c7d911be1
-  - m_ParameterName: LowReleaseTime
-    m_GUID: 7c56ffdceea8f1742af61d806904a44b
-  - m_ParameterName: MidReleaseTime
-    m_GUID: 7e10ddbbc0a205a4983686752064be98
-  - m_ParameterName: HighReleaseTime
-    m_GUID: 2aafbf413712f2e4594c5bbf9c1660fa
-  - m_ParameterName: LowThreshold
-    m_GUID: efe6305b5ff20f449add3a81e3488696
-  - m_ParameterName: MidThreshold
-    m_GUID: 95a9653847e825e43a77e66f3263d4a3
-  - m_ParameterName: HighThreshold
-    m_GUID: cae769bdedf99e24e9c4e6f6393b914f
-  - m_ParameterName: LowRatio
-    m_GUID: fb7fd1c92119c564a84326e2c62f0682
-  - m_ParameterName: MidRatio
-    m_GUID: f6fee8e150600744b849ff666f8ca4cf
-  - m_ParameterName: HighRatio
-    m_GUID: 6382ff5b8adfbea4bb24f9f9a83aaede
-  - m_ParameterName: LowKnee
-    m_GUID: e48f3062e50e8004b82503d50de83ef3
-  - m_ParameterName: MidKnee
-    m_GUID: eabbef26bc209694c9b47e85c15a2b78
-  - m_ParameterName: HighKnee
-    m_GUID: d2d997eb2e4761d49bb41ae7cdcfbbd1
-  - m_ParameterName: FilterOrder
-    m_GUID: 8a5f2ad33827b0b429749df8e3dbf129
-  - m_ParameterName: UseLogScale
-    m_GUID: 3754d6c7c4d1c624f985f53676611385
-  - m_ParameterName: ShowSpectrum
-    m_GUID: 00185118d6b8eb64f99ca7c17b538171
-  - m_ParameterName: SpectrumDecay
-    m_GUID: d6648f6d7f96322428fa1197724c655c
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &3908772721414824147
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -212,7 +187,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 5408381795576786744}
-  - {fileID: 2560250709196389251}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -228,46 +202,6 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 5a96e09bd8e45e547a21e1e6a90e9d39
   m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &7435733234235752026
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: deb3eeae5adc405488a03344b3e7aee0
-  m_EffectName: Demo Equalizer
-  m_MixLevel: 31d649561d41ef4409440cae55264672
-  m_Parameters:
-  - m_ParameterName: MasterGain
-    m_GUID: 0977df72c9854ee4f86d37d55122a1c8
-  - m_ParameterName: LowGain
-    m_GUID: 8ef24399590f6074a96bd0429957202a
-  - m_ParameterName: MidGain
-    m_GUID: e61b9438e4f925a4ebb9f8085f87059a
-  - m_ParameterName: HighGain
-    m_GUID: 17282e9ee95bc9d48b23baf7ae6a11b4
-  - m_ParameterName: LowFreq
-    m_GUID: 371773214460fc340a22f0a8406a8650
-  - m_ParameterName: MidFreq
-    m_GUID: 0f20415ec6209eb41b918364541ca1cd
-  - m_ParameterName: HighFreq
-    m_GUID: b6ca043033921054fa2e041373d698d8
-  - m_ParameterName: LowQ
-    m_GUID: 1119ad1fe29ee6f42a56cc432c11ca86
-  - m_ParameterName: MidQ
-    m_GUID: ba80147e00d80544f8000094c46c981c
-  - m_ParameterName: HighQ
-    m_GUID: a85b396baf5b8864680f01940e7cf66e
-  - m_ParameterName: UseLogScale
-    m_GUID: d4ed703d75e1533478c1dc02f930baf8
-  - m_ParameterName: ShowSpectrum
-    m_GUID: 1bd24f11007e3e940a061705b6529106
-  - m_ParameterName: SpectrumDecay
-    m_GUID: 718852feb81cd3b40a24b22066fac963
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
