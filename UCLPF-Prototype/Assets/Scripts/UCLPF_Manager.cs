@@ -18,6 +18,11 @@ public class UCLPF_Manager : MonoBehaviour
         Point
     }
 
+    private void Start()
+    {
+        Debug.Log("Mode Set to Vector");
+        SetModeVector();
+    }
     public void SetMode(Mode mode)
     {
         return;
@@ -25,7 +30,7 @@ public class UCLPF_Manager : MonoBehaviour
 
     public void SetModeVector()
     {
-        mixer.SetFloat("HalfAngle", Mathf.PI/4);
+        mixer.SetFloat("HalfAngle", Mathf.PI/16);
         mixer.SetFloat("PointSF", 0);
         mixer.SetFloat("CircleSF", 0);
 

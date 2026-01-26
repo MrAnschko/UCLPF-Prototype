@@ -24,8 +24,8 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Circle_SF: 1
-    - _Half_Angle: 1800
+    - _Circle_SF: 0
+    - _Half_Angle: 45
     - _Height: -1
     - _Point_SF: 0
     - _Test: 0
