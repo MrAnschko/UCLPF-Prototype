@@ -95,6 +95,7 @@ namespace CustomSpatializerHRTF
     struct InstanceChannel
     {
         AudioPluginUtil::UnityComplexNumber h[HRTFLEN * 2];
+        AudioPluginUtil::UnityComplexNumber h_prev[HRTFLEN * 2];
         AudioPluginUtil::UnityComplexNumber x[HRTFLEN * 2];
         AudioPluginUtil::UnityComplexNumber y[HRTFLEN * 2];
         float buffer[HRTFLEN * 2];
@@ -127,6 +128,7 @@ namespace CustomSpatializerHRTF
             AudioPluginUtil::BiquadFilter lowpassFilter[2]; // The lowpass filter that's being controlled by head movements
             float cutoff_frequency_current; // In order to avoid audio artifacts (clicks) it is better when the cutoff frequency is not quickly changed
             InstanceChannel ch[2];
+
         };
 
         union
@@ -135,6 +137,10 @@ namespace CustomSpatializerHRTF
             unsigned char pad[(sizeof(Data) + 15) & ~15]; // This entire structure must be a multiple of 16 bytes (and and instance 16 byte aligned) for PS3 SPU DMA requirements
         };
     };
+
+    static inline float crossfade_function(float t) {
+        return AudioPluginUtil::FastClip(t, 0.0f, 1.0f);; // TODO: write better function.
+    }
 
     inline bool IsHostCompatible(UnityAudioEffectState* state)
     {
@@ -174,6 +180,7 @@ namespace CustomSpatializerHRTF
         if (IsHostCompatible(state))
             state->spatializerdata->distanceattenuationcallback = DistanceAttenuationCallback;
         AudioPluginUtil::InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->data.p);
+        effectdata->data.cutoff_frequency_current = 0.0f;
         return UNITY_AUDIODSP_OK;
     }
 
@@ -231,7 +238,8 @@ namespace CustomSpatializerHRTF
         float half_angle = hrtf_settingbuffer[3]; // the angle at which the cutoff frequency reaches half its highest value
         float seek_speed = hrtf_settingbuffer[4]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
         float pdist_factor = hrtf_settingbuffer[5]; // Factor by which point distance is scaled
-        float cdist_factor = hrtf_settingbuffer[6]; // Factor by which circle distance is scaled
+        float cdist_factor = hrtf_settingbuffer[6]; // Factor by which circle distance is scaled 
+        float crossfade_samples = hrtf_settingbuffer[7]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
 
         float sr = (float)state->samplerate;
 
@@ -325,9 +333,6 @@ namespace CustomSpatializerHRTF
         float spatialblend = state->spatializerdata->spatialblend;
         float reverbmix = state->spatializerdata->reverbzonemix;
 
-        GetHRTF(0, data->ch[0].h, azimuth, elevation);
-        GetHRTF(1, data->ch[1].h, azimuth, elevation);
-
         // From the FMOD documentation:
         //   A spread angle of 0 makes the stereo sound mono at the point of the 3D emitter.
         //   A spread angle of 90 makes the left part of the stereo sound place itself at 45 degrees to the left and the right part 45 degrees to the right.
@@ -338,13 +343,20 @@ namespace CustomSpatializerHRTF
         float spread = cosf(state->spatializerdata->spread * AudioPluginUtil::kPI / 360.0f);
         float spreadmatrix[2] = { 2.0f - spread, spread };
 
+
+        GetHRTF(0, data->ch[0].h, azimuth, elevation);
+        GetHRTF(1, data->ch[1].h, azimuth, elevation);
+
+
+        
+
         for (unsigned int sampleOffset = 0; sampleOffset < length; sampleOffset += HRTFLEN)
         {
             float cutoff_frequency_current;
             
             for (int c = 0; c < 2; c++)
             {
-                /// UCLPF. Frequency seeking is a bit different here, since the audio channels aren't in the inner loop. (need to 'reset' at the start of new channel)
+                /// UCLPF. Frequency seeking is a bit different here (compared to plugin withoug hrtf), since the audio channels aren't in the inner loop. (need to 'reset' at the start of new channel)
                 cutoff_frequency_current = data->cutoff_frequency_current;
                 ///
 
@@ -358,9 +370,9 @@ namespace CustomSpatializerHRTF
                 {
                     float left = inbuffer[n * 2];
                     float right = inbuffer[n * 2 + 1];
-                    ch.buffer[n] = ch.buffer[n + HRTFLEN]; // save previous results and shift them "Back" by one hrtflen
+                    ch.buffer[n] = ch.buffer[n + HRTFLEN]; // save previous results and shift them "Back" by one hrtflen (this seems to be a overlap-save convolution already?
                     // UCLPF PROCESSING ------------------------------------------------------------
-                    cutoff_frequency_current += AudioPluginUtil::FastClip(goal_cutoff_frequency - cutoff_frequency_current, -seek_speed, seek_speed); // slowly go toward the goal frequency to avoid artifacts
+                    cutoff_frequency_current += AudioPluginUtil::FastClip(goal_cutoff_frequency - cutoff_frequency_current, -seek_speed, seek_speed);
                     data->lowpassFilter[c].SetupLowpass(cutoff_frequency_current, sr, q_factor);
                     float y = left * spreadmatrix[c] + right * spreadmatrix[1 - c];
                     y = totalMix*data->lowpassFilter[c].Process(y)+(1-totalMix)*y;
@@ -385,8 +397,22 @@ namespace CustomSpatializerHRTF
                 {
                     float s = inbuffer[n * 2 + c] * stereopan;
                     float y = s + (ch.y[n].re * GAINCORRECTION - s) * spatialblend;
-                    outbuffer[n * 2 + c] = y;
+                    outbuffer[n * 2 + c] = crossfade_function((n+ sampleOffset)/ crossfade_samples)*y;
                     
+                }
+
+                //calculate factor from previous hrtf
+                for (int n = 0; n < HRTFLEN * 2; n++)
+                    AudioPluginUtil::UnityComplexNumber::Mul<float, float, float>(ch.x[n], ch.h_prev[n], ch.y[n]);
+
+                AudioPluginUtil::FFT::Backward(ch.y, HRTFLEN * 2, false);
+
+                for (int n = 0; n < HRTFLEN; n++)
+                {
+                    float s = inbuffer[n * 2 + c] * stereopan;
+                    float y = s + (ch.y[n].re * GAINCORRECTION - s) * spatialblend;
+                    outbuffer[n * 2 + c] += crossfade_function(1-(n + sampleOffset) / crossfade_samples) * y;
+
                 }
 
 
@@ -403,7 +429,10 @@ namespace CustomSpatializerHRTF
 
         //*********************************************************************************************************
 
+        memcpy(data->ch[0].h_prev, data->ch[0].h, sizeof(AudioPluginUtil::UnityComplexNumber) * HRTFLEN * 2);
+        memcpy(data->ch[1].h_prev, data->ch[1].h, sizeof(AudioPluginUtil::UnityComplexNumber) * HRTFLEN * 2);
         
+
         //processing done
 
         return UNITY_AUDIODSP_OK;
