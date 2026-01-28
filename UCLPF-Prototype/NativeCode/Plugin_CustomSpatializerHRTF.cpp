@@ -3,8 +3,8 @@
 #include "AudioPluginUtil.h"
 
 
-float hrtf_settingbuffer[8] = { 0 }; // Make a buffer to save all the settings in.
-float hrtf_debugbuffer[16] = { 0 }; // Buffer for debug Purposes Currently transmits a Object matrix
+float hrtf_settingbuffer[10] = { 0.0f }; // Make a buffer to save all the settings in.
+float hrtf_debugbuffer[16] = { 0.0f }; // Buffer for debug Purposes Currently transmits a Object matrix
 extern float hrtfSrcData[]; // Data for the HRTF. (Impulse responses for different elevations and azimuth degrees
 
 namespace CustomSpatializerHRTF
@@ -223,6 +223,13 @@ namespace CustomSpatializerHRTF
     {
         EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
 
+        //check whether the settings are already populated.
+        if (hrtf_settingbuffer[0] == 0.0f) {
+            memcpy(outbuffer, inbuffer, length * outchannels * sizeof(float));
+            return UNITY_AUDIODSP_OK;
+
+        }
+
         // Check that I/O formats are right and that the host API supports this feature
         if (inchannels != 2 || outchannels != 2 ||
             !IsHostCompatible(state) || state->spatializerdata == NULL)
@@ -232,14 +239,14 @@ namespace CustomSpatializerHRTF
         }
 
         // Get Settings from the other Plugin
-        const float totalMix = hrtf_settingbuffer[0];
-        float q_factor = hrtf_settingbuffer[1]; // the quality factor of the filter
-        float cutoff_initial_freq = hrtf_settingbuffer[2];; // the highest cutoff frequency
-        float half_angle = hrtf_settingbuffer[3]; // the angle at which the cutoff frequency reaches half its highest value
-        float seek_speed = hrtf_settingbuffer[4]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
-        float pdist_factor = hrtf_settingbuffer[5]; // Factor by which point distance is scaled
-        float cdist_factor = hrtf_settingbuffer[6]; // Factor by which circle distance is scaled 
-        float crossfade_samples = hrtf_settingbuffer[7]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+        const float totalMix =      hrtf_settingbuffer[1];
+        float q_factor =            hrtf_settingbuffer[2]; // the quality factor of the filter
+        float cutoff_initial_freq = hrtf_settingbuffer[3];; // the highest cutoff frequency
+        float half_angle =          hrtf_settingbuffer[4]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed =          hrtf_settingbuffer[5]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+        float pdist_factor =        hrtf_settingbuffer[6]; // Factor by which point distance is scaled
+        float cdist_factor =        hrtf_settingbuffer[7]; // Factor by which circle distance is scaled 
+        float crossfade_samples =   hrtf_settingbuffer[8]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
 
         float sr = (float)state->samplerate;
 

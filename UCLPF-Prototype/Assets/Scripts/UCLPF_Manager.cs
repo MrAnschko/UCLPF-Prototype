@@ -34,7 +34,7 @@ public class UCLPF_Manager : MonoBehaviour
         mixer.SetFloat("PointSF", 0);
         mixer.SetFloat("CircleSF", 0);
 
-        visualizationMaterial.SetFloat("_Half_Angle",45);
+        visualizationMaterial.SetFloat("_Half_Angle",15);
         visualizationMaterial.SetFloat("_Point_SF",0);
         visualizationMaterial.SetFloat("_Circle_SF",0);
     }

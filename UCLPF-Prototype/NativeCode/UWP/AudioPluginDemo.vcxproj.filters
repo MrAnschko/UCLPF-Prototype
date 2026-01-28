@@ -35,6 +35,8 @@
     <ClCompile Include="..\Plugin_SpatializerSettings.cpp" />
     <ClCompile Include="..\Plugin_LearningSend.cpp" />
     <ClCompile Include="..\Plugin_LearningReceive.cpp" />
+    <ClCompile Include="..\Plugin_CustomSpatializerHRTF.cpp" />
+    <ClCompile Include="..\Plugin_SpatializerSettingsHRTF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\AudioPluginInterface.h" />

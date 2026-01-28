@@ -98,8 +98,9 @@ namespace SpatializerSettingsHRTF
 
         EffectData* data = state->GetEffectData<EffectData>();
 
+        hrtf_settingbuffer[0] = 1.0f;
         for(int param=0; param<P_NUM;param++)
-            hrtf_settingbuffer[param] = data->p[param]; // copy settings into the buffer
+            hrtf_settingbuffer[param+1] = data->p[param]; // copy settings into the buffer
         return UNITY_AUDIODSP_OK;
     }
 }

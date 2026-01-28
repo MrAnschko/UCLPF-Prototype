@@ -25,7 +25,7 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Circle_SF: 0
-    - _Half_Angle: 45
+    - _Half_Angle: 15
     - _Height: -1
     - _Point_SF: 0
     - _Test: 0
