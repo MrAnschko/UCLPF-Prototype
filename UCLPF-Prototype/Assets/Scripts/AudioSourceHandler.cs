@@ -17,7 +17,7 @@ public class AudioSourceHandler : MonoBehaviour
     
     
 
-    private void Awake()
+    private void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();
         clip = audioSource.clip;
