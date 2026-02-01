@@ -8,6 +8,8 @@ using UnityEngine;
 [DefaultExecutionOrder(0)]
 public class AudioSourceHandler : MonoBehaviour
 {
+    static double safety_time = 0.10d;
+
 
     AudioSource audioSource;
     AudioClip clip;
@@ -41,11 +43,13 @@ public class AudioSourceHandler : MonoBehaviour
 
     IEnumerator PlayRepeatedly(float cycleTime, double offset)
     {
-        for(double time=offset; ; time+=cycleTime)
+
+        //Debug.Log($"Starting Delay: {(float)(offset - safety_time)}");
+        for (double time= AudioSettings.dspTime+offset;;time+=cycleTime)
         {
-            Debug.Log($"{this} will be played {time}");
+            yield return new WaitUntil(()=>(AudioSettings.dspTime >= time -safety_time));
+            //Debug.Log($"{this} will be played {time}.\n Current Time: {AudioSettings.dspTime}");
             audioSource.PlayScheduled(time);
-            yield return new WaitForSeconds(cycleTime);
         }
     }
 }

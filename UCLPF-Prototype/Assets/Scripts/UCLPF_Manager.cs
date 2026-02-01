@@ -30,7 +30,7 @@ public class UCLPF_Manager : MonoBehaviour
 
     public void SetModeVector()
     {
-        mixer.SetFloat("HalfAngle", Mathf.PI/16);
+        mixer.SetFloat("HalfAngle", Mathf.PI/360);
         mixer.SetFloat("PointSF", 0);
         mixer.SetFloat("CircleSF", 0);
 
@@ -41,24 +41,24 @@ public class UCLPF_Manager : MonoBehaviour
 
     public void SetModePoint()
     {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad*1800);
-        mixer.SetFloat("PointSF", 1);
+        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad*18000);
+        mixer.SetFloat("PointSF", 5);
         mixer.SetFloat("CircleSF", 0);
 
-        visualizationMaterial.SetFloat("_Half_Angle", 1800);
-        visualizationMaterial.SetFloat("_Point_SF", 1);
+        visualizationMaterial.SetFloat("_Half_Angle", 18000);
+        visualizationMaterial.SetFloat("_Point_SF", 5);
         visualizationMaterial.SetFloat("_Circle_SF", 0);
     }
 
 
     public void SetModeCircle() 
     {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 1800);
+        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
         mixer.SetFloat("PointSF", 0);
-        mixer.SetFloat("CircleSF", 1);
+        mixer.SetFloat("CircleSF", 5);
 
-        visualizationMaterial.SetFloat("_Half_Angle", 1800);
+        visualizationMaterial.SetFloat("_Half_Angle", 18000);
         visualizationMaterial.SetFloat("_Point_SF", 0);
-        visualizationMaterial.SetFloat("_Circle_SF", 1);
+        visualizationMaterial.SetFloat("_Circle_SF", 5);
     }
 }

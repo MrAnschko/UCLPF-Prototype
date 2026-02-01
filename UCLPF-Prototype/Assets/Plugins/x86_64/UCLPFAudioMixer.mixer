@@ -153,7 +153,6 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 24400004}
   - {fileID: -3504713440914554948}
-  - {fileID: 1254338925109487163}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -185,70 +184,51 @@ AudioMixerSnapshotController:
     cd3a31b07b6ab564791df2711946c502: 1
     2af89ff0f910ad547a19159b17151706: 2364.9065
     371773214460fc340a22f0a8406a8650: 346.88376
+    af4ab791a3af5cb4e94c1f112290860e: 1
+    00050fa1f4e346c4e941abfc0db0b756: 1
     32e785d138ab69044a4e53938c8639ba: 1
     d6328c52576d1a24daff9d627cd36131: 24000
+    aa0648b25e0b56f4eac50ab9a45cb76b: 174
     515436335cad5b04189a900fb7ce6fc4: -12.2
     61306c739f6a18247b78c74068dda71f: 13212.731
     83a0a044174eb1e478c752e6e5f882f1: 18
     9bd04ea438a47404faec2d3b7028a758: 1
-    1d88cfd486ce379429ef5561b78c1bc2: 0.2617994
+    1d88cfd486ce379429ef5561b78c1bc2: 31.415928
     9c42e8856699ddb40b6cc43e22b30801: 1
     69b2a756fa6e7be4ab5b0be9ac1aa931: 7.5
     86149a565b3649e489df2957ea21d332: -16.4
     0c69c1e6cadc3b545a8feee46097ce29: 0
-    c1330e173cafcc44690ed156d6d2b9c2: 200
+    c1330e173cafcc44690ed156d6d2b9c2: 44100
+    40986627522a0684384df985744691f5: 31.415928
     7db47da78eff4344b93c078a1eb27d8f: 24000
     e61b9438e4f925a4ebb9f8085f87059a: 23
     7f3507b88758d0a4caa0101c0459d452: 0
+    27fa63d81957547409f291cc7814a034: 10.41
     59f83dd8fc645dd49a6177fb9bae5e32: -0.13094914
+    79a8f2f8e453d9049982bdf58c31928f: 0
     99fb7059823e8b4458ae61975b2071fb: 31.415928
     8ef24399590f6074a96bd0429957202a: -2
     7d6212d9a7b28124a9970875d2a8621d: 11.6
     b8ef63ba2d4b54249984156791650906: 0
     47ac4a3b7b4b0ad4cabc6c65b437109a: -9.8
+    80a6106bcedffb042b3581c912c92721: 18.4
     2883738be3e4b7e478d1dcda37cb726b: 1
-    78f10dcb9487be94d8175c800098f848: 9208
+    78f10dcb9487be94d8175c800098f848: 24000
+    480a40ebc86fb3b45905dc52466aeb35: 0.707
     6ee66b7c4b0676d40b605eac9c401af0: 1
     38f5b78c901f7ce4a8f45e1805dd0ce1: 0
     48cc01acfb5a3fb4fa40b25109261182: 45.562447
     a1d76decc2916054cb195d4a78e3d8dd: -30
     974ddf5d227b1db499a0cb33c0696c6d: 0.17453294
     9565262ef14c82245b2ba0bc4e164c89: -30
+    6205c44ea1f83ce4e9c5988895182050: -1.4
     0f20415ec6209eb41b918364541ca1cd: 2425.558
-    6fed829e7c76ee04f8385cf60d6b1881: 1
+    6fed829e7c76ee04f8385cf60d6b1881: 20
     9473e1be6e431a544a7ec08a2e9bdead: -6
     5b44f58faf20bd24e962bc7e5c12e670: 22050
     7145fc8f292e04d4b9bb7f2be748b8d4: 0
-    8ac48e9fa4406df46a73eb96e3288c0f: 1
+    8ac48e9fa4406df46a73eb96e3288c0f: 11.98
   m_TransitionOverrides: {}
---- !u!244 &1254338925109487163
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: e361c3577443526439c6bbc192c8317a
-  m_EffectName: Aarons Spatializer Settings
-  m_MixLevel: 8b3cd80b92cddb54cae9a83ee07fc095
-  m_Parameters:
-  - m_ParameterName: Total Mix
-    m_GUID: 2883738be3e4b7e478d1dcda37cb726b
-  - m_ParameterName: Q Factor
-    m_GUID: 0075480cbcfef7f44b0ada3b70c941cf
-  - m_ParameterName: Freq
-    m_GUID: 9cf8db35b6cc8e64ea96a4662522735e
-  - m_ParameterName: Half Angle
-    m_GUID: d32cf45aa32539647a3a47f6fd09f000
-  - m_ParameterName: SeekSpeed
-    m_GUID: a6a7829cec3821840a91dcd7bf66e493
-  - m_ParameterName: Point SF
-    m_GUID: e050d7a032be8ab439454c4c0739fd56
-  - m_ParameterName: Circle SF
-    m_GUID: 024411cf121bead4191d3ae8d255f9e7
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!244 &1933823209790216968
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

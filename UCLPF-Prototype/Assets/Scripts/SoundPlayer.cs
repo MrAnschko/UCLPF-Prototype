@@ -41,7 +41,7 @@ public class SoundPlayer : MonoBehaviour
 
     public void StartPlaying()
     {
-        double offset = startingOffset + AudioSettings.dspTime;
+        double offset = startingOffset;
         for (int i = 0; i < audioSources.Count; i++)
         {
             Debug.Log($"Item {i} will be played with offset {offset}");
