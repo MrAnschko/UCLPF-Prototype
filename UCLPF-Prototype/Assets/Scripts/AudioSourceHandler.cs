@@ -20,6 +20,7 @@ public class AudioSourceHandler : MonoBehaviour
     private void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();
+        
         clip = audioSource.clip;
         SoundPlayer.instance.RegisterSource(this);
         

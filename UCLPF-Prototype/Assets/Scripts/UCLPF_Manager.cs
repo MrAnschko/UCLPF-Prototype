@@ -19,7 +19,10 @@ public class UCLPF_Manager : MonoBehaviour
     [SerializeField]
     Mode mode;
     [SerializeField]
-    string LevelName;
+    string map_identifier;
+
+    [SerializeField]
+    string probant_identifier;
     int current_set = 0;
     [SerializeField]
     List<GameObject> pointSets; // Gameobject to be enabled containing all the sources for a step.
@@ -30,6 +33,9 @@ public class UCLPF_Manager : MonoBehaviour
     [SerializeField]
     float acceptance_time; // the time one needs to stand at a point until it counts as accepted /based on camera position, projected onto the plane
     float time_in_radius = 0.0f; // used to track how long a user has been standing in the Radius.
+
+    // DATA
+    public DataContainer data;
 
 
     public enum Mode
@@ -46,6 +52,10 @@ public class UCLPF_Manager : MonoBehaviour
         SetMode(mode);
         gazeDirectionIA = gazeDirectionRef.action;
         SetStep(0);
+
+       
+        data.Save();
+
     }
     public void SetMode(Mode mode)
     {
@@ -106,29 +116,53 @@ public class UCLPF_Manager : MonoBehaviour
         current_set = i;
         pointSets[i].gameObject.SetActive(true);
         SoundPlayer.instance.StartPlaying();
+        data.Save();
+        data = new DataContainer(probant_identifier, map_identifier, current_set.ToString());
     }
     
 
     private void Update()
     {
+        
+        UpdateVisuals();
+        ContinueTest();
+        
+
+    }
+
+
+    private void FixedUpdate()
+    {
+        UpdateData();
+    }
+
+
+    // Method to update the visuals to reflect the views
+    private void UpdateVisuals()
+    {
         Vector3 direction = gazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
         visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
         visualizationMaterial.SetVector("_View_Direction", direction);
 
-        
-        float distance_to_goal = (Camera.main.transform.position.x - goalAudioSourceHandler[current_set].transform.position.x)* (Camera.main.transform.position.x - goalAudioSourceHandler[current_set].transform.position.x)+
+    }
+
+
+    // Advance to check if the next test should ber un
+    private void ContinueTest()
+    {
+
+        float distance_to_goal = (Camera.main.transform.position.x - goalAudioSourceHandler[current_set].transform.position.x) * (Camera.main.transform.position.x - goalAudioSourceHandler[current_set].transform.position.x) +
                         (Camera.main.transform.position.z - goalAudioSourceHandler[current_set].transform.position.z) * (Camera.main.transform.position.z - goalAudioSourceHandler[current_set].transform.position.z);
-        Debug.Log($"Distance to Goal:{distance_to_goal}");
+        //Debug.Log($"Distance to Goal:{distance_to_goal}");
         //check distance
-        if (distance_to_goal < acceptance_radius)
+        if (distance_to_goal < acceptance_radius * acceptance_radius)
         {
             time_in_radius += Time.deltaTime;
-            Debug.Log($"Time in Radius: {time_in_radius} ");
+            //Debug.Log($"Time in Radius: {time_in_radius} ");
             if (time_in_radius > acceptance_time)
             {
-                current_set++;
-                current_set = (current_set< pointSets.Count)? current_set : 0;
-                SetStep(current_set);
+                int next_set = (current_set + 1 < pointSets.Count) ? current_set + 1 : 0;
+                SetStep(next_set);
                 time_in_radius = 0;
             }
         }
@@ -136,6 +170,20 @@ public class UCLPF_Manager : MonoBehaviour
         {
             time_in_radius = 0;
         }
+    }
+
+
+    // Method to save the data
+    private void UpdateData()
+    {
+        Vector3 goal_direction = Camera.main.transform.position- goalAudioSourceHandler[current_set].transform.position;
+        Vector3 rel_position = goal_direction;
+        rel_position.y = 0;
+
+
+        Vector3 view_direction = gazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
         
+        float azimuth = Mathf.Atan2(goal_direction.x, goal_direction.z);
+        data.AddStep(rel_position, azimuth);
     }
 }
