@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: -55.75919, y: -26.232706, z: 99.45031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 675971765408401448}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,7 +47,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 59f1df9c6c9855446894ada9575c87e4, type: 2}
+  gazeDirectionRef: {fileID: -7046323255087736399, guid: 18c412191cdc9274897f101c7fd5316f, type: 3}
   visualizationMaterial: {fileID: 2100000, guid: 767fb8abe31065746a9fa297bc16b0dc, type: 2}
+  mode: 3
+  map_identifier: 01
+  probant_identifier: 00
+  pointSets: []
+  goalAudioSourceHandler: []
+  acceptance_radius: 1
+  acceptance_time: 5
+  data:
+    probant_identifier: 01
+    map_identifier: 01
+    step_identifier: 01
+    start_time: 0
+    relative_distance: []
+    rel_position: []
+    rel_time: []
 --- !u!114 &8124108786199946388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,5 +76,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5ff83f13c6dcd4790b245c370f60a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleTime: 5
-  startingOffset: 1
+  cycleTime: 4
+  simultaneous_sources: 1
+  startingOffset: 0
+--- !u!1001 &4218842896733935909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 675971765032280535}
+    m_Modifications:
+    - target: {fileID: 3741893148039516426, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_Name
+      value: Set0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+--- !u!4 &675971765408401448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3741893148039516429, guid: c843979fc999fd6488b998eec69536ef, type: 3}
+  m_PrefabInstance: {fileID: 4218842896733935909}
+  m_PrefabAsset: {fileID: 0}

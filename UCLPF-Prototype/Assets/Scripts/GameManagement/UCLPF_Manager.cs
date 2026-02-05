@@ -48,9 +48,13 @@ public class UCLPF_Manager : MonoBehaviour
 
     private void Start()
     {
+
         Debug.Log($"Mode Set to {mode}");
+
         SetMode(mode);
         gazeDirectionIA = gazeDirectionRef.action;
+
+        SetupPaths();
         SetStep(0);
 
        
@@ -75,6 +79,8 @@ public class UCLPF_Manager : MonoBehaviour
 
     }
 
+
+
     public void SetModeVector()
     {
         mixer.SetFloat("HalfAngle", Mathf.PI/180);
@@ -83,6 +89,7 @@ public class UCLPF_Manager : MonoBehaviour
 
         visualizationMaterial.SetFloat("_Half_Angle",15);
         visualizationMaterial.SetFloat("_Point_SF",0);
+        mixer.SetFloat("Mix", 1);
         visualizationMaterial.SetFloat("_Circle_SF",0);
     }
 
@@ -91,6 +98,7 @@ public class UCLPF_Manager : MonoBehaviour
         mixer.SetFloat("HalfAngle", Mathf.Deg2Rad*18000);
         mixer.SetFloat("PointSF", 5);
         mixer.SetFloat("CircleSF", 0);
+        mixer.SetFloat("Mix", 1);
 
         visualizationMaterial.SetFloat("_Half_Angle", 18000);
         visualizationMaterial.SetFloat("_Point_SF", 5);
@@ -103,6 +111,7 @@ public class UCLPF_Manager : MonoBehaviour
         mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
         mixer.SetFloat("PointSF", 0);
         mixer.SetFloat("CircleSF", 5);
+        mixer.SetFloat("Mix", 1);
 
         visualizationMaterial.SetFloat("_Half_Angle", 18000);
         visualizationMaterial.SetFloat("_Point_SF", 0);
@@ -146,6 +155,27 @@ public class UCLPF_Manager : MonoBehaviour
 
     }
 
+
+    // Method to 
+    private void SetupPaths()
+    {
+        pointSets.Clear();
+
+        
+        int i = 0;
+
+        Transform found_set = transform.Find("Set" + i.ToString());
+        while (found_set !=null)
+        {
+            goalAudioSourceHandler.Add(found_set.Find("TargetAudioSource").gameObject.GetComponent<AudioSourceHandler>());
+            pointSets.Add(found_set.gameObject);
+            
+            found_set.gameObject.SetActive(false);
+            i++;
+            found_set = transform.Find("Set" + i.ToString());
+        }
+
+    }
 
     // Advance to check if the next test should ber un
     private void ContinueTest()

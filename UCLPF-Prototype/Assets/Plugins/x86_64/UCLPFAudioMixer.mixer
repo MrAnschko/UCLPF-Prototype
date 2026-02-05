@@ -127,6 +127,8 @@ AudioMixerController:
     name: PointSF
   - guid: 7145fc8f292e04d4b9bb7f2be748b8d4
     name: CircleSF
+  - guid: 9c42e8856699ddb40b6cc43e22b30801
+    name: Mix
   m_AudioMixerGroupViews:
   - guids:
     - d0f0d4ab6ff1e034b81f5bec448cc727
@@ -194,10 +196,10 @@ AudioMixerSnapshotController:
     83a0a044174eb1e478c752e6e5f882f1: 18
     9bd04ea438a47404faec2d3b7028a758: 1
     1d88cfd486ce379429ef5561b78c1bc2: 31.415928
-    9c42e8856699ddb40b6cc43e22b30801: 0
+    9c42e8856699ddb40b6cc43e22b30801: 1
     69b2a756fa6e7be4ab5b0be9ac1aa931: 7.5
     86149a565b3649e489df2957ea21d332: -16.4
-    0c69c1e6cadc3b545a8feee46097ce29: 5
+    0c69c1e6cadc3b545a8feee46097ce29: 10
     c1330e173cafcc44690ed156d6d2b9c2: 100
     40986627522a0684384df985744691f5: 31.415928
     7db47da78eff4344b93c078a1eb27d8f: 24000
