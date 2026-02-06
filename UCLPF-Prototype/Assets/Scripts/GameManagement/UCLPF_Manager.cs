@@ -33,9 +33,13 @@ public class UCLPF_Manager : MonoBehaviour
     [SerializeField]
     float acceptance_time; // the time one needs to stand at a point until it counts as accepted /based on camera position, projected onto the plane
     float time_in_radius = 0.0f; // used to track how long a user has been standing in the Radius.
+    [SerializeField]
+    float top_speed; // the radius at which a goal is presumed to be reached.
+
 
     // DATA
-    public DataContainer data;
+    public DataContainer user_data;
+    public MapData map_data;
 
 
     public enum Mode
@@ -54,11 +58,10 @@ public class UCLPF_Manager : MonoBehaviour
         SetMode(mode);
         gazeDirectionIA = gazeDirectionRef.action;
 
-        SetupPaths();
+        SetupPathsAndMapData();
         SetStep(0);
 
        
-        data.Save();
 
     }
     public void SetMode(Mode mode)
@@ -125,8 +128,9 @@ public class UCLPF_Manager : MonoBehaviour
         current_set = i;
         pointSets[i].gameObject.SetActive(true);
         SoundPlayer.instance.StartPlaying();
-        data.Save();
-        data = new DataContainer(probant_identifier, map_identifier, current_set.ToString());
+        if(i!=0)
+            user_data.Save();
+        user_data = new DataContainer(probant_identifier, map_identifier, current_set.ToString());
     }
     
 
@@ -157,23 +161,36 @@ public class UCLPF_Manager : MonoBehaviour
 
 
     // Method to 
-    private void SetupPaths()
+    private void SetupPathsAndMapData()
     {
         pointSets.Clear();
 
+        map_data = new MapData(map_identifier, top_speed, mode.ToString());
         
         int i = 0;
 
         Transform found_set = transform.Find("Set" + i.ToString());
         while (found_set !=null)
         {
-            goalAudioSourceHandler.Add(found_set.Find("TargetAudioSource").gameObject.GetComponent<AudioSourceHandler>());
+            Transform target_transform = found_set.Find("TargetAudioSource");
+            goalAudioSourceHandler.Add(target_transform.gameObject.GetComponent<AudioSourceHandler>());
             pointSets.Add(found_set.gameObject);
-            
+
+
+            // Add map Data:
+            List<Vector3> all_pois = new List<Vector3>();
+            foreach (Transform child in target_transform)
+                all_pois.Add(child.transform.position);
+            map_data.AddStep(all_pois, target_transform.position);
+
+
             found_set.gameObject.SetActive(false);
             i++;
             found_set = transform.Find("Set" + i.ToString());
+
         }
+
+        map_data.Save();
 
     }
 
@@ -212,8 +229,13 @@ public class UCLPF_Manager : MonoBehaviour
 
 
         Vector3 view_direction = gazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
-        
-        float azimuth = Mathf.Atan2(goal_direction.x, goal_direction.z);
-        data.AddStep(rel_position, azimuth);
+        view_direction.y = 0;
+
+
+        float lr_sign = Mathf.Sign(Vector3.Dot(gazeDirectionIA.ReadValue<Quaternion>() * Vector3.right, goal_direction));
+
+        float azimuth = lr_sign*Mathf.Acos(-Vector3.Dot(view_direction.normalized,rel_position)/rel_position.magnitude);
+        Debug.Log($"Azimuth: {azimuth}");
+        user_data.AddStep(rel_position, azimuth);
     }
 }

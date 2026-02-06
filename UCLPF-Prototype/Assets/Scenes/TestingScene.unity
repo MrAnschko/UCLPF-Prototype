@@ -361,7 +361,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633987594}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,23 +1144,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 59f1df9c6c9855446894ada9575c87e4, type: 2}
-  gazeDirectionRef: {fileID: -7046323255087736399, guid: 18c412191cdc9274897f101c7fd5316f, type: 3}
+  gazeDirectionRef: {fileID: 1272146141651074281, guid: 18c412191cdc9274897f101c7fd5316f, type: 3}
   visualizationMaterial: {fileID: 2100000, guid: 767fb8abe31065746a9fa297bc16b0dc, type: 2}
   mode: 3
   map_identifier: 01
   probant_identifier: 00
   pointSets: []
   goalAudioSourceHandler: []
-  acceptance_radius: 0.3
-  acceptance_time: 2
-  data:
-    probant_identifier: 01
-    map_identifier: 01
-    step_identifier: 01
+  acceptance_radius: 0.5
+  acceptance_time: 1
+  top_speed: 1
+  user_data:
+    probant_identifier: 
+    map_identifier: 
+    step_identifier: 
     start_time: 0
-    relative_distance: []
-    rel_position: []
+    relative_position: []
+    rel_azimuth: []
     rel_time: []
+  map_data:
+    map_identifier: 
+    target_positions: []
+    relative_distance: []
+    rel_time: []
+    top_speed: 0
+    interaction_mode: 
 --- !u!4 &2087454771
 Transform:
   m_ObjectHideFlags: 0
@@ -1726,7 +1734,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2351505567360719475}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &2351505567360719475
 GameObject:
   m_ObjectHideFlags: 0
