@@ -52,6 +52,7 @@ public class UCLPF_Manager : MonoBehaviour
 
     private void Start()
     {
+        mode = PersistentData.Mode;
 
         Debug.Log($"Mode Set to {mode}");
 
