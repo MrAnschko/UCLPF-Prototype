@@ -10,6 +10,7 @@ namespace SpatializerSettingsHRTF
     enum
     {
         P_TotalMix,
+        P_EnableHRTF,
         P_QFactor, 
         P_CutoffInitFeq,
         P_HalfAngle,
@@ -31,6 +32,7 @@ namespace SpatializerSettingsHRTF
         int numparams = P_NUM;
         definition.paramdefs = new UnityAudioParameterDefinition[numparams];
         AudioPluginUtil::RegisterParameter(definition, "Total Mix", "%", 0.0f, 1.0f, 1.0f, 100.0f, 1.0f, P_TotalMix, "How much of the Method should be mixed in");
+        AudioPluginUtil::RegisterParameter(definition, "Enable HRTF", "", 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, P_EnableHRTF, "If the HRTF should be enabled (0 for No, 1 for Yes)");
         AudioPluginUtil::RegisterParameter(definition, "Q Factor", "", 0.001f, 20.0f, 0.707f, 1.0f, 1.0f, P_QFactor, "The Quality Factor of the lowpass filter.");
         AudioPluginUtil::RegisterParameter(definition, "Freq", "Hz", 0.01f, 24000.0f, 22000.0f, 1.0f, 3.0f, P_CutoffInitFeq, "Cutoff frequency of the Filter");
         AudioPluginUtil::RegisterParameter(definition, "Half Angle", "Degree", 0.01f, AudioPluginUtil::kPI*10, 0.5f, 180 / AudioPluginUtil::kPI, 2.0f, P_HalfAngle, "Angle at which the cutoff frequency is halved");

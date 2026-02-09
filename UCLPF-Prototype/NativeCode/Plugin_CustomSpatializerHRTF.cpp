@@ -218,8 +218,8 @@ namespace CustomSpatializerHRTF
     }
 
     
-
-    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
+    // Function for processing with HRTF
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessHRTF(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
     {
         EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
 
@@ -240,13 +240,13 @@ namespace CustomSpatializerHRTF
 
         // Get Settings from the other Plugin
         const float totalMix =      hrtf_settingbuffer[1];
-        float q_factor =            hrtf_settingbuffer[2]; // the quality factor of the filter
-        float cutoff_initial_freq = hrtf_settingbuffer[3];; // the highest cutoff frequency
-        float half_angle =          hrtf_settingbuffer[4]; // the angle at which the cutoff frequency reaches half its highest value
-        float seek_speed =          hrtf_settingbuffer[5]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
-        float pdist_factor =        hrtf_settingbuffer[6]; // Factor by which point distance is scaled
-        float cdist_factor =        hrtf_settingbuffer[7]; // Factor by which circle distance is scaled 
-        float crossfade_samples =   hrtf_settingbuffer[8]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+        float q_factor =            hrtf_settingbuffer[3]; // the quality factor of the filter
+        float cutoff_initial_freq = hrtf_settingbuffer[4];; // the highest cutoff frequency
+        float half_angle =          hrtf_settingbuffer[5]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed =          hrtf_settingbuffer[6]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+        float pdist_factor =        hrtf_settingbuffer[7]; // Factor by which point distance is scaled
+        float cdist_factor =        hrtf_settingbuffer[8]; // Factor by which circle distance is scaled 
+        float crossfade_samples =   hrtf_settingbuffer[9]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
 
         float sr = (float)state->samplerate;
 
@@ -443,5 +443,153 @@ namespace CustomSpatializerHRTF
         //processing done
 
         return UNITY_AUDIODSP_OK;
+    }
+
+
+    // Function for processing without HRTF
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessNatural(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
+    {
+        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
+
+        //check whether the settings are already populated.
+        if (hrtf_settingbuffer[0] == 0.0f) {
+            memcpy(outbuffer, inbuffer, length * outchannels * sizeof(float));
+            return UNITY_AUDIODSP_OK;
+
+        }
+
+        // Check that I/O formats are right and that the host API supports this feature
+        if (inchannels != 2 || outchannels != 2 ||
+            !IsHostCompatible(state) || state->spatializerdata == NULL)
+        {
+            memcpy(outbuffer, inbuffer, length * outchannels * sizeof(float));
+            return UNITY_AUDIODSP_OK;
+        }
+
+        // Get Settings from the other Plugin
+        const float totalMix = hrtf_settingbuffer[1];
+        float q_factor = hrtf_settingbuffer[3]; // the quality factor of the filter
+        float cutoff_initial_freq = hrtf_settingbuffer[4];; // the highest cutoff frequency
+        float half_angle = hrtf_settingbuffer[5]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed = hrtf_settingbuffer[6]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+        float pdist_factor = hrtf_settingbuffer[7]; // Factor by which point distance is scaled
+        float cdist_factor = hrtf_settingbuffer[8]; // Factor by which circle distance is scaled 
+        float crossfade_samples = hrtf_settingbuffer[9]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+
+        float sr = (float)state->samplerate;
+
+        float* m = state->spatializerdata->listenermatrix;
+        float* s = state->spatializerdata->sourcematrix;
+        //memcpy(debugbuffer, m, 16 * sizeof(float)); // Copy the Listenermatrix to the debug buffer. TODO: make thread safe. (?)
+
+        //**** Copied from spatializer example 
+        // Currently we ignore source orientation and only use the position
+        float px = s[12];
+        float py = s[13];
+        float pz = s[14];
+
+        float dir_x = m[0] * px + m[4] * py + m[8] * pz + m[12];
+        float dir_y = m[1] * px + m[5] * py + m[9] * pz + m[13];
+        float dir_z = m[2] * px + m[6] * py + m[10] * pz + m[14];
+        //******************************************************
+
+        // Distance Calculation
+        //// Based on Angle
+        // forward vector is (0,0,1)
+        // dot product of fwd vector and sourcedir accordingly is simply the z direction
+        float dist = sqrtf(dir_x * dir_x + dir_y * dir_y + dir_z * dir_z + 0.001f);
+        float angle = fabsf(acosf(dir_z / dist)); //angle is given in Radians
+
+        float cutoff_scale_factor = 1 / half_angle; // a scale factor for how much the distance affects the frequency
+
+
+        ///// Angle end
+
+        //// Based on Point on plane
+
+
+        //Position (of the listener) Creating the last column of the inverse of m. (-> a matrix that transforms from listener to world coordinates.)
+        float l_x = -(m[12] * m[0] + m[13] * m[1] + m[14] * m[2]);
+        float l_y = -(m[12] * m[4] + m[13] * m[5] + m[14] * m[6]);
+        float l_z = -(m[12] * m[8] + m[13] * m[9] + m[14] * m[10]);
+
+
+        //direction of view 
+        // a forward view vector is (0,0,1,0) in listener coordinates
+        // (last one is zero to avoid translation) to transform that forward vector from listener to world the inverse of m is used.
+        // the inverse of the upper left 3x3 block of m (homogenous matrix) is simply its transpose
+        // accordingly multiplication results in the 3rd column vector of m.
+        float d_x = m[2];
+        float d_y = m[6];
+        float d_z = m[10];
+        // Intersection
+        float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+
+        // position on the plane
+
+        float g_x = alpha * d_x + l_x;
+        float g_z = alpha * d_z + l_z;
+        
+        // distance from point: (on plane)
+        float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
+
+        //// Point on plane end
+
+        // Circle:
+        // distance of object to listener (along plane)
+        float l_dist = sqrtf((l_x - px) * (l_x - px) + (l_z - pz) * (l_z - pz));
+        // distance between gaze point and listener
+        float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
+
+        float c_dist = fabsf(l_dist - l_p_dist);
+        // End Circle
+
+        float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + c_dist * cdist_factor + p_dist * pdist_factor + cutoff_scale_factor * angle));
+        
+        ////
+        // --------
+
+        // Stereo panning according to sine-cosine panning law
+        float spread = cosf(state->spatializerdata->spread * AudioPluginUtil::kPI / 360.0f);
+        float spreadmatrix[2] = { 2.0f - spread, spread };
+        float azimuth = (fabsf(dir_z) < 0.001f) ? 0.0f : atan2f(dir_x, dir_z);
+
+        
+        //
+
+
+        float cutoff_frequency_current = data->cutoff_frequency_current;
+
+
+        for (unsigned int n = 0; n < length; n++)
+        {
+            cutoff_frequency_current += AudioPluginUtil::FastClip(goal_cutoff_frequency - cutoff_frequency_current, -seek_speed, seek_speed); // slowly go toward the goal frequency to avoid artifacts
+            for (int c = 0; c < 2; c++)
+            {
+                float stereopan = 1.0f - ((c == 0) ? AudioPluginUtil::FastMax(0.0f, state->spatializerdata->stereopan) : AudioPluginUtil::FastMax(0.0f, -state->spatializerdata->stereopan));
+
+                // processing with the lowpass filters
+                data->lowpassFilter[c].SetupLowpass(cutoff_frequency_current, sr, q_factor);
+                float left = inbuffer[n * 2];
+                float right = inbuffer[n * 2 + 1];
+                
+                float spatial = left * spreadmatrix[c] + right * spreadmatrix[1 - c];
+                outbuffer[n * 2 + c] = (y * totalMix + (1 - totalMix) * spatial);
+            }
+        }
+
+        data->cutoff_frequency_current = cutoff_frequency_current;
+        //processing done
+
+        return UNITY_AUDIODSP_OK;
+    }
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels) 
+    {
+        const float enable_hrtf = hrtf_settingbuffer[2]; // Wheter the HRTF is enabled.
+        if (enable_hrtf > 0.5f) {
+            return ProcessHRTF(state, inbuffer, outbuffer, length, inchannels, outchannels);
+        }
+        return ProcessNatural(state, inbuffer, outbuffer, length, inchannels, outchannels);
     }
 }
