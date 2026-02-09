@@ -552,7 +552,13 @@ namespace CustomSpatializerHRTF
         // Stereo panning according to sine-cosine panning law
         float spread = cosf(state->spatializerdata->spread * AudioPluginUtil::kPI / 360.0f);
         float spreadmatrix[2] = { 2.0f - spread, spread };
-        float azimuth = (fabsf(dir_z) < 0.001f) ? 0.0f : atan2f(dir_x, dir_z);
+        // panning factors based on sine/cosine panning is
+        // (for omega between -45 and 45 a common panning (L/R) cos/sin(pi/4-omega)
+        //  cosine similarity (dot product of normalized vectors) gives cos(.) between vectors
+        //  instead use 0 to 90 degrees -> cos/sin(omega).
+        //  angle between object and ears is actually between 0 to 180 degrees
+        //  use half angle identities
+        float panning_factors[2] = { sqrt((1 - (dir_x / dist)) / 2),sqrt((1 + (dir_x / dist)) / 2) }; 
 
         
         //
@@ -574,7 +580,8 @@ namespace CustomSpatializerHRTF
                 float right = inbuffer[n * 2 + 1];
                 
                 float spatial = left * spreadmatrix[c] + right * spreadmatrix[1 - c];
-                outbuffer[n * 2 + c] = (y * totalMix + (1 - totalMix) * spatial);
+                float y = data->lowpassFilter[c].Process(spatial);
+                outbuffer[n * 2 + c] = (y * totalMix + (1 - totalMix) * spatial)*panning_factors[c];
             }
         }
 
