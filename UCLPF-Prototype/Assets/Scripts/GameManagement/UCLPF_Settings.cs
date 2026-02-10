@@ -1,15 +1,96 @@
+using MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using MixedReality.Toolkit.UX;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioListener))]
 public class UCLPF_Settings : MonoBehaviour
 {
     public AudioMixer mixer;
 
     [SerializeField]
     Material visualizationMaterial;
+
+    public InputActionReference headGazeDirectionRef;
+    public InputActionReference eyeGazeDirectionRef;
+    InputAction gazeDirectionIA;
+    [SerializeField]
+    bool useEyeGaze;
+
+    public bool UseEyeGaze { get => useEyeGaze; set{ useEyeGaze = value; SetGazeMethod(); } }
+
+    public InputAction GazeDirectionIA { get => gazeDirectionIA; set => gazeDirectionIA = value; }
+
+    public enum Mode
+    {
+        None,
+        Vector,
+        Circle,
+        Point
+    }
+
+
+
+
+
+    public void SetMode(Mode mode)
+    {
+        switch (mode)
+        {
+            case Mode.Circle:
+                SetModeCircle();
+                return;
+            case Mode.Point:
+                SetModePoint();
+                return;
+            case Mode.Vector:
+                SetModeVector();
+                return;
+            default:
+                return;
+        }
+
+    }
+
+    public void SetModeVector()
+    {
+        mixer.SetFloat("HalfAngle", Mathf.PI / 180);
+        mixer.SetFloat("PointSF", 0);
+        mixer.SetFloat("CircleSF", 0);
+
+        visualizationMaterial.SetFloat("_Half_Angle", 15);
+        visualizationMaterial.SetFloat("_Point_SF", 0);
+        mixer.SetFloat("Mix", 1);
+        visualizationMaterial.SetFloat("_Circle_SF", 0);
+    }
+
+    public void SetModePoint()
+    {
+        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
+        mixer.SetFloat("PointSF", 5);
+        mixer.SetFloat("CircleSF", 0);
+        mixer.SetFloat("Mix", 1);
+
+        visualizationMaterial.SetFloat("_Half_Angle", 18000);
+        visualizationMaterial.SetFloat("_Point_SF", 5);
+        visualizationMaterial.SetFloat("_Circle_SF", 0);
+    }
+
+
+    public void SetModeCircle()
+    {
+        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
+        mixer.SetFloat("PointSF", 0);
+        mixer.SetFloat("CircleSF", 5);
+        mixer.SetFloat("Mix", 1);
+
+        visualizationMaterial.SetFloat("_Half_Angle", 18000);
+        visualizationMaterial.SetFloat("_Point_SF", 0);
+        visualizationMaterial.SetFloat("_Circle_SF", 5);
+    }
+
 
     public void ChangeMix(SliderEventData data)
     {
@@ -55,5 +136,43 @@ public class UCLPF_Settings : MonoBehaviour
     public void SetHRTF(bool hrtf)
     {
         mixer.SetFloat("HRTFEnabled", (hrtf ? 1 : 0));
+    }
+
+
+    private void Update()
+    {
+        UpdateRotation();
+    }
+
+    // Method to update the visuals to reflect the views
+    private void UpdateRotation()
+    {
+        Vector3 direction = GazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
+        visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
+        visualizationMaterial.SetVector("_View_Direction", direction);
+        this.transform.rotation= GazeDirectionIA.ReadValue<Quaternion>();
+
+    }
+
+    private void Start()
+    {
+        SetGazeMethod();
+    }
+
+    private void SetGazeMethod()
+    {
+        if (useEyeGaze)
+        {
+            GazeDirectionIA = eyeGazeDirectionRef.action;
+            return;
+        }
+        GazeDirectionIA = headGazeDirectionRef.action;
+        return ;
+    }
+
+    public void SetGazeMethod(bool enableEyeGaze)
+    {
+        this.UseEyeGaze = enableEyeGaze;
+        SetGazeMethod();
     }
 }

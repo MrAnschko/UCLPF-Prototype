@@ -7,17 +7,11 @@ using UnityEngine.InputSystem;
 public class UCLPF_Manager : MonoBehaviour
 {
     public AudioMixer mixer;
-    public InputActionReference gazeDirectionRef;
-
-
-    InputAction gazeDirectionIA;
 
     [SerializeField]
     Material visualizationMaterial;
 
     // Bookkeeping for running the Test
-    [SerializeField]
-    Mode mode;
     [SerializeField]
     string map_identifier;
 
@@ -36,28 +30,26 @@ public class UCLPF_Manager : MonoBehaviour
     [SerializeField]
     float top_speed; // the radius at which a goal is presumed to be reached.
 
+    [SerializeField]
+    UCLPF_Settings settings;
+    UCLPF_Settings.Mode mode;
+
 
     // DATA
     public DataContainer user_data;
     public MapData map_data;
 
 
-    public enum Mode
-    {
-        None,
-        Vector,
-        Circle,
-        Point
-    }
+
 
     private void Start()
     {
         mode = PersistentData.Mode;
+        
 
         Debug.Log($"Mode Set to {mode}");
 
-        SetMode(mode);
-        gazeDirectionIA = gazeDirectionRef.action;
+        settings.SetMode(mode);
 
         SetupPathsAndMapData();
         SetStep(0);
@@ -65,62 +57,7 @@ public class UCLPF_Manager : MonoBehaviour
        
 
     }
-    public void SetMode(Mode mode)
-    {
-        switch (mode){
-            case Mode.Circle: 
-                SetModeCircle();
-                return;
-             case Mode.Point:
-                SetModePoint();
-                return;
-             case Mode.Vector:
-                SetModeVector();
-                return;
-             default:
-                return;
-        }
 
-    }
-
-
-
-    public void SetModeVector()
-    {
-        mixer.SetFloat("HalfAngle", Mathf.PI/180);
-        mixer.SetFloat("PointSF", 0);
-        mixer.SetFloat("CircleSF", 0);
-
-        visualizationMaterial.SetFloat("_Half_Angle",15);
-        visualizationMaterial.SetFloat("_Point_SF",0);
-        mixer.SetFloat("Mix", 1);
-        visualizationMaterial.SetFloat("_Circle_SF",0);
-    }
-
-    public void SetModePoint()
-    {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad*18000);
-        mixer.SetFloat("PointSF", 5);
-        mixer.SetFloat("CircleSF", 0);
-        mixer.SetFloat("Mix", 1);
-
-        visualizationMaterial.SetFloat("_Half_Angle", 18000);
-        visualizationMaterial.SetFloat("_Point_SF", 5);
-        visualizationMaterial.SetFloat("_Circle_SF", 0);
-    }
-
-
-    public void SetModeCircle() 
-    {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
-        mixer.SetFloat("PointSF", 0);
-        mixer.SetFloat("CircleSF", 5);
-        mixer.SetFloat("Mix", 1);
-
-        visualizationMaterial.SetFloat("_Half_Angle", 18000);
-        visualizationMaterial.SetFloat("_Point_SF", 0);
-        visualizationMaterial.SetFloat("_Circle_SF", 5);
-    }
 
     public void SetStep(int i)
     {
@@ -138,7 +75,6 @@ public class UCLPF_Manager : MonoBehaviour
     private void Update()
     {
         
-        UpdateVisuals();
         ContinueTest();
         
 
@@ -151,14 +87,7 @@ public class UCLPF_Manager : MonoBehaviour
     }
 
 
-    // Method to update the visuals to reflect the views
-    private void UpdateVisuals()
-    {
-        Vector3 direction = gazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
-        visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
-        visualizationMaterial.SetVector("_View_Direction", direction);
 
-    }
 
 
     // Method to 
@@ -229,11 +158,11 @@ public class UCLPF_Manager : MonoBehaviour
         rel_position.y = 0;
 
 
-        Vector3 view_direction = gazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
+        Vector3 view_direction = settings.GazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
         view_direction.y = 0;
 
 
-        float lr_sign = Mathf.Sign(Vector3.Dot(gazeDirectionIA.ReadValue<Quaternion>() * Vector3.right, goal_direction));
+        float lr_sign = Mathf.Sign(Vector3.Dot(settings.GazeDirectionIA.ReadValue<Quaternion>() * Vector3.right, goal_direction));
 
         float azimuth = lr_sign*Mathf.Acos(-Vector3.Dot(view_direction.normalized,rel_position)/rel_position.magnitude);
         Debug.Log($"Azimuth: {azimuth}");

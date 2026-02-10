@@ -39,13 +39,13 @@ public class StartMenu : MonoBehaviour
         Dialog dialog = (Dialog)dialogPool.Get(DialogPool.Policy.DismissExisting);
         dialog.SetHeader("Interaction Method");
         dialog.SetBody("Which interaction mode would you like to test?");
-        dialog.SetNegative("Point", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Point, args));
-        dialog.SetNeutral("View", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Vector, args));
-        dialog.SetPositive("Circle", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Circle, args));
+        dialog.SetNegative("Point", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Settings.Mode.Point, args));
+        dialog.SetNeutral("View", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Settings.Mode.Vector, args));
+        dialog.SetPositive("Circle", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Settings.Mode.Circle, args));
         dialog.Show();
     }
  
-    private static void UsePointMode (UCLPF_Manager.Mode mode ,DialogButtonEventArgs args)
+    private static void UsePointMode (UCLPF_Settings.Mode mode ,DialogButtonEventArgs args)
     {
         PersistentData.Mode = mode;
         Debug.Log(PersistentData.Mode);
