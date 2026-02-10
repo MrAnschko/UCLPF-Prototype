@@ -98,6 +98,12 @@ AudioMixerController:
     name: CircleSF
   - guid: 9c42e8856699ddb40b6cc43e22b30801
     name: Mix
+  - guid: 909de2e95e51b264b8f7d812693414f2
+    name: HRTFEnabled
+  - guid: 8ac48e9fa4406df46a73eb96e3288c0f
+    name: QFactor
+  - guid: 78f10dcb9487be94d8175c800098f848
+    name: MaxFreq
   m_AudioMixerGroupViews:
   - guids:
     - d0f0d4ab6ff1e034b81f5bec448cc727
