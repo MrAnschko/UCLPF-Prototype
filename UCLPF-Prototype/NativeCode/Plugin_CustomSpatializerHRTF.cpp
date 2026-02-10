@@ -556,7 +556,7 @@ namespace CustomSpatializerHRTF
         // (for omega between -45 and 45 a common panning (L/R) cos/sin(pi/4-omega)
         //  cosine similarity (dot product of normalized vectors) gives cos(.) between vectors
         //  instead use 0 to 90 degrees -> cos/sin(omega).
-        //  angle between object and ears is actually between 0 to 180 degrees
+        //  angle between object and ears is actually between 0 to 180 degrees 
         //  use half angle identities
         float panning_factors[2] = { sqrt((1 - (dir_x / dist)) / 2),sqrt((1 + (dir_x / dist)) / 2) }; 
 
