@@ -12,33 +12,55 @@ public class StartMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupStartMenu();
+
+
+    }
+
+    void SetupStartMenu()
+    {
         dialogPool.DialogPrefab = DialogPrefab;
-        Dialog dialog = (Dialog) dialogPool.Get(DialogPool.Policy.DismissExisting);
+        Dialog dialog = (Dialog)dialogPool.Get(DialogPool.Policy.DismissExisting);
+        dialog.SetHeader("Use Case");
+        dialog.SetBody("Which mode do you wish to start?");
+        dialog.SetNeutral("User Test", (DialogButtonEventArgs args) => {});
+        dialog.SetNegative("Free Roam (Predefined modes)", (DialogButtonEventArgs args) => { 
+            SetupModeMenu();
+            dialog.Dismiss();
+        });
+        dialog.SetPositive("Free Roam (Custom Settings)", (DialogButtonEventArgs args) => LoadSandboxScene());
+        dialog.Show();
+    }
+
+
+    void SetupModeMenu()
+    {
+        dialogPool.DialogPrefab = DialogPrefab;
+        Dialog dialog = (Dialog)dialogPool.Get(DialogPool.Policy.DismissExisting);
         dialog.SetHeader("Interaction Method");
         dialog.SetBody("Which interaction mode would you like to test?");
-        dialog.SetNegative("Point", (DialogButtonEventArgs args ) => UsePointMode(UCLPF_Manager.Mode.Point, args));
-        dialog.SetNeutral("View", (DialogButtonEventArgs args ) => UsePointMode(UCLPF_Manager.Mode.Vector, args));
-        dialog.SetPositive("Circle", (DialogButtonEventArgs args ) => UsePointMode(UCLPF_Manager.Mode.Circle, args));
+        dialog.SetNegative("Point", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Point, args));
+        dialog.SetNeutral("View", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Vector, args));
+        dialog.SetPositive("Circle", (DialogButtonEventArgs args) => UsePointMode(UCLPF_Manager.Mode.Circle, args));
         dialog.Show();
-        
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
     private static void UsePointMode (UCLPF_Manager.Mode mode ,DialogButtonEventArgs args)
     {
         PersistentData.Mode = mode;
         Debug.Log(PersistentData.Mode);
-        LoadTestScene();
+        LoadModeTestScene();
         return;
     }
 
-    private static void LoadTestScene()
+
+    private static void LoadSandboxScene()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("SandboxScene");
+    }
+
+    private static void LoadModeTestScene()
+    {
+        SceneManager.LoadSceneAsync("ModeTestingScene");
     }
 }
