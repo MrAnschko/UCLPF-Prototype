@@ -135,7 +135,7 @@ public class UCLPF_Settings : MonoBehaviour
 
     public void SetHRTF(bool hrtf)
     {
-        mixer.SetFloat("HRTFEnabled", (hrtf ? 1 : 0));
+        mixer.SetFloat("HRTFEnabled", (hrtf ? 1.0f : 0.0f));
     }
 
 
@@ -147,10 +147,13 @@ public class UCLPF_Settings : MonoBehaviour
     // Method to update the visuals to reflect the views
     private void UpdateRotation()
     {
-        Vector3 direction = GazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
+        Quaternion viewQuaternion = GazeDirectionIA.ReadValue<Quaternion>();
+        Vector3 direction =  viewQuaternion* Vector3.forward;
         visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
         visualizationMaterial.SetVector("_View_Direction", direction);
-        this.transform.rotation= GazeDirectionIA.ReadValue<Quaternion>();
+
+        Debug.Log(direction);
+        this.transform.rotation.SetLookRotation(direction);
 
     }
 

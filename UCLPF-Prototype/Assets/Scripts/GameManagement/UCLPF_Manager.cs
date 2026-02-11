@@ -32,6 +32,7 @@ public class UCLPF_Manager : MonoBehaviour
 
     [SerializeField]
     UCLPF_Settings settings;
+    [SerializeField]
     UCLPF_Settings.Mode mode;
 
 
