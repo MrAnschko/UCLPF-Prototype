@@ -43,6 +43,10 @@ AudioMixerEffectController:
     m_GUID: c1330e173cafcc44690ed156d6d2b9c2
   - m_ParameterName: Enable HRTF
     m_GUID: 909de2e95e51b264b8f7d812693414f2
+  - m_ParameterName: 
+    m_GUID: b8d231ddca32d724899b266356fe8d70
+  - m_ParameterName: Min Freq
+    m_GUID: e2a17837a4eb85c4687b8acafce0a89d
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -173,6 +177,7 @@ AudioMixerSnapshotController:
     0c69c1e6cadc3b545a8feee46097ce29: 10
     c1330e173cafcc44690ed156d6d2b9c2: 100
     40986627522a0684384df985744691f5: 31.415928
+    e2a17837a4eb85c4687b8acafce0a89d: 0.01
     7db47da78eff4344b93c078a1eb27d8f: 24000
     e61b9438e4f925a4ebb9f8085f87059a: 23
     7f3507b88758d0a4caa0101c0459d452: 0
@@ -194,6 +199,7 @@ AudioMixerSnapshotController:
     48cc01acfb5a3fb4fa40b25109261182: 45.562447
     a1d76decc2916054cb195d4a78e3d8dd: -30
     974ddf5d227b1db499a0cb33c0696c6d: 0.17453294
+    b8d231ddca32d724899b266356fe8d70: 0
     9565262ef14c82245b2ba0bc4e164c89: -30
     6205c44ea1f83ce4e9c5988895182050: -1.4
     0f20415ec6209eb41b918364541ca1cd: 2425.558
