@@ -1,4 +1,5 @@
 // Please note that this will only work on Unity 5.2 or higher.
+#pragma once
 
 #include "AudioPluginUtil.h"
 
@@ -19,6 +20,7 @@ namespace SpatializerSettingsHRTF
         P_PDistFactor,
         P_CDistFactor,
         P_CrossfadeFactor,
+        P_HorizonBehavior,
         P_NUM
     };
 
@@ -42,6 +44,7 @@ namespace SpatializerSettingsHRTF
         AudioPluginUtil::RegisterParameter(definition, "Point SF", "", 0.0f, 10.0f, 1.0f, 1.0f, 1.0f, P_PDistFactor, "Factor by which point distance is scaled");
         AudioPluginUtil::RegisterParameter(definition, "Circle SF", "", 0.0f, 10.0f, 1.0f, 1.0f, 1.0f, P_CDistFactor, "Factor by which circle distance is scaled");
         AudioPluginUtil::RegisterParameter(definition, "Crossfade F", "", 1.0f, 44100.0f, 4410.0f, 1.0f, 1.0f, P_CrossfadeFactor, "Fraction of how many samples of total buffer it takes for the signal to crossfade to a new hrtf ");
+        AudioPluginUtil::RegisterParameter(definition, "HorizonBehavior", "", 0.0f, 2.0f, 1.0f, 1.0f, 1.0f, P_HorizonBehavior, "0-1: Lerp Between Listener and Object, 1-2 Lerp between Objekt and a large number");
         return numparams;
     }
 

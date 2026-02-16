@@ -1,9 +1,10 @@
 // Please note that this will only work on Unity 5.2 or higher.
+#pragma once
 
 #include "AudioPluginUtil.h"
 
 
-float hrtf_settingbuffer[11] = { 0.0f }; // Make a buffer to save all the settings in.
+float hrtf_settingbuffer[12] = { 0.0f }; // Make a buffer to save all the settings in.
 float hrtf_debugbuffer[16] = { 0.0f }; // Buffer for debug Purposes Currently transmits a Object matrix
 extern float hrtfSrcData[]; // Data for the HRTF. (Impulse responses for different elevations and azimuth degrees
 
@@ -142,6 +143,10 @@ namespace CustomSpatializerHRTF
         return AudioPluginUtil::FastClip(t, 0.0f, 1.0f);; // TODO: write better function.
     }
 
+    static inline float horizon_alpha(float t,float original_factor) {
+        return (t > 1.0f) ? t*AudioPluginUtil::kMaxSampleRate*0.5f: (1.0f-t)*original_factor; //use Samplerate as max, therefore if above horizon it may dampen.
+    }
+
     inline bool IsHostCompatible(UnityAudioEffectState* state)
     {
         // Somewhat convoluted error checking here because hostapiversion is only supported from SDK version 1.03 (i.e. Unity 5.2) and onwards.
@@ -248,6 +253,8 @@ namespace CustomSpatializerHRTF
         float pdist_factor =        hrtf_settingbuffer[8]; // Factor by which point distance is scaled
         float cdist_factor =        hrtf_settingbuffer[9]; // Factor by which circle distance is scaled 
         float crossfade_samples =   hrtf_settingbuffer[10]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+        float horizon_factor =      hrtf_settingbuffer[11]; // 0-1: Lerp Between Listener and Object, 1-2 Lerp between Objekt and a large number 
+
 
         float sr = (float)state->samplerate;
 
@@ -296,17 +303,17 @@ namespace CustomSpatializerHRTF
         float d_y = m[6];
         float d_z = m[10];
         // Intersection
+        float c_dist, p_dist;
+
         float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
 
         // position on the plane
 
-        float g_x =  alpha * d_x + l_x;
+        float g_x = alpha * d_x + l_x;
         float g_z = alpha * d_z + l_z;
-        hrtf_debugbuffer[2] = g_x;
-        hrtf_debugbuffer[3] = g_z;
 
         // distance from point: (on plane)
-        float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
+        p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
 
         //// Point on plane end
 
@@ -316,8 +323,14 @@ namespace CustomSpatializerHRTF
         // distance between gaze point and listener
         float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
 
-        float c_dist = fabsf(l_dist - l_p_dist);
-        hrtf_debugbuffer[0] = c_dist;
+        c_dist = fabsf(l_dist - l_p_dist);
+        // End Circle
+
+        if (!(d_y < -0.001f))
+        {
+            p_dist = horizon_alpha(horizon_factor, p_dist);
+            c_dist = horizon_alpha(horizon_factor, c_dist);
+        }
         // End Circle
 
         float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + c_dist*cdist_factor+p_dist*pdist_factor+cutoff_scale_factor * angle));
@@ -357,8 +370,8 @@ namespace CustomSpatializerHRTF
         GetHRTF(0, data->ch[0].h, azimuth, elevation);
         GetHRTF(1, data->ch[1].h, azimuth, elevation);
 
-
         
+
 
         for (unsigned int sampleOffset = 0; sampleOffset < length; sampleOffset += HRTFLEN)
         {
@@ -470,15 +483,16 @@ namespace CustomSpatializerHRTF
         }
 
         // Get Settings from the other Plugin
-        const float totalMix = hrtf_settingbuffer[1];
-        float q_factor = hrtf_settingbuffer[3]; // the quality factor of the filter
+        const float totalMix =      hrtf_settingbuffer[1];
+        float q_factor =            hrtf_settingbuffer[3]; // the quality factor of the filter
         float cutoff_initial_freq = hrtf_settingbuffer[4];; // the highest cutoff frequency
-        float cutoff_min_freq = hrtf_settingbuffer[5];; // the minimal cutoff frequency
-        float half_angle = hrtf_settingbuffer[6]; // the angle at which the cutoff frequency reaches half its highest value
-        float seek_speed = hrtf_settingbuffer[7]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
-        float pdist_factor = hrtf_settingbuffer[8]; // Factor by which point distance is scaled
-        float cdist_factor = hrtf_settingbuffer[9]; // Factor by which circle distance is scaled 
-        float crossfade_samples = hrtf_settingbuffer[10]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+        float cutoff_min_freq =     hrtf_settingbuffer[5];; // the minimal cutoff frequency
+        float half_angle =          hrtf_settingbuffer[6]; // the angle at which the cutoff frequency reaches half its highest value
+        float seek_speed =          hrtf_settingbuffer[7]; // how fast the switch from previous filter to current filter goes in block_samples/seek_speed
+        float pdist_factor =        hrtf_settingbuffer[8]; // Factor by which point distance is scaled
+        float cdist_factor =        hrtf_settingbuffer[9]; // Factor by which circle distance is scaled 
+        float crossfade_samples =   hrtf_settingbuffer[10]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
+        float horizon_factor =      hrtf_settingbuffer[11]; // 0-1: Lerp Between Listener and Object, 1-2 Lerp between Objekt and a large number 
 
         float sr = (float)state->samplerate;
 
@@ -527,15 +541,18 @@ namespace CustomSpatializerHRTF
         float d_y = m[6];
         float d_z = m[10];
         // Intersection
-        float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+
+        float c_dist, p_dist;
+       
+        float alpha = (d_y < -0.001f)?(-1 - l_y) / d_y:0; // set the alpha to zero in case there is no (positive) intersection
 
         // position on the plane
 
         float g_x = alpha * d_x + l_x;
         float g_z = alpha * d_z + l_z;
-        
+
         // distance from point: (on plane)
-        float p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
+        p_dist = sqrtf((g_x - px) * (g_x - px) + (g_z - pz) * (g_z - pz));
 
         //// Point on plane end
 
@@ -545,8 +562,15 @@ namespace CustomSpatializerHRTF
         // distance between gaze point and listener
         float l_p_dist = sqrtf((g_x - l_x) * (g_x - l_x) + (g_z - l_z) * (g_z - l_z));
 
-        float c_dist = fabsf(l_dist - l_p_dist);
+        c_dist = fabsf(l_dist - l_p_dist);
         // End Circle
+        
+        if (!(d_y < -0.001f)) 
+        {
+            p_dist = horizon_alpha(horizon_factor,p_dist);
+            c_dist = horizon_alpha(horizon_factor,c_dist);
+        }
+
 
         float goal_cutoff_frequency = cutoff_initial_freq * (1.0f / (1.0f + c_dist * cdist_factor + p_dist * pdist_factor + cutoff_scale_factor * angle));
         goal_cutoff_frequency = AudioPluginUtil::FastMax(goal_cutoff_frequency, cutoff_min_freq);
@@ -563,7 +587,7 @@ namespace CustomSpatializerHRTF
         //  instead use 0 to 90 degrees -> cos/sin(omega).
         //  angle between object and ears is actually between 0 to 180 degrees 
         //  use half angle identities
-        float panning_factors[2] = { sqrt((1 - (dir_x / dist)) / 2),sqrt((1 + (dir_x / dist)) / 2) }; 
+        float panning_factors[2] = { sqrtf((1.0f - (dir_x / dist)) / 2.0f),sqrtf((1.0f + (dir_x / dist)) / 2.0f) }; 
 
         
         //
