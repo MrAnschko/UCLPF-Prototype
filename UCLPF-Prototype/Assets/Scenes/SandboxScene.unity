@@ -881,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!1 &279343649
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,6 +4265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!1 &1757994162
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,6 +4450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!1 &2087454769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4749,6 +4752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!224 &77417534648787359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5364,6 +5368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!114 &190078771459864824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9689,6 +9694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!1 &2716517426366725671
 GameObject:
   m_ObjectHideFlags: 0
@@ -12802,6 +12808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!114 &4785165723526572473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12841,6 +12848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!114 &4815792362288123056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15351,6 +15359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!33 &6303578189132842272
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17759,6 +17768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4e7700832b63447aa862496c363962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioID: 0
 --- !u!1 &7451509575483447750
 GameObject:
   m_ObjectHideFlags: 0
@@ -19753,6 +19763,7 @@ MonoBehaviour:
   cycleTime: 4
   simultaneous_sources: 1
   startingOffset: 0
+  sonificationMethod: {fileID: 11400000, guid: c8044a0b4621b2946b422208d8eb5e83, type: 2}
 --- !u!114 &8789226742972573110
 MonoBehaviour:
   m_ObjectHideFlags: 0

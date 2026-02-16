@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -12,11 +13,25 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField]
     float startingOffset; //offset of when the first sound is supposed to be played. Recommended to 
     List<AudioSourceHandler> audioSources;
+    [SerializeField]
+    SonificationHandler sonificationMethod;
 
     public static SoundPlayer instance;
 
     Coroutine playAll;
+
+    public void SetupAudioSource(AudioSourceHandler ASH)
+    {
+        if (instance == null || instance.sonificationMethod == null)
+        {
+            Debug.LogError("Soundplayer not Setup correctly");
+            return;
+        }
+
+        ASH.AudioSource.clip = instance.sonificationMethod.GetClipFromID(ASH.AudioID);
+    }
     
+
     private void Awake()
     {
         if (instance != null)

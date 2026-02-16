@@ -6,6 +6,7 @@ using UnityEngine;
 
 // Behaviour script to be attached to a source for testing.
 [DefaultExecutionOrder(0)]
+[RequireComponent(typeof(AudioSource))]
 public class AudioSourceHandler : MonoBehaviour
 {
     static double safety_time = 0.10d;
@@ -13,9 +14,10 @@ public class AudioSourceHandler : MonoBehaviour
 
     AudioSource audioSource;
     AudioClip clip;
+    public int AudioID=0;
     Coroutine playing; // the coroutine for playing 
-    
-    
+
+    public AudioSource AudioSource { get => audioSource; set => audioSource = value; }
 
     private void OnEnable()
     {
@@ -23,7 +25,8 @@ public class AudioSourceHandler : MonoBehaviour
         
         clip = audioSource.clip;
         SoundPlayer.instance.RegisterSource(this);
-        
+        SoundPlayer.instance.SetupAudioSource(this);
+
     }
 
     public void StartPlayingRepeatedly(float time,double offset)
