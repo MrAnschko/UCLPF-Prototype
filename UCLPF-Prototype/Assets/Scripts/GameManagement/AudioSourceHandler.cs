@@ -24,8 +24,8 @@ public class AudioSourceHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         
         clip = audioSource.clip;
-        SoundPlayer.instance.RegisterSource(this);
-        SoundPlayer.instance.SetupAudioSource(this);
+        SoundPlayer.RegisterSource(this);
+        SoundPlayer.SetupAudioSource(this);
 
     }
 

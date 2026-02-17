@@ -4502,7 +4502,6 @@ MonoBehaviour:
     rel_time: []
   map_data:
     map_identifier: 
-    target_positions: []
     relative_distance: []
     rel_time: []
     top_speed: 0

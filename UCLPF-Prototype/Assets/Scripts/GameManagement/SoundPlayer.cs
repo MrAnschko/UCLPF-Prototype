@@ -20,7 +20,7 @@ public class SoundPlayer : MonoBehaviour
 
     Coroutine playAll;
 
-    public void SetupAudioSource(AudioSourceHandler ASH)
+    static public void SetupAudioSource(AudioSourceHandler ASH)
     {
         if (instance == null || instance.sonificationMethod == null)
         {
@@ -47,9 +47,9 @@ public class SoundPlayer : MonoBehaviour
 
 
     // function with which the sources register themselves.
-    public void RegisterSource(AudioSourceHandler source)
+    public static void RegisterSource(AudioSourceHandler source)
     {
-        audioSources.Add(source);
+        instance.audioSources.Add(source);
         Debug.Log($"added {source}");
     }
 

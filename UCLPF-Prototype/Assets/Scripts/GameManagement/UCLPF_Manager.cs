@@ -38,6 +38,7 @@ public class UCLPF_Manager : MonoBehaviour
 
     // DATA
     public DataContainer user_data;
+    [SerializeField]
     public MapData map_data;
 
 
@@ -49,6 +50,10 @@ public class UCLPF_Manager : MonoBehaviour
         
 
         Debug.Log($"Mode Set to {mode}");
+
+        MapConstructorFromFile mapConstructor = GetComponent<MapConstructorFromFile>();
+        if (mapConstructor != null)
+            mapConstructor.MakeMap();
 
         settings.SetMode(mode);
 
@@ -109,10 +114,24 @@ public class UCLPF_Manager : MonoBehaviour
 
 
             // Add map Data:
-            List<Vector3> all_pois = new List<Vector3>();
-            foreach (Transform child in target_transform)
-                all_pois.Add(child.transform.position);
-            map_data.AddStep(all_pois, target_transform.position);
+            List<POI_Info> distractor_poi = new List<POI_Info>();
+            foreach (Transform child in found_set)
+            {
+                if(child.name != "TargetAudioSource"){
+                    POI_Info info = new POI_Info();
+                    info.pos = child.transform.position;
+                    info.id = child.GetComponent<AudioSourceHandler>().AudioID;
+                    distractor_poi.Add(info);
+                    
+                }
+
+            }
+
+            POI_Info targetInfo = new POI_Info();
+            targetInfo.pos = target_transform.position;
+            targetInfo.id = target_transform.GetComponent<AudioSourceHandler>().AudioID;
+
+            map_data.AddStep(distractor_poi, targetInfo);
 
 
             found_set.gameObject.SetActive(false);
