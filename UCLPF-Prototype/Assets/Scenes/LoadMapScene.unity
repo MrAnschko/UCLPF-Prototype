@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 2087454770}
   - component: {fileID: 8781783258855542128}
   - component: {fileID: 8781783258855542129}
+  - component: {fileID: 8781783258855542130}
   m_Layer: 0
   m_Name: UCLPF_Manager
   m_TagString: Untagged
@@ -1418,7 +1419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 879875081291834076, guid: 133b6b7f1648f544a965c11e065aadb0, type: 3}
   handler: {fileID: 11400000, guid: c8044a0b4621b2946b422208d8eb5e83, type: 2}
-  fileName: MapData_02
+  fileName: MapData_Testing
   data:
     map_identifier: 
     steps: []
@@ -1426,6 +1427,57 @@ MonoBehaviour:
     rel_time: []
     top_speed: 0
     interaction_mode: 
+--- !u!114 &8781783258855542130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087454769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5838d0f4e6e8418498ed83bbab32ec66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steps: 3
+  possibleIDs: 0000000008000000060000000300000007000000050000000b0000000200000001000000090000000a00000004000000
+  numberOfPointsPerStep: 030000000300000003000000
+  intraStepDist: 5
+  minPOIDist: 0.5
+  interStepDistMin: 3
+  interStepDistMax: 5
+  data:
+    map_identifier: Testing
+    steps:
+    - target:
+        pos: {x: 3.9044774, y: -1, z: 5.3425593}
+        id: 0
+      distractor_poi:
+      - pos: {x: 0.40594268, y: -1, z: 8.133975}
+        id: 8
+      - pos: {x: 3.9391341, y: -1, z: 4.107825}
+        id: 6
+    - target:
+        pos: {x: -7.426092, y: -1, z: 5.4954314}
+        id: 11
+      distractor_poi:
+      - pos: {x: -2.1126654, y: -1, z: 5.3699865}
+        id: 10
+      - pos: {x: -4.02236, y: -1, z: 6.487277}
+        id: 6
+    - target:
+        pos: {x: 0.7595511, y: -1, z: 7.384273}
+        id: 0
+      distractor_poi:
+      - pos: {x: 2.2659717, y: -1, z: 7.2009335}
+        id: 8
+      - pos: {x: 1.1339856, y: -1, z: 4.405642}
+        id: 6
+    relative_distance: []
+    rel_time: []
+    top_speed: 0
+    interaction_mode: 
+  sonificationMethod: {fileID: 0}
 --- !u!1001 &9093645396002145770
 PrefabInstance:
   m_ObjectHideFlags: 0
