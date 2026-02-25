@@ -14,7 +14,7 @@ public class SoundPlayer : MonoBehaviour
     float startingOffset; //offset of when the first sound is supposed to be played. Recommended to 
     List<AudioSourceHandler> audioSources;
     [SerializeField]
-    SonificationHandler sonificationMethod;
+    public SonificationHandler sonificationMethod;
 
     public static SoundPlayer instance;
 

@@ -47,8 +47,8 @@ public class UCLPF_Manager : MonoBehaviour
     private void Start()
     {
         mode = PersistentData.Mode;
-        
 
+        GetComponent<GoalVisualization>().Setup();
         Debug.Log($"Mode Set to {mode}");
 
         MapConstructorFromFile mapConstructor = GetComponent<MapConstructorFromFile>();
@@ -69,6 +69,7 @@ public class UCLPF_Manager : MonoBehaviour
     {
         SoundPlayer.instance.ClearAudioSources();
         pointSets[current_set].gameObject.SetActive(false);
+        goalAudioSourceHandler[i].MakeGoalVis();
         current_set = i;
         pointSets[i].gameObject.SetActive(true);
         SoundPlayer.instance.StartPlaying();
@@ -185,7 +186,7 @@ public class UCLPF_Manager : MonoBehaviour
         float lr_sign = Mathf.Sign(Vector3.Dot(settings.GazeDirectionIA.ReadValue<Quaternion>() * Vector3.right, goal_direction));
 
         float azimuth = lr_sign*Mathf.Acos(-Vector3.Dot(view_direction.normalized,rel_position)/rel_position.magnitude);
-        Debug.Log($"Azimuth: {azimuth}");
+        //Debug.Log($"Azimuth: {azimuth}");
         user_data.AddStep(rel_position, azimuth);
     }
 }

@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SandboxScene.unity
     guid: bc59ccb58f27d4d43a4f4e4d2013c683
   - enabled: 1
-    path: Assets/Scenes/TestingScene.unity
+    path: Assets/Scenes/ModeTestingScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/LoadMapScene.unity
+    guid: 4bf345a91667b4240873a7755804a5de
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b3b9f76469b12e640b461984090b4f4e, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8a975ef1b08c3d94e980a01ddc3b1786, type: 2}

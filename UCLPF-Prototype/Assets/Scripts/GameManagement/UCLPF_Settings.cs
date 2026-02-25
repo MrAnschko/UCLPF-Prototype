@@ -152,7 +152,6 @@ public class UCLPF_Settings : MonoBehaviour
         visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
         visualizationMaterial.SetVector("_View_Direction", direction);
 
-        Debug.Log(direction);
         this.transform.rotation.SetLookRotation(direction);
 
     }

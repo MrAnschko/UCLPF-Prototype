@@ -56,4 +56,9 @@ public class AudioSourceHandler : MonoBehaviour
             audioSource.PlayScheduled(time);
         }
     }
+
+    public void MakeGoalVis()
+    {
+        GoalVisualization.SetGoalText(SoundPlayer.instance.sonificationMethod.DisplayName(this.AudioID));
+    }
 }
