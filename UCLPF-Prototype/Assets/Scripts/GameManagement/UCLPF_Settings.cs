@@ -31,10 +31,6 @@ public class UCLPF_Settings : MonoBehaviour
         Point
     }
 
-
-
-
-
     public void SetMode(Mode mode)
     {
         switch (mode)
@@ -59,6 +55,8 @@ public class UCLPF_Settings : MonoBehaviour
         mixer.SetFloat("HalfAngle", Mathf.PI / 180);
         mixer.SetFloat("PointSF", 0);
         mixer.SetFloat("CircleSF", 0);
+        
+
 
         visualizationMaterial.SetFloat("_Half_Angle", 15);
         visualizationMaterial.SetFloat("_Point_SF", 0);

@@ -1,10 +1,5 @@
 using UnityEngine;
 
-// The code example shows how to implement a metronome that procedurally
-// generates the click sounds via the OnAudioFilterRead callback.
-// While the game is paused or suspended, this time will not be updated and sounds
-// playing will be paused. Therefore developers of music scheduling routines do not have
-// to do any rescheduling after the app is unpaused
 
 [RequireComponent(typeof(AudioSource))]
 public class CustomProcessing : MonoBehaviour

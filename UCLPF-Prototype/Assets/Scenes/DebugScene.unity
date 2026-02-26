@@ -210,9 +210,14 @@ MonoBehaviour:
   eyeGazeDirectionRef: {fileID: -7046323255087736399, guid: 18c412191cdc9274897f101c7fd5316f, type: 3}
   useEyeGaze: 0
   listener: {fileID: 1755053483}
-  half_angle: 3
-  cutoff_initial_freq: 22000
   qFactor: 0
+  cutoffInitialFreq: 0
+  cutoffMinimalFreq: 0
+  half_angle: 3
+  pointDistFactor: 0
+  circleDistFactor: 0
+  horizonBehavior: 0
+  planePosition: -1
 --- !u!169 &363356934
 AudioLowPassFilter:
   m_ObjectHideFlags: 0
@@ -1098,9 +1103,14 @@ MonoBehaviour:
   eyeGazeDirectionRef: {fileID: -7046323255087736399, guid: 18c412191cdc9274897f101c7fd5316f, type: 3}
   useEyeGaze: 0
   listener: {fileID: 1755053483}
-  half_angle: 1
-  cutoff_initial_freq: 22050
   qFactor: 0.707
+  cutoffInitialFreq: 22000
+  cutoffMinimalFreq: 50
+  half_angle: 0.1
+  pointDistFactor: 0
+  circleDistFactor: 0
+  horizonBehavior: 1
+  planePosition: -1
 --- !u!114 &2094827468
 MonoBehaviour:
   m_ObjectHideFlags: 0

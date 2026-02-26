@@ -44,7 +44,7 @@ public class CustomLowpassFilter
     }
 
 
-    // We use the Transposed Canonical form as suggested in "Designing Audio Effect Plugins in C++"
+    // I use the Transposed Canonical form as suggested in "Designing Audio Effect Plugins in C++"
     private float[] a_factors = new float[3];
     private float[] b_factors = new float[2];
 
@@ -57,8 +57,8 @@ public class CustomLowpassFilter
         float beta = 0.5f * (1.0f - 1.0f / (2.0f * qFactor) * Mathf.Sin(om_c))/ (1.0f + 1.0f / (2.0f * qFactor) * Mathf.Sin(om_c));
         float gamma = (0.5f+beta)*Mathf.Cos(om_c);
 
-        a_factors[0] = (0.5f+beta-gamma)/2.0f;
-        a_factors[1] = (0.5f+beta-gamma);
+        a_factors[0] = (0.5f + beta - gamma) / 2.0f;
+        a_factors[1] = (0.5f + beta - gamma);
         a_factors[2] = (0.5f + beta - gamma) / 2.0f;
 
         b_factors[0] = -2*gamma;

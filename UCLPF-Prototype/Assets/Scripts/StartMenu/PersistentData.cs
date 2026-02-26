@@ -5,4 +5,5 @@ using UnityEngine;
 public static class PersistentData
 {
     public static UCLPF_Settings.Mode Mode;
+    
 }
