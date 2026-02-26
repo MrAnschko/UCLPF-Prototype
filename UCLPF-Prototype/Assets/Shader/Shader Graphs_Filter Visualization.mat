@@ -24,16 +24,16 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Circle_SF: 10
-    - _Half_Angle: 1800
+    - _Circle_SF: 0
+    - _Half_Angle: 15
     - _Height: -1
     - _Line_Distance: 3
     - _Line_Thickness: 0.01
-    - _Point_SF: 10
+    - _Point_SF: 0
     - _Test: 0
     m_Colors:
     - _Listener_Position: {r: 0, g: 0, b: 0, a: 0}
-    - _View_Direction: {r: 0, g: 0, b: 1, a: 0}
+    - _View_Direction: {r: 0.28292778, g: -0.33874166, b: 0.89733267, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6958054650681683310
 MonoBehaviour:

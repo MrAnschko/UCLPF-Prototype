@@ -13,15 +13,22 @@ public class UCLPF_Settings : MonoBehaviour
     [SerializeField]
     Material visualizationMaterial;
 
-    public InputActionReference headGazeDirectionRef;
-    public InputActionReference eyeGazeDirectionRef;
-    InputAction gazeDirectionIA;
+
+
+    public GameObject headPointRef;
+    public GameObject eyePointRef;
+
+    [SerializeField] GameObject pointObject;
     [SerializeField]
     bool useEyeGaze;
 
+    public ModeSettings vectorMode;
+    public ModeSettings pointMode;
+    public ModeSettings circleMode;
+
     public bool UseEyeGaze { get => useEyeGaze; set{ useEyeGaze = value; SetGazeMethod(); } }
 
-    public InputAction GazeDirectionIA { get => gazeDirectionIA; set => gazeDirectionIA = value; }
+    public GameObject PointObject { get => pointObject;}
 
     public enum Mode
     {
@@ -52,12 +59,7 @@ public class UCLPF_Settings : MonoBehaviour
 
     public void SetModeVector()
     {
-        mixer.SetFloat("HalfAngle", Mathf.PI / 180);
-        mixer.SetFloat("PointSF", 0);
-        mixer.SetFloat("CircleSF", 0);
-        
-
-
+        vectorMode.ApplySettings();
         visualizationMaterial.SetFloat("_Half_Angle", 15);
         visualizationMaterial.SetFloat("_Point_SF", 0);
         mixer.SetFloat("Mix", 1);
@@ -66,10 +68,7 @@ public class UCLPF_Settings : MonoBehaviour
 
     public void SetModePoint()
     {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
-        mixer.SetFloat("PointSF", 5);
-        mixer.SetFloat("CircleSF", 0);
-        mixer.SetFloat("Mix", 1);
+        pointMode.ApplySettings();
 
         visualizationMaterial.SetFloat("_Half_Angle", 18000);
         visualizationMaterial.SetFloat("_Point_SF", 5);
@@ -79,10 +78,7 @@ public class UCLPF_Settings : MonoBehaviour
 
     public void SetModeCircle()
     {
-        mixer.SetFloat("HalfAngle", Mathf.Deg2Rad * 18000);
-        mixer.SetFloat("PointSF", 0);
-        mixer.SetFloat("CircleSF", 5);
-        mixer.SetFloat("Mix", 1);
+        circleMode.ApplySettings();
 
         visualizationMaterial.SetFloat("_Half_Angle", 18000);
         visualizationMaterial.SetFloat("_Point_SF", 0);
@@ -99,19 +95,22 @@ public class UCLPF_Settings : MonoBehaviour
     public void ChangeQFactor(SliderEventData data)
     {
         float q_factor = data.NewValue;
-        mixer.SetFloat("QFactor",q_factor);
+        //mixer.SetFloat("QFactor",q_factor);
+        LPGlobalSettings.QFactor = q_factor;
     }
 
     public void ChangeMaxFreq(SliderEventData data)
     {
         float maxFreq = data.NewValue;
-        mixer.SetFloat("MaxFreq", maxFreq);
+        //mixer.SetFloat("MaxFreq", maxFreq);
+        LPGlobalSettings.CutoffInitialFreq = maxFreq;
     }
 
     public void ChangeHalfAngle(SliderEventData data)
     {
         float halfAngle= data.NewValue;
-        mixer.SetFloat("HalfAngle",halfAngle);
+        //mixer.SetFloat("HalfAngle",halfAngle);
+        LPGlobalSettings.Half_angle = halfAngle;
         visualizationMaterial.SetFloat("_Half_Angle", halfAngle);
     }
 
@@ -120,20 +119,23 @@ public class UCLPF_Settings : MonoBehaviour
         
         float pointFactor = data.NewValue;
         visualizationMaterial.SetFloat("_Point_SF", pointFactor);
-        mixer.SetFloat("PointSF", pointFactor);
+        //mixer.SetFloat("PointSF", pointFactor);
+        LPGlobalSettings.PointDistFactor = pointFactor;
     }
 
     public void ChangeCircleFactor(SliderEventData data) 
     { 
         float circleFactor = data.NewValue;
         visualizationMaterial.SetFloat("_Circle_SF", circleFactor);
-        mixer.SetFloat("CircleSF", circleFactor);
+        //mixer.SetFloat("CircleSF", circleFactor);
+        LPGlobalSettings.CircleDistFactor = circleFactor;
 
     }
 
     public void SetHRTF(bool hrtf)
     {
-        mixer.SetFloat("HRTFEnabled", (hrtf ? 1.0f : 0.0f));
+        //mixer.SetFloat("HRTFEnabled", (hrtf ? 1.0f : 0.0f));
+        Debug.LogError("Not Supported");
     }
 
 
@@ -145,8 +147,8 @@ public class UCLPF_Settings : MonoBehaviour
     // Method to update the visuals to reflect the views
     private void UpdateRotation()
     {
-        Quaternion viewQuaternion = GazeDirectionIA.ReadValue<Quaternion>();
-        Vector3 direction =  viewQuaternion* Vector3.forward;
+        
+        Vector3 direction =  pointObject.transform.forward;
         visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
         visualizationMaterial.SetVector("_View_Direction", direction);
 
@@ -163,11 +165,13 @@ public class UCLPF_Settings : MonoBehaviour
     {
         if (useEyeGaze)
         {
-            GazeDirectionIA = eyeGazeDirectionRef.action;
+            pointObject = eyePointRef;
+            LPGlobalSettings.PointObject = eyePointRef;
             return;
         }
-        GazeDirectionIA = headGazeDirectionRef.action;
-        return ;
+        pointObject = headPointRef;
+        LPGlobalSettings.PointObject = headPointRef;
+        return;
     }
 
     public void SetGazeMethod(bool enableEyeGaze)

@@ -8,6 +8,14 @@ public class CustomLowpassFilter
     [SerializeField] private float qFactor;
     [SerializeField] private float sampleRate = 48000.0F;
 
+    public CustomLowpassFilter()
+    {
+        this.cutoffFrequency = 22050;
+        this.qFactor = 0.707f;
+        sampleRate = 48000;
+        SetFactors(qFactor, cutoffFrequency);
+    }
+
     public CustomLowpassFilter(float cutoffFrequency, float qFactor)
     {
         this.cutoffFrequency = cutoffFrequency;

@@ -10,7 +10,7 @@ public class CustomProcessing : MonoBehaviour
     private float q = 0.707f;
 
     bool running = false;
-    CustomLowpassFilter[] clpf = new CustomLowpassFilter[2];
+    CustomLowpassFilter[] clpf = {new CustomLowpassFilter(), new CustomLowpassFilter() };
 
     public float Freq 
     { 

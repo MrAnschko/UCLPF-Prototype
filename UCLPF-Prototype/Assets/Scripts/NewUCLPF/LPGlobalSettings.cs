@@ -6,17 +6,17 @@ using UnityEngine.InputSystem;
 
 public static class LPGlobalSettings
 {
-    static bool useEyeGaze;
-    static float qFactor;
-    static float cutoffInitialFreq;
-    static float cutoffMinimalFreq;
-    static float half_angle;
-    static float pointDistFactor;
-    static float circleDistFactor;
-    static float horizonBehavior;
+    private static GameObject pointObject;
+    static float qFactor = 0.707f;
+    static float cutoffInitialFreq = 22050;
+    static float cutoffMinimalFreq = 20;
+    static float half_angle = 314f;
+    static float pointDistFactor= 0;
+    static float circleDistFactor=0;
+    static float horizonBehavior = 0;
     static float planePosition = -1;
 
-    static List<LPController> SettingsInformer;
+    static List<LPController> SettingsInformer = new();
 
     public static float QFactor 
     { 
@@ -95,12 +95,13 @@ public static class LPGlobalSettings
             UpdateFilters();
         }
     }
-    public static bool UseEyeGaze 
-    { 
-        get => useEyeGaze;
+
+    public static GameObject PointObject 
+    {
+        get => pointObject;
         set
         {
-            useEyeGaze = value;
+            pointObject = value;
             UpdateFilters();
         }
     }

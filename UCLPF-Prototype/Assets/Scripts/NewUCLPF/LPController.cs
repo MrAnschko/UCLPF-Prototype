@@ -8,12 +8,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CustomProcessing))]
 public class LPController : MonoBehaviour
 {
-    [SerializeField] public InputActionReference headGazeDirectionRef;
-    [SerializeField] public InputActionReference eyeGazeDirectionRef;
-    [SerializeField] bool useEyeGaze;
-    [SerializeField] AudioListener listener;
+    
+    [SerializeField] GameObject listener;
 
-    [Header("FilterProperties")] 
+    [Header("Filter Properties")] 
     [SerializeField] float qFactor;
     [SerializeField] float cutoffInitialFreq;
     [SerializeField] float cutoffMinimalFreq;
@@ -24,7 +22,6 @@ public class LPController : MonoBehaviour
     [SerializeField] float horizonBehavior;
     [SerializeField] float planePosition = -1;
 
-    public bool UseEyeGaze { get => useEyeGaze; set { useEyeGaze = value; SetGazeMethod(); } }
 
     static float horizon_alpha(float t, float original_factor)
     {
@@ -32,7 +29,6 @@ public class LPController : MonoBehaviour
     }
 
 
-    InputAction gazeDirectionIA;
 
     CustomProcessing filter;
 
@@ -40,7 +36,6 @@ public class LPController : MonoBehaviour
     {
         LPGlobalSettings.RegisterSelf(this);
         UpdateSettings();
-        SetGazeMethod();
         filter = GetComponent<CustomProcessing>();
         filter.Q = qFactor;
     }
@@ -53,15 +48,8 @@ public class LPController : MonoBehaviour
     void UpdateFilter()
     {
         // Get View
-        Quaternion viewQuaternion = gazeDirectionIA.ReadValue<Quaternion>();
-        Vector3 direction = viewQuaternion * Vector3.forward;
-
-        Vector3 listenerPos = listener.transform.position;
-        Vector3 obj_pos = transform.position;
-        Vector3 obj_dir = obj_pos-listenerPos;
-
-        Debug.Log(listenerPos);
-
+       
+        
         // Get Object
 
 
@@ -145,21 +133,8 @@ public class LPController : MonoBehaviour
         filter.Freq = Mathf.Max(cutoffMinimalFreq,goal_cutoff_frequency);
     }
 
-
-    private void SetGazeMethod()
-    {
-        if (useEyeGaze)
-        {
-            gazeDirectionIA = eyeGazeDirectionRef.action;
-            return;
-        }
-        gazeDirectionIA = headGazeDirectionRef.action;
-        return;
-    }
-
     public void UpdateSettings()
     {
-        useEyeGaze        = LPGlobalSettings.UseEyeGaze; 
         qFactor           = LPGlobalSettings.QFactor;
         cutoffInitialFreq = LPGlobalSettings.CutoffInitialFreq;
         cutoffMinimalFreq = LPGlobalSettings.CutoffMinimalFreq;

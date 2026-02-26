@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StandardObject", menuName = "SonificationMethods/StandardSonificationObject", order = 1)]
+[CreateAssetMenu(fileName = "StandardObject", menuName = "UCLPF/StandardSonificationObject", order = 1)]
 public class SonificationHandler:ScriptableObject
 {
     public List<AudioClip> audioClips = new List<AudioClip>();

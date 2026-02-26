@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2509804848960994905}
   - component: {fileID: 266907499892905751}
   - component: {fileID: 266907499892905750}
+  - component: {fileID: 5271740710909963460}
+  - component: {fileID: 6996715071552069644}
   m_Layer: 0
   m_Name: DistractingAudioSource
   m_TagString: Untagged
@@ -185,3 +187,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5271740710909963460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879875081291834076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6996715071552069644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879875081291834076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4944511d83ead4b8c0a7badbb41f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listener: {fileID: 0}
+  qFactor: 0
+  cutoffInitialFreq: 0
+  cutoffMinimalFreq: 0
+  half_angle: 0
+  pointDistFactor: 0
+  circleDistFactor: 0
+  horizonBehavior: 0
+  planePosition: -1

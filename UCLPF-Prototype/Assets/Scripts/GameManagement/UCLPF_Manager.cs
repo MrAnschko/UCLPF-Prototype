@@ -179,11 +179,11 @@ public class UCLPF_Manager : MonoBehaviour
         rel_position.y = 0;
 
 
-        Vector3 view_direction = settings.GazeDirectionIA.ReadValue<Quaternion>() * Vector3.forward;
+        Vector3 view_direction = settings.PointObject.transform.forward;
         view_direction.y = 0;
 
 
-        float lr_sign = Mathf.Sign(Vector3.Dot(settings.GazeDirectionIA.ReadValue<Quaternion>() * Vector3.right, goal_direction));
+        float lr_sign = Mathf.Sign(Vector3.Dot(settings.PointObject.transform.right, goal_direction));
 
         float azimuth = lr_sign*Mathf.Acos(-Vector3.Dot(view_direction.normalized,rel_position)/rel_position.magnitude);
         //Debug.Log($"Azimuth: {azimuth}");
