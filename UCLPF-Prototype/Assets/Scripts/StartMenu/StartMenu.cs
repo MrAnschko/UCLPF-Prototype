@@ -63,4 +63,9 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("ModeTestingScene");
     }
+
+    public static void LoadModeMenuScene()
+    {
+        SceneManager.LoadSceneAsync("StartScreen");
+    }
 }

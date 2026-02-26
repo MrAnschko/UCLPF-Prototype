@@ -48,7 +48,7 @@ public class UCLPF_Manager : MonoBehaviour
     {
         mode = PersistentData.Mode;
 
-        GetComponent<GoalVisualization>().Setup();
+        GetComponent<GoalVisualization>()?.Setup();
         Debug.Log($"Mode Set to {mode}");
 
         MapConstructorFromFile mapConstructor = GetComponent<MapConstructorFromFile>();
@@ -188,5 +188,10 @@ public class UCLPF_Manager : MonoBehaviour
         float azimuth = lr_sign*Mathf.Acos(-Vector3.Dot(view_direction.normalized,rel_position)/rel_position.magnitude);
         //Debug.Log($"Azimuth: {azimuth}");
         user_data.AddStep(rel_position, azimuth);
+    }
+
+    public void ReturnToMenu()
+    {
+        StartMenu.LoadModeMenuScene();
     }
 }

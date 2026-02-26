@@ -35,6 +35,7 @@ public class LPController : MonoBehaviour
     private void Start()
     {
         LPGlobalSettings.RegisterSelf(this);
+        listener = LPGlobalSettings.PointObject;
         UpdateSettings();
         filter = GetComponent<CustomProcessing>();
         filter.Q = qFactor;
@@ -135,6 +136,7 @@ public class LPController : MonoBehaviour
 
     public void UpdateSettings()
     {
+        listener = LPGlobalSettings.PointObject;
         qFactor           = LPGlobalSettings.QFactor;
         cutoffInitialFreq = LPGlobalSettings.CutoffInitialFreq;
         cutoffMinimalFreq = LPGlobalSettings.CutoffMinimalFreq;

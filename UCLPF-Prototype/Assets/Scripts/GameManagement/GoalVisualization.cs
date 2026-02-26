@@ -17,6 +17,9 @@ public class GoalVisualization : MonoBehaviour
 
     public static void SetGoalText(string text)
     {
+        if (Instance == null) {
+            return;
+        }
         Instance.text_comp.text = "Goal:\n" + text;
     }
 }

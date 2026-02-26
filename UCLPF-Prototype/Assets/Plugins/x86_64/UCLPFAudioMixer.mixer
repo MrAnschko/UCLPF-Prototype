@@ -69,7 +69,7 @@ AudioMixerEffectController:
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
-  m_Bypass: 1
+  m_Bypass: 0
 --- !u!244 &-3504713440914554948
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -231,6 +231,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 24400004}
   - {fileID: -3504713440914554948}
+  - {fileID: -3781605128657810229}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -406,7 +407,6 @@ AudioMixerGroupController:
   m_Pitch: cfb15d6f55aa74544acc0ab09f54679b
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: -3781605128657810229}
   - {fileID: -9044108547236587040}
   - {fileID: 810413117712186556}
   m_UserColorIndex: 0

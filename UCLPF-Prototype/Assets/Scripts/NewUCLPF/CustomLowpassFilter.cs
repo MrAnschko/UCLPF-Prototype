@@ -1,34 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CustomLowpassFilter
 {
-    [SerializeField] private float cutoffFrequency;
+    [SerializeField] private float currentCutoffFrequency;
+    [SerializeField] private float goalCutoffFrequency;
+    [SerializeField] private float seekRate = 1.0f;
     [SerializeField] private float qFactor;
     [SerializeField] private float sampleRate = 48000.0F;
 
     public CustomLowpassFilter()
     {
-        this.cutoffFrequency = 22050;
+        this.currentCutoffFrequency = 22050;
         this.qFactor = 0.707f;
         sampleRate = 48000;
-        SetFactors(qFactor, cutoffFrequency);
+        SetFactors(qFactor, CutoffFrequency);
     }
 
     public CustomLowpassFilter(float cutoffFrequency, float qFactor)
     {
-        this.cutoffFrequency = cutoffFrequency;
+        this.CutoffFrequency = cutoffFrequency;
         this.qFactor = qFactor;
         sampleRate = AudioSettings.outputSampleRate;
         SetFactors(qFactor,cutoffFrequency);
     }
 
     public float CutoffFrequency { 
-        get => cutoffFrequency;
+        get => goalCutoffFrequency;
         set { 
-            cutoffFrequency = value; 
-            SetFactors(value,QFactor);
+            goalCutoffFrequency = value;
         }
     }
     public float QFactor {
@@ -59,7 +62,7 @@ public class CustomLowpassFilter
     // Registers
     private float[] registers = new float[2];
 
-    public void SetFactors(float cutoffFrequency, float qFactor)
+    private void SetFactors(float cutoffFrequency, float qFactor)
     {
         float om_c = 2 * Mathf.PI * cutoffFrequency / SampleRate;
         float beta = 0.5f * (1.0f - 1.0f / (2.0f * qFactor) * Mathf.Sin(om_c))/ (1.0f + 1.0f / (2.0f * qFactor) * Mathf.Sin(om_c));
@@ -75,6 +78,11 @@ public class CustomLowpassFilter
 
     public float Process(float x)
     {
+        if (currentCutoffFrequency != goalCutoffFrequency)
+        {
+            currentCutoffFrequency = currentCutoffFrequency+Mathf.Clamp(-seekRate, goalCutoffFrequency - currentCutoffFrequency, seekRate);
+            SetFactors(currentCutoffFrequency, qFactor);
+        }
         float y = 0;
         y = x * a_factors[0] + registers[0];
 

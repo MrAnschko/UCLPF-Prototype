@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 2087454770}
   - component: {fileID: 8781783258855542128}
   - component: {fileID: 8781783258855542130}
+  - component: {fileID: 8781783258855542131}
   m_Layer: 0
   m_Name: UCLPF_Manager
   m_TagString: Untagged
@@ -942,7 +943,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
@@ -4552,6 +4553,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_comp: {fileID: 3395548130377559919}
+--- !u!114 &8781783258855542131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087454769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff7ffa667aec33428a24da9b50820c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 879875081291834076, guid: 133b6b7f1648f544a965c11e065aadb0, type: 3}
+  handler: {fileID: 11400000, guid: c8044a0b4621b2946b422208d8eb5e83, type: 2}
+  fileName: MapData_Testing
+  data:
+    map_identifier: 
+    steps: []
+    relative_distance: []
+    rel_time: []
+    top_speed: 0
+    interaction_mode: 
 --- !u!114 &8857514889759833625
 MonoBehaviour:
   m_ObjectHideFlags: 0
