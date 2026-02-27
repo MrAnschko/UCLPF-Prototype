@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09dbe8c515f8a14a8430485cf203f1e, type: 3}
+  m_Name: SonarWideSonification
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 754b28f34b42630459277050fd4e6c5f, type: 3}
+  - {fileID: 8300000, guid: 11912e652dea3d14e976898d71a107c9, type: 3}
+  - {fileID: 8300000, guid: e25fdc560a6438e468136d809cf5ab5e, type: 3}
+  - {fileID: 8300000, guid: baeed9ca404248f458b0ef73a1cdd620, type: 3}
+  - {fileID: 8300000, guid: 0146d780726877d4f872e843570a7386, type: 3}
+  - {fileID: 8300000, guid: 6081e06e06909aa4d902a879ca8b44d8, type: 3}
+  - {fileID: 8300000, guid: e5a1c76d28b10934881e9c2c2c2445e7, type: 3}
+  - {fileID: 8300000, guid: ee737194e1d5ead4296cc5b621e158c9, type: 3}
+  - {fileID: 8300000, guid: 4dd1ba2044b165f43ab4562047202e02, type: 3}
+  - {fileID: 8300000, guid: 035151d0baae6204699d4222e14d6527, type: 3}
+  - {fileID: 8300000, guid: 623ba97379d327848b6fd613bf22bdbb, type: 3}
+  - {fileID: 8300000, guid: 962ada9ce3630ad4b8f564ac1cffb3fd, type: 3}
+  names:
+  - C
+  - C#
+  - D
+  - D#
+  - E
+  - F
+  - F#
+  - G
+  - G#
+  - A
+  - A#
+  - H

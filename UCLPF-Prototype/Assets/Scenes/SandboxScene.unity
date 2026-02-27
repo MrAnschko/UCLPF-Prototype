@@ -2109,6 +2109,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  JoystickMovementStrength:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   HRTF_Rig: {fileID: 2351505567360719475}
 --- !u!4 &987407274
 Transform:
@@ -3474,6 +3498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UCLPF_Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7678945300467045907, guid: 2d6cb468988c80f4f8fe31925fc5b90b, type: 3}
+      propertyPath: sonificationMethod
+      value: 
+      objectReference: {fileID: 11400000, guid: 29e4688d2d3a4344f8240aa15516fc89, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d6cb468988c80f4f8fe31925fc5b90b, type: 3}
 --- !u!114 &1387543583 stripped
@@ -8211,7 +8239,6 @@ GameObject:
   - component: {fileID: 2351505566937685965}
   - component: {fileID: 4160709929261218172}
   - component: {fileID: 6400715628378661991}
-  - component: {fileID: 6400715628378661992}
   m_Layer: 0
   m_Name: MRTK XR Rig
   m_TagString: Untagged
@@ -12744,52 +12771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a107350295baaf4489642caa92f05de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6400715628378661992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2351505566937685967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9fe1903f7351748999dead411e0a3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVisible: 1
-  frameSampleRate: 0.3
-  defaultFrameRate: 60
-  missedFramePercentage: 0.9
-  displayedDecimalDigits: 1
-  displayTriangleCount: 0
-  batchesQualityLevelBudget: 
-  drawCallsQualityLevelBudget: 
-  meshStatsQualityLevelBudget: 
-  windowAnchor: 7
-  windowOffset: {x: 0.1, y: 0.1}
-  windowScale: 1
-  windowFollowSpeed: 5
-  snapWindow: 0
-  alignToCamera: 0
-  transformToFollow: {fileID: 0}
-  toggleKeyworlds:
-  - Profiler
-  - Toggle Profiler
-  - Show Profiler
-  - Hide Profiler
-  layer: 0
-  material: {fileID: 2100000, guid: b98f8349d37aef742baaa038e99837c0, type: 2}
-  baseColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  targetFrameRateColor: {r: 0.49803922, g: 0.7294118, b: 0, a: 1}
-  missedFrameRateColor: {r: 0.9490196, g: 0.3137255, b: 0.13333334, a: 1}
-  memoryUsedColor: {r: 0, g: 0.6431373, b: 0.9372549, a: 1}
-  memoryPeakColor: {r: 1, g: 0.7254902, b: 0, a: 1}
-  memoryLimitColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-  fontCharacterSize: {x: 16, y: 30}
-  fontScale: {x: 0.00023, y: 0.00028}
-  fontColumns: 32
-  ProfilerDisplayOrder: 0
-  ProfilerGroups: []
 --- !u!1 &6437205475338470118
 GameObject:
   m_ObjectHideFlags: 0
