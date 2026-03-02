@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09dbe8c515f8a14a8430485cf203f1e, type: 3}
+  m_Name: WordsSonification
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 45f6c00f2e14ae841a0ee3719b9fb6b0, type: 3}
+  - {fileID: 8300000, guid: bff5633addc35604caa1052b54dc7ecf, type: 3}
+  - {fileID: 8300000, guid: b0b15ad7e83f66647bb3e7594eb24830, type: 3}
+  - {fileID: 8300000, guid: b27e54100c6729b40a0a11a7e5992b4f, type: 3}
+  - {fileID: 8300000, guid: b1a078efc0de24a47b57b99acc08507a, type: 3}
+  - {fileID: 8300000, guid: 9127e17cc73ddf84a8e7c0a0772f218d, type: 3}
+  - {fileID: 8300000, guid: c0bbe6fad5545d74a8fa21b966dfc619, type: 3}
+  - {fileID: 8300000, guid: f3f4b5f7269ae6f40a7a7efbd402e5e6, type: 3}
+  - {fileID: 8300000, guid: 5e5bf5ec2d540654e99681f2317fd80b, type: 3}
+  - {fileID: 8300000, guid: 0578cdd1825ecc0438607a85c8a7e4da, type: 3}
+  - {fileID: 8300000, guid: 61fd8b3a07ccf964bac61d89d99e09dc, type: 3}
+  - {fileID: 8300000, guid: 555dc564c34236142af50a63e4afd6fe, type: 3}
+  names:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
