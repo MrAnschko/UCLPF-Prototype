@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qFactor: 0.707
   cutoffInitialFreq: 22050
-  cutoffMinimalFreq: 20
+  cutoffMinimalFreq: 250
   half_angle: 0.1
   pointDistFactor: 0
   circleDistFactor: 0

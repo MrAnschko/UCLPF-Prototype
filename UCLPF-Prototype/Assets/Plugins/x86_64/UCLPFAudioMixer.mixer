@@ -56,44 +56,6 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
---- !u!244 &-3504713440914554948
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 63cd8f5782d90e949898963a0157537a
-  m_EffectName: UCLPF+HRTF Settings
-  m_MixLevel: 833ba007dc9412943b9d01726af3c7a9
-  m_Parameters:
-  - m_ParameterName: Total Mix
-    m_GUID: 9c42e8856699ddb40b6cc43e22b30801
-  - m_ParameterName: Q Factor
-    m_GUID: 8ac48e9fa4406df46a73eb96e3288c0f
-  - m_ParameterName: Freq
-    m_GUID: 78f10dcb9487be94d8175c800098f848
-  - m_ParameterName: Half Angle
-    m_GUID: 1d88cfd486ce379429ef5561b78c1bc2
-  - m_ParameterName: SeekSpeed
-    m_GUID: 6fed829e7c76ee04f8385cf60d6b1881
-  - m_ParameterName: Point SF
-    m_GUID: 0c69c1e6cadc3b545a8feee46097ce29
-  - m_ParameterName: Circle SF
-    m_GUID: 7145fc8f292e04d4b9bb7f2be748b8d4
-  - m_ParameterName: Crossfade F
-    m_GUID: c1330e173cafcc44690ed156d6d2b9c2
-  - m_ParameterName: Enable HRTF
-    m_GUID: 909de2e95e51b264b8f7d812693414f2
-  - m_ParameterName: 
-    m_GUID: b8d231ddca32d724899b266356fe8d70
-  - m_ParameterName: Min Freq
-    m_GUID: e2a17837a4eb85c4687b8acafce0a89d
-  - m_ParameterName: HorizonBehavior
-    m_GUID: b7faf6ad89a7b77489ab63c5f1303d9b
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 1
 --- !u!243 &-2888235416758381647
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -175,21 +137,7 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters:
-  - guid: 1d88cfd486ce379429ef5561b78c1bc2
-    name: HalfAngle
-  - guid: 0c69c1e6cadc3b545a8feee46097ce29
-    name: PointSF
-  - guid: 7145fc8f292e04d4b9bb7f2be748b8d4
-    name: CircleSF
-  - guid: 9c42e8856699ddb40b6cc43e22b30801
-    name: Mix
-  - guid: 909de2e95e51b264b8f7d812693414f2
-    name: HRTFEnabled
-  - guid: 8ac48e9fa4406df46a73eb96e3288c0f
-    name: QFactor
-  - guid: 78f10dcb9487be94d8175c800098f848
-    name: MaxFreq
+  m_ExposedParameters: []
   m_AudioMixerGroupViews:
   - guids:
     - d0f0d4ab6ff1e034b81f5bec448cc727
@@ -215,7 +163,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
-  - {fileID: -3504713440914554948}
   - {fileID: -3781605128657810229}
   m_UserColorIndex: 0
   m_Mute: 0
