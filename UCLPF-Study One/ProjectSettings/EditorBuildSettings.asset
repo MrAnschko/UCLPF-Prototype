@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/StudyOne/Scene/Global.unity
+    guid: ec57b23ffdaa11840b9fcf4773597f6d
+  - enabled: 1
+    path: Assets/StudyOne/Scene/Paths/PathTemplate.unity
+    guid: 7bf4b8c4c28c0b746923c7bc8d8bd919
+  - enabled: 1
+    path: Assets/StudyOne/Scene/Paths/PathOne.unity
+    guid: 675d629d46cb9124d931dcf9ac4329c9
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: aa9dddc0c84e04b4c833f7f9abb079ae, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 79de36face46c5c47b93b546e17a04de, type: 2}

@@ -15,11 +15,11 @@ public class StudyHandler : MonoBehaviour
     StudyInfo studyInfo = new();
 
     [SerializeField]
-    int testOrder = 0;
+    int PathIndex = -1;
 
     public static StudyHandler Instance; // is a singleton
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -46,6 +46,22 @@ public class StudyHandler : MonoBehaviour
         
     }
 
+    [ContextMenu("Do Something")]
+    private void LoadNextPath()
+    {
+        if(PathIndex < studyInfo.PathOrder.Count-1)
+        {
+            PathIndex++;
+            SceneLoading.LoadPath(studyInfo.PathOrder[PathIndex]);
+
+        }
+        else
+        {
+            PathHandler.instance?.UnloadPath();
+        }
+        
+    }
+
     public void InitiateCombination()
     {
         studyInfo.MethodOrder = ChooseCombination();
@@ -63,7 +79,7 @@ public class StudyHandler : MonoBehaviour
         return ProcessInfos.IntToMethodOrder(mins[choice]);
     }
 
-    // Called when the next 
+    // Called when the next Scene is to be Loaded
     public void StartNextMethod()
     {
 

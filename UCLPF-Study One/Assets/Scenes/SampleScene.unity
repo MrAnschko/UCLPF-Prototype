@@ -210,8 +210,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   studyInfo:
     UserIdentifier: UserID
-    MethodOrder: MethodOrder
-    MapOrder: MapOrder
+    MethodOrder: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    MapOrder: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!4 &904146903
 Transform:
   m_ObjectHideFlags: 0
@@ -317,8 +317,8 @@ MonoBehaviour:
     MethodOrders: 
   studyInfo:
     UserIdentifier: UserID
-    MethodOrder: MethodOrder
-    MapOrder: MapOrder
+    MethodOrder: 
+    MapOrder: 0000000000000000000000000000000000000000000000000000000000000000
   testOrder: 0
 --- !u!4 &1142839146
 Transform:

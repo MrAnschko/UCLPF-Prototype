@@ -8,7 +8,7 @@ public class StudyInfo:DataContainer
 {
     [SerializeField]public string UserIdentifier = "UserID";
     [SerializeField]public List<ProcessInfos.InteractionMethod> MethodOrder;
-    [SerializeField]public List<ProcessInfos.Path> MapOrder;
+    [SerializeField]public List<ProcessInfos.Path> PathOrder;
     public void Save()
     {
         Save("StudyInfo_" + UserIdentifier);
