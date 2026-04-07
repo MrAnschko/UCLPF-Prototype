@@ -8,14 +8,20 @@ using UnityEngine.SceneManagement;
 public class PathHandler : MonoBehaviour
 {
     public static PathHandler instance;
-
+    [Header("Static, Set in Editor")]
+    [SerializeField] ProcessInfos.Path path;
+    
+    
+    
+    
+    [Header("Data")]
     [SerializeField]
     private Scene PathScene;
     [SerializeField]
     private PathData pData;
     [Header("Step Handling")]
     [SerializeField] private List<StepHandler> steps = new();
-    [SerializeField] private int pathIndex;
+    [SerializeField] private int pathIndex = 0;
 
     Action _onEndPath;
 

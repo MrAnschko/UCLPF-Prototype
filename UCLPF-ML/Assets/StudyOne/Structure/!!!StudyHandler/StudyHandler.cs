@@ -1,4 +1,4 @@
-using OpenCover.Framework.Model;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,11 +27,16 @@ public class StudyHandler : MonoBehaviour
             Destroy(this);
             return;
         }
+        Instance = this;
         overallInfo.Load();
         InitiateCombination();
 
+        
 
-
+    }
+    private void Start()
+    {
+        StartNextMethod();
     }
 
     private void OnDestroy()
@@ -82,6 +87,6 @@ public class StudyHandler : MonoBehaviour
     // Called when the next Scene is to be Loaded
     public void StartNextMethod()
     {
-
+        LoadNextPath();
     }
 }

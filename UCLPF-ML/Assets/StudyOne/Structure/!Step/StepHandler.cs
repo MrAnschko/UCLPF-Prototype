@@ -6,6 +6,7 @@ using UnityEngine;
 // Handler to start a new step
 public class StepHandler : MonoBehaviour
 {
+    public static float ACCEPTANCE_TIME = 0.5f;
     [Header("Data")]
     // Data to save
     public StepData stepD;
@@ -13,7 +14,8 @@ public class StepHandler : MonoBehaviour
     [Header("Goal Behavior")]
     public Transform Goal;
     public float acceptanceRadius;
-    public float acceptanceTime;
+
+
     float _timeInGoal;
 
     bool near_goal {
@@ -48,7 +50,8 @@ public class StepHandler : MonoBehaviour
     // Function to start the Step
     public void StartWalk()
     {
-        this.enabled = true;
+        
+        this.gameObject.SetActive(true);
         _onUpdate = DuringWalking;
     }
 
@@ -57,8 +60,8 @@ public class StepHandler : MonoBehaviour
     {
         if (near_goal)
         {
-            _timeInGoal += Time.time;
-            if( _timeInGoal > acceptanceTime)
+            _timeInGoal += Time.deltaTime;
+            if( _timeInGoal > ACCEPTANCE_TIME)
             {
                 EndWalk();
             }
@@ -99,7 +102,8 @@ public class StepHandler : MonoBehaviour
     // Function to end the step
     public void EndStep()
     {
-        this.enabled = false;
+        this.gameObject.SetActive(false);
+        _onEndStep.SafeInvoke();
     }
 
     private void Update()

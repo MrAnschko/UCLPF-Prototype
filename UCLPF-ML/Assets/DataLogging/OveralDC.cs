@@ -25,8 +25,11 @@ public class OveralDC : DataContainer
     public void Load()
     {
         string path = Path.Combine(Application.persistentDataPath, filename + ".json");
-        var json = File.ReadAllText(path);
-        JsonUtility.FromJsonOverwrite(json, this);
+        if (File.Exists(path))
+        {
+            var json = File.ReadAllText(path);
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
         int list_length = ProcessInfos.COMBINATION_POSSIBILITIES;
         if (MethodOrders.Count < list_length)
         {
