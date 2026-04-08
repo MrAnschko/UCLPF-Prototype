@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,21 +7,35 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CustomProcessing))]
-public class LPController : MonoBehaviour
+public class LPController : MonoBehaviour, LPSettingsInformer
 {
-    
-    [SerializeField] GameObject listener;
+    [SerializeField] protected GameObject listener;
 
-    [Header("Filter Properties")] 
-    [SerializeField] float qFactor;
-    [SerializeField] float cutoffInitialFreq;
-    [SerializeField] float cutoffMinimalFreq;
+    [Header("Filter Properties")]
+    [SerializeField] protected float qFactor;
+    [SerializeField] protected float cutoffInitialFreq;
+    [SerializeField] protected float cutoffMinimalFreq;
     [Header("Interaction Properties")]
-    [SerializeField] float half_angle;
-    [SerializeField] float pointDistFactor;
-    [SerializeField] float circleDistFactor;
-    [SerializeField] float horizonBehavior;
-    [SerializeField] float planePosition = -1;
+    [SerializeField] protected float half_angle;
+    [SerializeField] protected float pointDistFactor;
+    [SerializeField] protected float circleDistFactor;
+    [SerializeField] protected float horizonBehavior;
+    [SerializeField] protected float planePosition = -1;
+
+
+    public void UpdateSettings()
+    {
+        listener = LPGlobalSettings.PointObject;
+        qFactor = LPGlobalSettings.QFactor;
+        cutoffInitialFreq = LPGlobalSettings.CutoffInitialFreq;
+        cutoffMinimalFreq = LPGlobalSettings.CutoffMinimalFreq;
+        half_angle = LPGlobalSettings.Half_angle;
+        pointDistFactor = LPGlobalSettings.PointDistFactor;
+        circleDistFactor = LPGlobalSettings.CircleDistFactor;
+        horizonBehavior = LPGlobalSettings.HorizonBehavior;
+        planePosition = LPGlobalSettings.PlanePosition;
+
+    }
 
 
     static float horizon_alpha(float t, float original_factor)
@@ -44,6 +59,11 @@ public class LPController : MonoBehaviour
     private void Update()
     {
         UpdateFilter();
+    }
+
+    private void OnDestroy()
+    {
+        LPGlobalSettings.UnregisterSelf(this);
     }
 
     void UpdateFilter()
@@ -132,19 +152,6 @@ public class LPController : MonoBehaviour
 
         Debug.Log(goal_cutoff_frequency);
         filter.Freq = Mathf.Max(cutoffMinimalFreq,goal_cutoff_frequency);
-    }
-
-    public void UpdateSettings()
-    {
-        listener          = LPGlobalSettings.PointObject;
-        qFactor           = LPGlobalSettings.QFactor;
-        cutoffInitialFreq = LPGlobalSettings.CutoffInitialFreq;
-        cutoffMinimalFreq = LPGlobalSettings.CutoffMinimalFreq;
-        half_angle        = LPGlobalSettings.Half_angle;
-        pointDistFactor   = LPGlobalSettings.PointDistFactor;
-        circleDistFactor  = LPGlobalSettings.CircleDistFactor;
-        horizonBehavior   = LPGlobalSettings.HorizonBehavior;
-        planePosition     = LPGlobalSettings.PlanePosition;
     }
 
 }

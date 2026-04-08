@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   interactionMethod: 3
-  qFactor: 0.707
-  cutoffInitialFreq: 265
+  qFactor: 2
+  cutoffInitialFreq: 22050
   cutoffMinimalFreq: 20
   half_angle: 314
   pointDistFactor: 0
-  circleDistFactor: 0
+  circleDistFactor: 5
   horizonBehavior: 0
   planePosition: -1

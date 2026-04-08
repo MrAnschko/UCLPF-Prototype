@@ -16,7 +16,7 @@ public static class LPGlobalSettings
     static float horizonBehavior = 0;
     static float planePosition = -1;
 
-    static List<LPController> SettingsInformer = new();
+    static List<LPSettingsInformer> SettingsInformer = new();
 
     public static float QFactor 
     { 
@@ -106,21 +106,21 @@ public static class LPGlobalSettings
         }
     }
 
-    public static void RegisterSelf(LPController controller)
+    public static void RegisterSelf(LPSettingsInformer controller)
     {
         SettingsInformer.Add(controller);
     }
 
-    public static void UnregisterSelf(LPController controller)
+    public static void UnregisterSelf(LPSettingsInformer controller)
     {
         SettingsInformer.Remove(controller);
     }
 
     public static void UpdateFilters()
     {
-        foreach (LPController controller in SettingsInformer)
+        foreach (LPSettingsInformer settingsInformer in SettingsInformer)
         {
-            controller.UpdateSettings();
+            settingsInformer.UpdateSettings();
         }
     }
 }
