@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BeaconHandler))]
 // Handler to start a new step
 public class StepHandler : MonoBehaviour
 {
@@ -14,9 +15,17 @@ public class StepHandler : MonoBehaviour
     [Header("Goal Behavior")]
     public Transform Goal;
     public float acceptanceRadius;
-
-
     float _timeInGoal;
+
+    [Header("Beacons")]
+    [SerializeField] public BeaconHandler beaconHandler;
+
+
+
+    private void Awake()
+    {
+        beaconHandler = GetComponent<BeaconHandler>();
+    }
 
     bool near_goal {
         get 
@@ -47,11 +56,17 @@ public class StepHandler : MonoBehaviour
         }
     }
 
+
+
+    // ----------------------------------------------------- START state handling ------------------------------------------------------------
+
     // Function to start the Step
-    public void StartWalk()
+    public void StartWalk(int numberSources, SonificationHandler sonification)
     {
-        
         this.gameObject.SetActive(true);
+        beaconHandler.Sonification = sonification;
+        beaconHandler.SelectBeacons(numberSources);
+        beaconHandler.StartAudio();
         _onUpdate = DuringWalking;
     }
 
@@ -76,6 +91,8 @@ public class StepHandler : MonoBehaviour
     {
         // for now just start the Questionnaire
         _onUpdate -= DuringWalking;
+        // STOP sounds;
+        beaconHandler.StopAudio();
         // go to Questionnaire
         StartStepQuestionnaire();
     }
@@ -111,4 +128,6 @@ public class StepHandler : MonoBehaviour
 
         _onUpdate.SafeInvoke(); // As behaviour may change based on which state we are in, the update function will be changed accordingly.
     }
+
+    // ----------------------------------------------------- END state handling ------------------------------------------------------------
 }

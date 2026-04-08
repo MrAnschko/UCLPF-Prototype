@@ -10,9 +10,7 @@ public class PathHandler : MonoBehaviour
     public static PathHandler instance;
     [Header("Static, Set in Editor")]
     [SerializeField] ProcessInfos.Path path;
-    
-    
-    
+
     
     [Header("Data")]
     [SerializeField]
@@ -22,6 +20,9 @@ public class PathHandler : MonoBehaviour
     [Header("Step Handling")]
     [SerializeField] private List<StepHandler> steps = new();
     [SerializeField] private int pathIndex = 0;
+    [Header("Audio")]
+    [SerializeField] int[] OrderAudioSourceNumber = { 2, 3, 4, 9, 10, 11 };
+    [SerializeField] SonificationHandler sonificationHandler;
 
     Action _onEndPath;
 
@@ -41,6 +42,7 @@ public class PathHandler : MonoBehaviour
     void Awake()
     {
         StartPath();
+
     }
 
     private void OnDestroy()
@@ -66,6 +68,7 @@ public class PathHandler : MonoBehaviour
         PathScene = gameObject.scene;
         OnEndPath = StudyHandler.Instance.LoadNextPath; // Make it so that once the path ends the next one is loaded
         pathIndex = 0;
+        OrderAudioSourceNumber.Shuffle();
         SetupStep(pathIndex);
     }
 
@@ -83,7 +86,7 @@ public class PathHandler : MonoBehaviour
 
     void SetupStep(int index)
     {
-        steps[index].StartWalk();
+        steps[index].StartWalk(OrderAudioSourceNumber[index],sonificationHandler);
         pData.RegisterStepData(steps[index].stepD);
         steps[index].OnEndStep = ReachedStep;
     }

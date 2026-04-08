@@ -34,6 +34,8 @@ public static class ProcessInfos
         }
     }
 
+    public static float CYCLE_TIME = 2f;
+
     [Serializable]
     public enum Path
     {
