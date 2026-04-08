@@ -27,10 +27,18 @@ public class BeaconHandler : MonoBehaviour
 
         // Selects a random subselection of positions and assigns random ints to them
         beaconList.Shuffle();
-        for (int i = 0; i < nBeacons; i++) 
+        for (int i = 0; i < beaconList.Count; i++) 
         { 
-            activeBeacons.Add(beaconList[i]);
-            beaconList[i].Setup(clips[i]);
+            if (i < nBeacons)
+            {
+                activeBeacons.Add(beaconList[i]);
+                beaconList[i].Setup(clips[i]);
+            }
+            else
+            {
+                beaconList[i].gameObject.SetActive(false);
+            }
+            
         }
 
     }

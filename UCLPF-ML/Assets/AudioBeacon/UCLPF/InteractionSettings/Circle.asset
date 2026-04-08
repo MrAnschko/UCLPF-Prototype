@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7226673e11e5cc429363513f6b7cb72, type: 3}
   m_Name: Circle
   m_EditorClassIdentifier: 
+  interactionMethod: 2
   qFactor: 0.707
   cutoffInitialFreq: 22050
   cutoffMinimalFreq: 250

@@ -23,6 +23,7 @@ public class PathHandler : MonoBehaviour
     [Header("Audio")]
     [SerializeField] int[] OrderAudioSourceNumber = { 2, 3, 4, 9, 10, 11 };
     [SerializeField] SonificationHandler sonificationHandler;
+    
 
     Action _onEndPath;
 
@@ -70,6 +71,7 @@ public class PathHandler : MonoBehaviour
         pathIndex = 0;
         OrderAudioSourceNumber.Shuffle();
         SetupStep(pathIndex);
+        
     }
 
     void ReachedStep()

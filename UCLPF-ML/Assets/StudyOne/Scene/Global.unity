@@ -235,6 +235,10 @@ MonoBehaviour:
     MethodOrder: 
     PathOrder: 000000000100000002000000
   PathIndex: -1
+  InteractionModes:
+  - {fileID: 11400000, guid: e9564262c04343f4daefcc9292f06c23, type: 2}
+  - {fileID: 11400000, guid: e9564262c04343f4daefcc9292f06c23, type: 2}
+  - {fileID: 11400000, guid: e9564262c04343f4daefcc9292f06c23, type: 2}
 --- !u!4 &1142839146
 Transform:
   m_ObjectHideFlags: 0

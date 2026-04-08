@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Default", menuName = "UCLPF/InteractionMode", order = 1)]
 public class ModeSettings : ScriptableObject
 {
+    [SerializeField]      public ProcessInfos.InteractionMethod interactionMethod;
     [Range(0.0001f,20f)]  public float qFactor = 0.707f;
     [Range(20,22050)]     public float cutoffInitialFreq = 22050;
     [Range(20,22050)]     public float cutoffMinimalFreq = 20;

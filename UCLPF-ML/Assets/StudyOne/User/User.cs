@@ -15,6 +15,7 @@ public class User : MonoBehaviour
             Destroy(this);
         }
         instance = this;
+        LPGlobalSettings.PointObject = gameObject;
     }
 
     private void OnDestroy()

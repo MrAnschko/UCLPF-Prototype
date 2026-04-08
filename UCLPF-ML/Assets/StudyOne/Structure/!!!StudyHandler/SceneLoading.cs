@@ -16,7 +16,7 @@ public static class SceneLoading
         {
             PathHandler.instance.UnloadPath();
         }
-        SceneManager.LoadSceneAsync(PathIndexStart + (int)path,LoadSceneMode.Additive);
+        SceneManager.LoadScene(PathIndexStart + (int)path,LoadSceneMode.Additive);
         return;
     }
 

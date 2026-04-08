@@ -13,9 +13,10 @@ public class StudyHandler : MonoBehaviour
     OveralDC overallInfo;
     [SerializeField]
     StudyInfo studyInfo = new();
-
     [SerializeField]
     int PathIndex = -1;
+    [SerializeField]
+    List<ModeSettings> InteractionModes;
 
     public static StudyHandler Instance; // is a singleton
 
@@ -57,6 +58,8 @@ public class StudyHandler : MonoBehaviour
         if(PathIndex < studyInfo.PathOrder.Count-1)
         {
             PathIndex++;
+            ProcessInfos.UCLPF_MODE = InteractionModes[(int)studyInfo.MethodOrder[PathIndex]];
+            ProcessInfos.UCLPF_MODE.ApplySettings();
             SceneLoading.LoadPath(studyInfo.PathOrder[PathIndex]);
 
         }

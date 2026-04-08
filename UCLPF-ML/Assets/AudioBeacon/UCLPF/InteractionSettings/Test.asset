@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7226673e11e5cc429363513f6b7cb72, type: 3}
-  m_Name: Point
+  m_Name: Test
   m_EditorClassIdentifier: 
-  interactionMethod: 1
+  interactionMethod: 3
   qFactor: 0.707
-  cutoffInitialFreq: 22050
-  cutoffMinimalFreq: 250
+  cutoffInitialFreq: 265
+  cutoffMinimalFreq: 20
   half_angle: 314
-  pointDistFactor: 5
+  pointDistFactor: 0
   circleDistFactor: 0
   horizonBehavior: 0
   planePosition: -1
