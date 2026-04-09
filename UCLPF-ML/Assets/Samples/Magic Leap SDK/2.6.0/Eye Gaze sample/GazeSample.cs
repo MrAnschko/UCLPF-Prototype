@@ -38,6 +38,8 @@ public class GazeSample : MonoBehaviour
 
         if (!eyeTracking.isValid)
         {
+            List<InputDevice> tests =new();
+            InputDevices.GetDevices(tests);
             InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.EyeTracking, InputDeviceList);
             eyeTracking = InputDeviceList.FirstOrDefault();
 

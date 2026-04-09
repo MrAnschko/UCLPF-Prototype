@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a708522e3f9aaf4ab9201564c835537, type: 3}
   m_Name: MagicLeapMRTK3SettingsOpenXRRigConfig
   m_EditorClassIdentifier: 
-  windowedGUIExpanded: 1
+  windowedGUIExpanded: 0
   runtimeRigConfigEnabled: 0
   controllerPrefabsToAdd:
   - {fileID: 7547075973880131376, guid: 43ced307272cb544cb79eba6aa81ec7a, type: 3}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windowedGUIExpanded: 1
   version: 1
-  autoRequestDangerousPermissionsEnabled: 0
+  autoRequestDangerousPermissionsEnabled: 1
   dangerousPermissions:
   - permission: android.permission.CAMERA
     label: CAMERA
@@ -114,7 +114,7 @@ MonoBehaviour:
     enabled: 0
   - permission: com.magicleap.permission.EYE_TRACKING
     label: EYE_TRACKING
-    enabled: 0
+    enabled: 1
   - permission: com.magicleap.permission.VOICE_INPUT
     label: VOICE_INPUT
     enabled: 0

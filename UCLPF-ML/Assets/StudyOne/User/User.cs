@@ -1,10 +1,11 @@
+using MagicLeap.Android;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class User : MonoBehaviour
 {
-
+    // Handles User Interaction
     public static User instance;
 
     private void Awake()
@@ -15,7 +16,8 @@ public class User : MonoBehaviour
             Destroy(this);
         }
         instance = this;
-        LPGlobalSettings.PointObject = gameObject;
+        
+        
     }
 
     private void OnDestroy()
