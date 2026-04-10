@@ -13,10 +13,9 @@ public class PathHandler : MonoBehaviour
 
     
     [Header("Data")]
-    [SerializeField]
-    private Scene PathScene;
-    [SerializeField]
-    private PathData pData;
+    [SerializeField] private Scene PathScene;
+    [SerializeField] private PathData pData;
+    [SerializeField] private QuestionnaireSO endPathQuestionnaire;
     [Header("Step Handling")]
     [SerializeField] private List<StepHandler> steps = new();
     [SerializeField] private int pathIndex = 0;
@@ -101,7 +100,7 @@ public class PathHandler : MonoBehaviour
     void StartPathQuestionnaire()
     {
         // Todo: add Questioning for Users here
-        EndPath(); // Place may change
+        QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
     }
 
     

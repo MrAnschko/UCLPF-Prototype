@@ -12,6 +12,7 @@ public class StepHandler : MonoBehaviour
     // Data to save
     public StepData stepD = new();
     public PositionTracking posTr;
+    public QuestionnaireSO EndPathQuestionnaire;
 
     [Header("Goal Behavior")]
     public Transform Goal;
@@ -112,13 +113,13 @@ public class StepHandler : MonoBehaviour
 
     public void StartStepQuestionnaire()
     {
-        _onUpdate += DuringStepQuestionnaire;
+        QuestionnaireHandler.StartQuestionnaire(EndPathQuestionnaire, EndStepQuestionnaire);
+        //_onUpdate += DuringStepQuestionnaire;
     }
 
     public void DuringStepQuestionnaire()
     {
-        // TODO: make questionnaire
-        EndStepQuestionnaire();
+
     }
 
     public void EndStepQuestionnaire()

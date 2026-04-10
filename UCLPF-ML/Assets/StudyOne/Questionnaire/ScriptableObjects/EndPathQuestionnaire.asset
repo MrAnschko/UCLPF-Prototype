@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20d7531f7abe56479c115a57033488c, type: 3}
+  m_Name: EndPathQuestionnaire
+  m_EditorClassIdentifier: 
+  Name: 
+  WhenAsked: 0
+  Questions:
+  - question: I could concentrate well on the task.
+    type: 0
+  - question: ' I enjoyed using the interface.'
+    type: 0
+  - question: The Method was easy to learn.
+    type: 0
+  - question: The Method was easy to use.
+    type: 0
+  - question: I could imagine using the Interaction method for a longer period of
+      time.
+    type: 0
+  - question: I expect to further improve using the interaction method once I get
+      used to i
+    type: 0
