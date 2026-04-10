@@ -9,11 +9,14 @@ public class StepData : DataContainer
 {
     public ProcessInfos.Path path;
     [SerializeField]
-    int stepIndex;
+    public int stepIndex;
     [SerializeField]
     public List<BeaconData> Beacons;
     [SerializeField]
     public Vector3 StepEnd;
     
-    //
+    public void Save()
+    {
+        Save(ProcessInfos.UserID + "_Path" + path + "_Step" + stepIndex);
+    }
 }

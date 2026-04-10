@@ -6,6 +6,21 @@ using UnityEngine;
 [Serializable]
 public class BeaconData : DataContainer
 {
-    public int ID;
+    [SerializeField]
+    private SonificationClip clipInfo;
+    public float Frequency;
+    public string ClipName = "";
+
     public Vector3 position;
+
+    public SonificationClip ClipInfo 
+    { 
+        get => clipInfo;
+        set 
+        {
+            clipInfo = value;
+            Frequency = clipInfo.frequency;
+            ClipName = clipInfo.name;
+        }
+    }
 }

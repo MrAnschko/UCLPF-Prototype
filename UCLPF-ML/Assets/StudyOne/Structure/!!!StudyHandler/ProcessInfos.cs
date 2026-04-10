@@ -36,6 +36,7 @@ public static class ProcessInfos
 
     public static float CYCLE_TIME = 2f;
     public static ModeSettings UCLPF_MODE;
+    public static string UserID = "DEFAULT";
 
     [Serializable]
     public enum Path

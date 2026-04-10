@@ -10,7 +10,7 @@ public class StepHandler : MonoBehaviour
     public static float ACCEPTANCE_TIME = 0.5f;
     [Header("Data")]
     // Data to save
-    public StepData stepD;
+    public StepData stepD = new();
 
     [Header("Goal Behavior")]
     public Transform Goal;
@@ -68,6 +68,12 @@ public class StepHandler : MonoBehaviour
         beaconHandler.SelectBeacons(numberSources);
         beaconHandler.StartAudio();
         _onUpdate = DuringWalking;
+        // Data Collection
+        stepD.StepEnd = Goal.position;
+        stepD.Beacons = beaconHandler.ActiveBeaconsData;
+
+        stepD.Save();
+
     }
 
     // Function to be called while the 

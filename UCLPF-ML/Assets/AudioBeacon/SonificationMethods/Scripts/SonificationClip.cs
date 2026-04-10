@@ -14,15 +14,19 @@ public class SonificationClip:ScriptableObject
 
     public static bool operator <(SonificationClip a, SonificationClip b) { return a.frequency < b.frequency; }
     public static bool operator >(SonificationClip a, SonificationClip b) { return a.frequency > b.frequency; }
-    public static bool operator ==(SonificationClip a, SonificationClip b) { return a.frequency == b.frequency; }
-    public static bool operator !=(SonificationClip a, SonificationClip b) { return a.frequency != b.frequency; }
+    public static bool operator ==(SonificationClip a, SonificationClip b) { return a.Equals(b); }
+    public static bool operator !=(SonificationClip a, SonificationClip b) { return !a.Equals(b); }
 
     public override bool Equals(object obj)
     {
+        if (obj == null)
+        {
+            return false;
+        }
         if (obj.GetType() != typeof(SonificationClip))
             return false;
         else
-            return this == (SonificationClip)obj;
+            return this.frequency == ((SonificationClip)obj).frequency;
     }
 
 }

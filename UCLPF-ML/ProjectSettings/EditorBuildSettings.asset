@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Samples/Magic Leap MRTK3/1.4.0/Hand And Controller Interaction Examples/Scenes/HandAndControllerInteractionExamples.unity
-    guid: cd90f4abe4e36544cb4466fc0f50bc82
-  - enabled: 1
     path: Assets/StudyOne/Scene/Global.unity
     guid: ec57b23ffdaa11840b9fcf4773597f6d
   - enabled: 1

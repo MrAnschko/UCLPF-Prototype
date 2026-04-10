@@ -89,8 +89,12 @@ public class PathHandler : MonoBehaviour
     void SetupStep(int index)
     {
         steps[index].StartWalk(OrderAudioSourceNumber[index],sonificationHandler);
+        
         pData.RegisterStepData(steps[index].stepD);
         steps[index].OnEndStep = ReachedStep;
+
+        steps[index].stepD.stepIndex = index;
+        steps[index].stepD.path = path;
     }
 
     void StartPathQuestionnaire()

@@ -11,10 +11,26 @@ public class Beacon : MonoBehaviour
 
 
     AudioSource audioSource;
-    SonificationClip sonClip;
+    public SonificationClip sonClip;
     AudioClip clip;
-    public float Pitch = 0;
-    Coroutine playing; // the coroutine for playing 
+    public float Frequency
+    {
+        get
+        {
+            if(sonClip == null )
+            {
+                return float.NaN;
+            }
+            else
+            {
+                return sonClip.frequency;
+            }
+        }
+    }
+
+    Coroutine playing; // the coroutine for playing
+
+    public BeaconData beaconData;
 
     public AudioSource AudioSource { get => audioSource; set => audioSource = value; }
 
@@ -25,7 +41,9 @@ public class Beacon : MonoBehaviour
 
         this.sonClip = sonClip;
         audioSource.clip = sonClip.clip;
-        Pitch = sonClip.frequency;
+        beaconData = new();
+        beaconData.position = transform.position;
+        beaconData.ClipInfo = sonClip;
     }
 
     public void StartPlayingRepeatedly(float cycletime, double offset)

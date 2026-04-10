@@ -16,6 +16,19 @@ public class BeaconHandler : MonoBehaviour
     [SerializeField] Beacon highestBeacon; 
     [SerializeField] Beacon lowestBeacon;
 
+    public List<BeaconData> ActiveBeaconsData 
+    {
+        get
+        {
+            List<BeaconData> beaconList = new();
+            foreach (var beacon in activeBeacons) 
+            {
+                beaconList.Add(beacon.beaconData);
+            }
+            return beaconList;
+        }
+    }
+
     public SonificationHandler Sonification { get => sonification; set => sonification = value; }
 
     public void SelectBeacons(int nBeacons)
@@ -27,12 +40,17 @@ public class BeaconHandler : MonoBehaviour
 
         // Selects a random subselection of positions and assigns random ints to them
         beaconList.Shuffle();
+        lowestBeacon = beaconList[0]; // set first as lowest & highest
+        highestBeacon = beaconList[0];
         for (int i = 0; i < beaconList.Count; i++) 
         { 
+
             if (i < nBeacons)
             {
                 activeBeacons.Add(beaconList[i]);
                 beaconList[i].Setup(clips[i]);
+                lowestBeacon = (lowestBeacon.sonClip < beaconList[i].sonClip)? lowestBeacon: beaconList[i];
+                highestBeacon = (highestBeacon.sonClip > beaconList[i].sonClip)? highestBeacon : beaconList[i];
             }
             else
             {
