@@ -17,6 +17,6 @@ public class StepData : DataContainer
     
     public void Save()
     {
-        Save(ProcessInfos.UserID + "_Path" + path + "_Step" + stepIndex);
+        Save(ProcessInfos.UserID + "_Path" + path + "_Step" + stepIndex+"_StepData");
     }
 }

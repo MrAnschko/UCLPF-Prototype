@@ -71,7 +71,8 @@ public class PathHandler : MonoBehaviour
         pathIndex = 0;
         OrderAudioSourceNumber.Shuffle();
         SetupStep(pathIndex);
-        
+        ProcessInfos.timeAtStartPath = Time.time;
+        pData.PathOrder = ProcessInfos.PathCount;
     }
 
     void ReachedStep()

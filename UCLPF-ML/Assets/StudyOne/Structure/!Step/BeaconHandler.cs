@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,13 @@ public class BeaconHandler : MonoBehaviour
     [Header("SceneInformation")]
     [SerializeField] List<Beacon> beaconList;
     [SerializeField] List<Beacon> activeBeacons;
-    [SerializeField] Beacon highestBeacon; 
+    [SerializeField] Beacon highestBeacon;
+    [SerializeField] AzimuthTracking highTracking;
     [SerializeField] Beacon lowestBeacon;
+    [SerializeField] AzimuthTracking lowTracking;
+
+    // State management
+    Action fUpdate;
 
     public List<BeaconData> ActiveBeaconsData 
     {
@@ -69,12 +75,39 @@ public class BeaconHandler : MonoBehaviour
         {
             activeBeacons[i].StartPlayingRepeatedly(cycle,offset);
         }
+        StartDataLogging();
+    }
+
+    public void StartDataLogging()
+    {
+        highTracking = new AzimuthTracking(highestBeacon.gameObject,"high");
+        lowTracking = new AzimuthTracking(lowestBeacon.gameObject,"low");
+        fUpdate += WhileDataLogging;
+    }
+
+    public void WhileDataLogging()
+    {
+        highTracking?.AddData();
+        lowTracking?.AddData();
+    }
+
+    public void StopDataLogging()
+    {
+        highTracking?.Save();
+        lowTracking?.Save();
+        fUpdate -= WhileDataLogging;
     }
 
     public void StopAudio()
     {
         //Function to STOP all (active) audio Beacons
         foreach (var beacon in activeBeacons) { beacon.StopPlaying(); }
+        StopDataLogging();
+    }
+
+    private void FixedUpdate()
+    {
+        fUpdate.SafeInvoke();
     }
 
 }

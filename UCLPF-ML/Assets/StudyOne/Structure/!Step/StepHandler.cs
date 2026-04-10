@@ -11,6 +11,7 @@ public class StepHandler : MonoBehaviour
     [Header("Data")]
     // Data to save
     public StepData stepD = new();
+    public PositionTracking posTr;
 
     [Header("Goal Behavior")]
     public Transform Goal;
@@ -35,6 +36,7 @@ public class StepHandler : MonoBehaviour
             else
             {
                 Vector3 diff = Goal.position - User.instance.transform.position;
+                diff.y = 0; // only count difference on the xz-plane
                 return diff.sqrMagnitude < acceptanceRadius * acceptanceRadius;
             }
         }
@@ -63,6 +65,7 @@ public class StepHandler : MonoBehaviour
     // Function to start the Step
     public void StartWalk(int numberSources, SonificationHandler sonification)
     {
+        ProcessInfos.timeAtStartStep = Time.time;
         this.gameObject.SetActive(true);
         beaconHandler.Sonification = sonification;
         beaconHandler.SelectBeacons(numberSources);
@@ -73,12 +76,14 @@ public class StepHandler : MonoBehaviour
         stepD.Beacons = beaconHandler.ActiveBeaconsData;
 
         stepD.Save();
+        posTr = new PositionTracking(Goal.position);
 
     }
 
     // Function to be called while the 
     public void DuringWalking()
     {
+        posTr.AddData();
         if (near_goal)
         {
             _timeInGoal += Time.deltaTime;
@@ -101,6 +106,8 @@ public class StepHandler : MonoBehaviour
         beaconHandler.StopAudio();
         // go to Questionnaire
         StartStepQuestionnaire();
+
+        posTr.Save();
     }
 
     public void StartStepQuestionnaire()

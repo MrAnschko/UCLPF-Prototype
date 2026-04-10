@@ -7,12 +7,11 @@ using UnityEngine;
 [Serializable]
 public class PathData : DataContainer
 {
-    [SerializeField] string UserIdentifier = "";
-
+    
     [SerializeField]
     ProcessInfos.InteractionMethod interactionMethod;
     [SerializeField]
-    int PathOrder; // at what time the path has been
+    public int PathOrder; // at what time the path has been
     [SerializeField]
     List<StepData> steps = new List<StepData>();
 
@@ -20,6 +19,6 @@ public class PathData : DataContainer
 
     public void Save()
     {
-        Save(UserIdentifier + "_" + interactionMethod);
+        Save(ProcessInfos.UserID + "_Path" + ProcessInfos.currentPath+ "_PathData");
     }
 }

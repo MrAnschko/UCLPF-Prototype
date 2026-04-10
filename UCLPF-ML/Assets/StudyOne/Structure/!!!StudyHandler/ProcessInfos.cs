@@ -34,9 +34,26 @@ public static class ProcessInfos
         }
     }
 
-    public static float CYCLE_TIME = 2f;
+    public static float CYCLE_TIME = 4f;
     public static ModeSettings UCLPF_MODE;
     public static string UserID = "DEFAULT";
+
+    public static int CurrentStep = 0;
+    public static InteractionMethod CurrentMethod;
+    public static int PathCount = 0; // The point at which we are in the paths
+    public static Path currentPath; // The Path that is active
+
+    public static float timeAtStartPath;
+    public static float timeAtStartStep;
+    public static float PathTime
+    {
+        get => Time.time-timeAtStartPath;
+    }
+
+    public static float StepTime
+    {
+        get => Time.time - timeAtStartPath;
+    }
 
     [Serializable]
     public enum Path

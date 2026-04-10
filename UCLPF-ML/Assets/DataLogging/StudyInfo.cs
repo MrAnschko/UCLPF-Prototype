@@ -22,7 +22,7 @@ public class StudyInfo:DataContainer
 
     public void Save()
     {
-        
-        Save("StudyInfo_" + UserIdentifier);
+        userIdentifier = UserIdentifier;
+        Save(UserIdentifier+"_StudyInfo");
     }
 }

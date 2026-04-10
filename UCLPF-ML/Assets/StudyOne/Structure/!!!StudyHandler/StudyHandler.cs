@@ -14,11 +14,20 @@ public class StudyHandler : MonoBehaviour
     [SerializeField]
     StudyInfo studyInfo = new();
     [SerializeField]
-    int PathIndex = -1;
+    int pathIndex = -1;
     [SerializeField]
     List<ModeSettings> InteractionModes;
 
     public static StudyHandler Instance; // is a singleton
+
+    public int PathIndex {
+        get => pathIndex;
+        set 
+        {
+            pathIndex = value;
+            ProcessInfos.PathCount = value;
+        } 
+    }
 
     private void Awake()
     {
@@ -58,8 +67,10 @@ public class StudyHandler : MonoBehaviour
         if(PathIndex < studyInfo.PathOrder.Count-1)
         {
             PathIndex++;
+            
             ProcessInfos.UCLPF_MODE = InteractionModes[(int)studyInfo.MethodOrder[PathIndex]];
             ProcessInfos.UCLPF_MODE.ApplySettings();
+            ProcessInfos.CurrentMethod = studyInfo.MethodOrder[PathIndex];
             SceneLoading.LoadPath(studyInfo.PathOrder[PathIndex]);
 
         }
