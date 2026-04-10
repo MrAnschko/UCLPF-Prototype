@@ -15,6 +15,7 @@ public class QuestionnaireHandler : MonoBehaviour
     [SerializeField] TMP_Text QuestionTMP;
     [SerializeField] TMP_Text LowerEndTMP;
     [SerializeField] TMP_Text UpperEndTMP;
+    [SerializeField] TMP_Text AnswerTextTMP;
     [SerializeField] Slider slider;
     public Action onQuestionnaireEnd;
     public static QuestionnaireHandler instance;
@@ -49,6 +50,7 @@ public class QuestionnaireHandler : MonoBehaviour
         {
             currentA.answer = floatAnswer.ToString();
         }
+        AnswerTextTMP.text = "Answer: " + floatAnswer.ToString();
 
 }
 
@@ -95,6 +97,7 @@ public class QuestionnaireHandler : MonoBehaviour
             UpperEndTMP.text = "Strongly \n Agree";
             slider.MinValue = 1;
             slider.SliderStepDivisions = 6;
+            slider.Value = 4;
             slider.MaxValue = 7;
 
         }
@@ -104,6 +107,7 @@ public class QuestionnaireHandler : MonoBehaviour
             LowerEndTMP.text = "2";
             UpperEndTMP.text = "11";
             slider.MinValue = 2;
+            slider.Value = 2;
             slider.SliderStepDivisions = 9;
             slider.MaxValue = 11;
         }
