@@ -19,3 +19,5 @@ MonoBehaviour:
     type: 0
   - question: How many fs do you give?
     type: 1
+  - question: highest pitched
+    type: 2

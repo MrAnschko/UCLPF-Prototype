@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestionnaireHandler : MonoBehaviour
@@ -16,10 +17,11 @@ public class QuestionnaireHandler : MonoBehaviour
     [SerializeField] TMP_Text LowerEndTMP;
     [SerializeField] TMP_Text UpperEndTMP;
     [SerializeField] TMP_Text AnswerTextTMP;
+    [SerializeField] GameObject SliderPlate;
     [SerializeField] Slider slider;
     public Action onQuestionnaireEnd;
     public static QuestionnaireHandler instance;
-
+    public Action buttonResponse;
 
     public static void StartQuestionnaire(QuestionnaireSO questionnaire)
     {
@@ -29,6 +31,7 @@ public class QuestionnaireHandler : MonoBehaviour
 
     public static void StartQuestionnaire(QuestionnaireSO questionnaire,Action onEnd)
     {
+        instance.onQuestionnaireEnd = onEnd;
         instance.questionnaire = questionnaire;
         instance.StartQuestionnaire();
     }
@@ -52,7 +55,7 @@ public class QuestionnaireHandler : MonoBehaviour
         }
         AnswerTextTMP.text = "Answer: " + floatAnswer.ToString();
 
-}
+    }
 
 
     [ContextMenu("NextQuestion")]
@@ -89,20 +92,28 @@ public class QuestionnaireHandler : MonoBehaviour
             Debug.LogError("No Questions");
         }
         Question.Type qType = currentQuestion.type;
+        
         answers.answers.Add(new(qType));
         QuestionTMP.text = currentQuestion.question;
-        if(qType == Question.Type.Likert)
+        if (qType == Question.Type.PointTask)
         {
+            SetupPointTask();
+        }
+        if (qType == Question.Type.Likert)
+        {
+            SliderPlate.gameObject.SetActive(true);
+
             LowerEndTMP.text = "Strongly \n Disagree";
             UpperEndTMP.text = "Strongly \n Agree";
             slider.MinValue = 1;
             slider.SliderStepDivisions = 6;
             slider.Value = 4;
             slider.MaxValue = 7;
-
+            buttonResponse = NextQuestion;
         }
         if (qType == Question.Type.BeaconNumber) 
         {
+            SliderPlate.gameObject.SetActive(true);
 
             LowerEndTMP.text = "2";
             UpperEndTMP.text = "11";
@@ -110,7 +121,35 @@ public class QuestionnaireHandler : MonoBehaviour
             slider.Value = 2;
             slider.SliderStepDivisions = 9;
             slider.MaxValue = 11;
+            buttonResponse = NextQuestion;
         }
+    }
+
+    public void SetupPointTask()
+    {
+        Question currentQuestion = enumerator.Current;
+        QuestionTMP.text = $"Once you are ready press next. Look at where you heard the {currentQuestion.question} Sound, then confirm using the controller trigger button.";
+        SliderPlate.gameObject.SetActive(false);
+        buttonResponse = StartPointTask;
+    }
+    public void StartPointTask()
+    {
+        Question currentQuestion = enumerator.Current;
+        menu.SetActive(false);
+        PointTaskHandler.BeginTask(currentQuestion.question, FinishPointTask);
+    }
+
+    public void FinishPointTask(Vector2 vector)
+    {
+        Answer currentA = answers?.answers.Last();
+        if (currentA != null)
+        {
+            currentA.answer = vector.Serialize().json;
+        }
+
+        menu.SetActive(true);
+        SliderPlate.gameObject.SetActive(true);
+        NextQuestion();
     }
 
     private void Awake() // TODO: Proper handling 
@@ -121,8 +160,14 @@ public class QuestionnaireHandler : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        Debug.Log("Setup");
         instance = this;
 
+    }
+
+    [ContextMenu("ButtonResponse")]
+
+    public void CallButtonResponse()
+    {
+        buttonResponse.SafeInvoke();
     }
 }

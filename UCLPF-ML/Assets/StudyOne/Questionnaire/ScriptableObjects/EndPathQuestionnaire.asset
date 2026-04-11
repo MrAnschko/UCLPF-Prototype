@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EndPathQuestionnaire
   m_EditorClassIdentifier: 
   Name: 
-  WhenAsked: 0
+  WhenAsked: 1
   Questions:
   - question: I could concentrate well on the task.
     type: 0

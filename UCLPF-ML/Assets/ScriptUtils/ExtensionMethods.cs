@@ -41,4 +41,9 @@ public static class ExtensionMethods
     {
         if (action != null) action();
     }
+
+    public static void SafeInvoke<T>(this Action<T> action, T value)
+    {
+        if (action != null) action(value);
+    }
 }

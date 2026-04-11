@@ -14,6 +14,8 @@ public class Gaze : MonoBehaviour
     private InputDevice eyeTracking;
     private Camera mainCamera;
 
+    [SerializeField] static float planePosition = -1;
+
     private bool permissionGranted;
 
     public static Gaze instance;
@@ -69,5 +71,27 @@ public class Gaze : MonoBehaviour
     private void OnPermissionDenied(string permission)
     {
         Debug.LogError($"{permission} denied, example won't function");
+    }
+
+    public static Vector2 GetGroundPlaneIntersection()
+    {
+        Matrix4x4 m = instance.mainCamera.transform.worldToLocalMatrix;
+
+        //Position (of the listener) Creating the last column of the inverse of m. (-> a matrix that transforms from listener to world coordinates.)
+        float l_x = -(m[12] * m[0] + m[13] * m[1] + m[14] * m[2]);
+        float l_y = -(m[12] * m[4] + m[13] * m[5] + m[14] * m[6]);
+        float l_z = -(m[12] * m[8] + m[13] * m[9] + m[14] * m[10]);
+
+        float d_x = m[2];
+        float d_y = m[6];
+        float d_z = m[10];
+
+        float alpha = (d_y < -0.001f) ? (planePosition - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+
+        // position on the plane
+        float g_x = alpha * d_x + l_x;
+        float g_z = alpha * d_z + l_z;
+
+        return new Vector2(g_x, g_z);
     }
 }

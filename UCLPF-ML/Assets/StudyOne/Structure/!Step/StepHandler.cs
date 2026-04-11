@@ -111,6 +111,17 @@ public class StepHandler : MonoBehaviour
         posTr.Save();
     }
 
+    public void StartPointTask()
+    {
+        
+    }
+
+
+    public void EndPointTask()
+    {
+
+    }
+
     public void StartStepQuestionnaire()
     {
         QuestionnaireHandler.StartQuestionnaire(EndPathQuestionnaire, EndStepQuestionnaire);
@@ -125,7 +136,6 @@ public class StepHandler : MonoBehaviour
     public void EndStepQuestionnaire()
     {
         _onUpdate -= DuringStepQuestionnaire;
-        // TODO: Saving
         EndStep();
     }
 

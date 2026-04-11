@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: EndStepQuestionnaire
   m_EditorClassIdentifier: 
   Name: 
-  WhenAsked: 0
+  WhenAsked: 2
   Questions:
+  - question: high-pitched
+    type: 2
   - question: How many Beacons did you notice?
     type: 1
   - question: I was able to identify pitch using the Method.

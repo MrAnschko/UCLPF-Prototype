@@ -150,7 +150,7 @@ public class LPController : MonoBehaviour, LPSettingsInformer
         // total factor
         float goal_cutoff_frequency = cutoffInitialFreq * (1.0f / (1.0f + c_dist * circleDistFactor + p_dist * pointDistFactor + cutoff_scale_factor * angle));
 
-        Debug.Log(goal_cutoff_frequency);
+        //Debug.Log(goal_cutoff_frequency);
         filter.Freq = Mathf.Max(cutoffMinimalFreq,goal_cutoff_frequency);
     }
 

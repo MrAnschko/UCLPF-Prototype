@@ -19,6 +19,7 @@ public class PathData : DataContainer
 
     public void Save()
     {
+        PathOrder = ProcessInfos.PathCount;
         Save(ProcessInfos.UserID + "_Path" + ProcessInfos.currentPath+ "_PathData");
     }
 }

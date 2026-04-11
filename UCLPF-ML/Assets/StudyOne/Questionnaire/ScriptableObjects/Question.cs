@@ -9,7 +9,8 @@ public class Question
     public enum Type
     {
         Likert,
-        BeaconNumber
+        BeaconNumber,
+        PointTask
     }
     [SerializeField] public string question;
     [SerializeField] public Type type;
