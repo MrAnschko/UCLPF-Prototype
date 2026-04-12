@@ -37,6 +37,7 @@ public static class ProcessInfos
     public static float CYCLE_TIME = 4f;
     public static ModeSettings UCLPF_MODE;
     public static string UserID = "DEFAULT";
+    private static bool RNG_Set = false;
 
     public static int CurrentStep = 0;
     public static InteractionMethod CurrentMethod;
@@ -130,5 +131,18 @@ public static class ProcessInfos
         }
         return ret_list;
     }
-    
+
+
+    public static string SetNewID()
+    {
+        if (!RNG_Set)
+        {
+
+            UnityEngine.Random.InitState(System.DateTime.Now.Second); 
+            RNG_Set = true;
+        }
+        int intID = UnityEngine.Random.Range((int)0, (int)1E6);
+        UserID = intID.ToString("D6");
+        return UserID;
+    }
 }

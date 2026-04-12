@@ -41,12 +41,20 @@ public class StudyHandler : MonoBehaviour
         overallInfo.Load();
         InitiateCombination();
 
+        int count = 0;
+        do
+        {
+            count++;
+            ProcessInfos.SetNewID();
+        } while (overallInfo.TakenIDs.Contains(ProcessInfos.UserID) && count<1000); // Safeguard. to prevent loop. Shouldn't happen in general but who knows.
+        overallInfo.TakenIDs.Add(ProcessInfos.UserID);
+        
         
 
     }
     private void Start()
     {
-        StartNextMethod();
+        IDInformer.StartInformation(StartNextMethod);
     }
 
     private void OnDestroy()
@@ -54,12 +62,7 @@ public class StudyHandler : MonoBehaviour
         overallInfo.Save();
         studyInfo.Save();
     }
-    // A method to set the Participant id
-    public void SetParticipantID(string ID)
-    {
-        studyInfo.UserIdentifier = ID;
-        
-    }
+
 
     [ContextMenu("Do Something")]
     public void LoadNextPath()
@@ -103,4 +106,6 @@ public class StudyHandler : MonoBehaviour
     {
         LoadNextPath();
     }
+
+
 }

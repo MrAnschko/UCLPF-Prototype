@@ -15,7 +15,7 @@ public class OveralDC : DataContainer
 
     [SerializeField]
     public List<int> MethodOrders;
-
+    [SerializeField] public List<string> TakenIDs;
 
     ~OveralDC()
     {
