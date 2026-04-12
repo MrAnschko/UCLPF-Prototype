@@ -46,9 +46,10 @@ public class PointTaskHandler : MonoBehaviour
     {
         if (isActive)
         {
-            pointData?.Save();
             Vector2 response = Gaze.GetGroundPlaneIntersection();
             isActive = !isActive;
+            pointData.point = response;
+            pointData?.Save();
             taskCompleted.SafeInvoke(response);
         }
     }
