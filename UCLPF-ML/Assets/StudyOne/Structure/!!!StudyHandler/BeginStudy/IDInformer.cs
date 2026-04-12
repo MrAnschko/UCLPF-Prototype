@@ -23,6 +23,7 @@ public class IDInformer : MonoBehaviour
         instance.DoneCallback = DoneCallback;
     }
 
+    [ContextMenu("Confirm")]
     public void Confirm()
     {
         DoneCallback.SafeInvoke();

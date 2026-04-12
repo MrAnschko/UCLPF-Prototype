@@ -24,5 +24,6 @@ public class ModeSettings : ScriptableObject
         LPGlobalSettings.PointDistFactor = pointDistFactor;
         LPGlobalSettings.CircleDistFactor = circleDistFactor;
         LPGlobalSettings.PlanePosition = planePosition;
+        LPGlobalSettings.HorizonBehavior = horizonBehavior;
     }
 }

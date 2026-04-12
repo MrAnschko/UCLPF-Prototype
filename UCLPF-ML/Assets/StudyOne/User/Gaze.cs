@@ -56,7 +56,7 @@ public class Gaze : MonoBehaviour
 
         if (isTracked && hasData)
         {
-            transform.SetPositionAndRotation(position, rotation);
+            transform.rotation = rotation;
         }
 
 

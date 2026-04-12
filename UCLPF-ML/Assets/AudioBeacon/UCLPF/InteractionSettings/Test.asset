@@ -19,5 +19,5 @@ MonoBehaviour:
   half_angle: 314
   pointDistFactor: 5
   circleDistFactor: 0
-  horizonBehavior: 2
+  horizonBehavior: 1
   planePosition: -1
