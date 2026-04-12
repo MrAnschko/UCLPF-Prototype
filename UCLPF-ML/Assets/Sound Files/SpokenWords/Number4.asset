@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7226673e11e5cc429363513f6b7cb72, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 6a698b604e6656d4d9f5a0304406c399, type: 3}
+  m_Name: Number4
   m_EditorClassIdentifier: 
-  interactionMethod: 3
-  qFactor: 2
-  cutoffInitialFreq: 22050
-  cutoffMinimalFreq: 200
-  half_angle: 314
-  pointDistFactor: 5
-  circleDistFactor: 0
-  horizonBehavior: 2
-  planePosition: -1
+  clipName: 4
+  frequency: 4
+  clip: {fileID: 8300000, guid: b27e54100c6729b40a0a11a7e5992b4f, type: 3}

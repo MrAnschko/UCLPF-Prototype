@@ -38,6 +38,15 @@ public class PathHandler : MonoBehaviour
         }
     }
 
+    public int PathIndex 
+    { 
+        get => pathIndex;
+        set
+        {
+            pathIndex = value;
+            ProcessInfos.CurrentStep = value;
+        }
+    }
 
     void Awake()
     {
@@ -67,23 +76,24 @@ public class PathHandler : MonoBehaviour
         instance = this;
         PathScene = gameObject.scene;
         OnEndPath = StudyHandler.Instance.LoadNextPath; // Make it so that once the path ends the next one is loaded
-        pathIndex = 0;
+        PathIndex = 0;
         OrderAudioSourceNumber.Shuffle();
-        SetupStep(pathIndex);
+        SetupStep(PathIndex);
         ProcessInfos.timeAtStartPath = Time.time;
+        ProcessInfos.currentPath = this.path;
         pData.PathOrder = ProcessInfos.PathCount;
     }
 
     void ReachedStep()
     {
         pData.Save();
-        pathIndex++;
-        if(pathIndex >= steps.Count)
+        PathIndex++;
+        if(PathIndex >= steps.Count)
         {
             StartPathQuestionnaire();
             return;
         }
-        SetupStep(pathIndex);
+        SetupStep(PathIndex);
     }
 
     void SetupStep(int index)
@@ -92,9 +102,6 @@ public class PathHandler : MonoBehaviour
         
         pData.RegisterStepData(steps[index].stepD);
         steps[index].OnEndStep = ReachedStep;
-
-        steps[index].stepD.stepIndex = index;
-        steps[index].stepD.path = path;
     }
 
     void StartPathQuestionnaire()

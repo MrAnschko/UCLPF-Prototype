@@ -76,7 +76,7 @@ public class QuestionnaireHandler : MonoBehaviour
     }
 
 
-
+    [ContextMenu("FinishQuestionnaire")]
     public void EndQuestionnaire()
     {
         answers.Save();

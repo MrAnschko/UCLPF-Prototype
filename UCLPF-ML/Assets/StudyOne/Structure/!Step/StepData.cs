@@ -7,9 +7,9 @@ using UnityEngine;
 [Serializable]
 public class StepData : DataContainer
 {
-    public ProcessInfos.Path path;
+    ProcessInfos.Path path;
     [SerializeField]
-    public int stepIndex;
+    int stepIndex;
     [SerializeField]
     public List<BeaconData> Beacons;
     [SerializeField]
@@ -17,6 +17,8 @@ public class StepData : DataContainer
     
     public void Save()
     {
+        stepIndex = ProcessInfos.CurrentStep;
+        path = ProcessInfos.currentPath;
         Save(ProcessInfos.UserID + "_Path" + path + "_Step" + stepIndex+"_StepData");
     }
 }
