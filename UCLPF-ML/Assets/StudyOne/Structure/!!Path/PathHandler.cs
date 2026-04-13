@@ -57,7 +57,8 @@ public class PathHandler : MonoBehaviour
         }
         instance = this;
         PathScene = gameObject.scene;
-        GetStartMenu();
+        //GetStartMenu();
+        StartPath();
 
     }
 

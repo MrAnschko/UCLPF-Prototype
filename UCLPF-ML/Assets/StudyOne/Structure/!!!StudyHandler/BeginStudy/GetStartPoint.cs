@@ -12,8 +12,8 @@ public class GetStartPoint : MonoBehaviour
     [SerializeField] TMP_Text TextField;
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject Test;
-    [SerializeField] InputActionReference testButton;
-    InputAction action;
+    [SerializeField] InputActionReference ConfirmButton;
+    InputAction confirmIA;
     Action DoneCallback;
     public static GetStartPoint instance;
 
@@ -29,18 +29,26 @@ public class GetStartPoint : MonoBehaviour
     [ContextMenu("Confirm")]
     public void Confirm()
     {
-        SetStartingPoint();
-        DoneCallback.SafeInvoke();
-        DoneCallback = null;
+
+
+        confirmIA = ConfirmButton.action;
+        confirmIA.performed += (InputAction.CallbackContext context) => SetStartingPoint();
         CloseWindow();
+        
     }
 
+    [ContextMenu("Set Starting Point")]
     private void SetStartingPoint()
     {
         XROrigin origin = Test.GetComponent<XROrigin>();
         origin.MoveCameraToWorldLocation(Vector3.zero);
         bool test = origin.MatchOriginUpCameraForward(Vector3.up, Vector3.forward);
 
+        CloseWindow();
+
+        DoneCallback = null;
+        confirmIA.performed -= (InputAction.CallbackContext context) => SetStartingPoint();
+        DoneCallback.SafeInvoke();
     }
 
     public void CloseWindow()
@@ -56,9 +64,6 @@ public class GetStartPoint : MonoBehaviour
             Destroy(this.gameObject);
         }
         instance = this;
-
-        action = testButton.action;
-        action.performed += (InputAction.CallbackContext context) => SetStartingPoint();
     }
 
 }
