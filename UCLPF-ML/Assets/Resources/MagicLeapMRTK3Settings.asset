@@ -191,5 +191,5 @@ MonoBehaviour:
   windowedGUIExpanded: 1
   version: 1
   addMagicLeapInputSimulator: 0
-  magicLeapInputSimulatorPrefab: {fileID: 4843347076127633436, guid: f431663de5362c349b2ba243de34fdd1, type: 3}
+  magicLeapInputSimulatorPrefab: {fileID: 3950357149373437615, guid: af25241701de1534688f3a01fc20aa46, type: 3}
   convertPackageMaterials: 1

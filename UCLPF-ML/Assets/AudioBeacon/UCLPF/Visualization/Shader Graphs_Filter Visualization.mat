@@ -32,11 +32,11 @@ Material:
     - _Height: -1
     - _Line_Distance: 3
     - _Line_Thickness: 0.01
-    - _Point_SF: 5
+    - _Point_SF: 1
     - _Test: 0
     m_Colors:
-    - _Listener_Position: {r: 18.24404, g: 0.053914845, b: -0.37790224, a: 0}
-    - _View_Direction: {r: -0.06728805, g: -0.32391807, b: -0.9436893, a: 0}
+    - _Listener_Position: {r: 0, g: 0.00000035762787, b: -0.000000059604645, a: 0}
+    - _View_Direction: {r: 0, g: 0.9789933, b: 0.20389318, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6958054650681683310
 MonoBehaviour:

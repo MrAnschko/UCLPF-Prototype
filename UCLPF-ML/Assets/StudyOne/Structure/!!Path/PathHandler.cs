@@ -50,7 +50,14 @@ public class PathHandler : MonoBehaviour
 
     void Awake()
     {
-        StartPath();
+        if (instance != null)
+        {
+            Debug.LogError($"Tried Making Multiple Path Handler! \n Deleting most recent: {this}");
+            Destroy(this);
+        }
+        instance = this;
+        PathScene = gameObject.scene;
+        GetStartMenu();
 
     }
 
@@ -65,16 +72,14 @@ public class PathHandler : MonoBehaviour
         SceneManager.UnloadSceneAsync(PathScene);
         
     }
+    void GetStartMenu()
+    {
+        GetStartPoint.StartInformation(StartPath);
+    }
 
     void StartPath()
     {
-        if (instance != null)
-        {
-            Debug.LogError($"Tried Making Multiple Path Handler! \n Deleting most recent: {this}");
-            Destroy(this);
-        }
-        instance = this;
-        PathScene = gameObject.scene;
+
         OnEndPath = StudyHandler.Instance.LoadNextPath; // Make it so that once the path ends the next one is loaded
         PathIndex = 0;
         OrderAudioSourceNumber.Shuffle();
