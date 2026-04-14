@@ -43,6 +43,7 @@ public static class ProcessInfos
     public static InteractionMethod CurrentMethod;
     public static int PathCount = 0; // The point at which we are in the paths
     public static Path currentPath; // The Path that is active
+    public static BeaconClass currentBeaconClass; // The Class of Beacon that is active
 
     public static float timeAtStartPath;
     public static float timeAtStartStep;
@@ -116,7 +117,7 @@ public static class ProcessInfos
         
         for (int index = 0; index < (int)InteractionMethod.METHOD_COUNT - 1; index++)
         {
-            b = b / ((int)InteractionMethod.METHOD_COUNT - index);
+            b /= ((int)InteractionMethod.METHOD_COUNT - index);
             int method_nr = i / b; // Calculate the index of the
 
             // Select element from remaining and move Chosen element to front. 
@@ -125,7 +126,7 @@ public static class ProcessInfos
             ret_list.Insert(index,method);
             
             // Calculate remainder
-            i = i % b;
+            i %= b;
             //
             
         }

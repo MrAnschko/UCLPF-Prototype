@@ -20,7 +20,7 @@ public class StepHandler : MonoBehaviour
     float _timeInGoal;
 
     [Header("Beacons")]
-    [SerializeField] public BeaconHandler beaconHandler;
+    public BeaconHandler beaconHandler;
 
 
 
@@ -29,7 +29,7 @@ public class StepHandler : MonoBehaviour
         beaconHandler = GetComponent<BeaconHandler>();
     }
 
-    bool near_goal {
+    bool NearGoal {
         get 
         {
             if( User.instance == null)
@@ -85,7 +85,7 @@ public class StepHandler : MonoBehaviour
     public void DuringWalking()
     {
         posTr.AddData();
-        if (near_goal)
+        if (NearGoal)
         {
             _timeInGoal += Time.deltaTime;
             if( _timeInGoal > ACCEPTANCE_TIME)

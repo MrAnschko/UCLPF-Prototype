@@ -79,7 +79,8 @@ public class StudyHandler : MonoBehaviour
         }
         else
         {
-            PathHandler.instance?.UnloadPath();
+            if(PathHandler.instance!=null)
+                PathHandler.instance.UnloadPath();
         }
         
     }

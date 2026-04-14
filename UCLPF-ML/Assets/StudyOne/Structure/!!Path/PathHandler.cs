@@ -20,7 +20,7 @@ public class PathHandler : MonoBehaviour
     [SerializeField] private List<StepHandler> steps = new();
     [SerializeField] private int pathIndex = 0;
     [Header("Audio")]
-    [SerializeField] int[] OrderAudioSourceNumber = { 2, 3, 4, 9, 10, 11 };
+    [SerializeField] ProcessInfos.BeaconClass[] OrderAudioSourceClass;
     [SerializeField] SonificationHandler sonificationHandler;
     
 
@@ -83,7 +83,7 @@ public class PathHandler : MonoBehaviour
 
         OnEndPath = StudyHandler.Instance.LoadNextPath; // Make it so that once the path ends the next one is loaded
         PathIndex = 0;
-        OrderAudioSourceNumber.Shuffle();
+        
         SetupStep(PathIndex);
         ProcessInfos.timeAtStartPath = Time.time;
         ProcessInfos.currentPath = this.path;
@@ -104,7 +104,9 @@ public class PathHandler : MonoBehaviour
 
     void SetupStep(int index)
     {
-        steps[index].StartWalk(OrderAudioSourceNumber[index],sonificationHandler);
+
+        int numberBeacons = ChooseSourceNumber(OrderAudioSourceClass[index]);
+        steps[index].StartWalk(numberBeacons, sonificationHandler);
         
         pData.RegisterStepData(steps[index].stepD);
         steps[index].OnEndStep = ReachedStep;
@@ -112,16 +114,25 @@ public class PathHandler : MonoBehaviour
 
     void StartPathQuestionnaire()
     {
-        // Todo: add Questioning for Users here
+        
         QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
     }
 
     
-
+    // choose number of beacons. 
+    // 2-4 for few beacons 6-8 for many
+    int ChooseSourceNumber(ProcessInfos.BeaconClass bClass)
+    {
+        int number = UnityEngine.Random.Range(0, 2);
+        number += 2 + (int)bClass * 4; // min total 2 + 0 (low number) or 4 (many ) -> 2-4 (low) or 6-8 (many)
+        return number;
+    }
 
     void EndPath()
     {
-        if (_onEndPath != null)
-            _onEndPath();
+        
+            _onEndPath?.Invoke();
     }
+
+
 }
