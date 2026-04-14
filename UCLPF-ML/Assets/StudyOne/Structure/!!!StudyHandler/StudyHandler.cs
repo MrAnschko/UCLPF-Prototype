@@ -60,6 +60,8 @@ public class StudyHandler : MonoBehaviour
     private void OnDestroy()
     {
         overallInfo.Save();
+        LatinSquare<ProcessInfos.InteractionMethod> LatSq = new();
+        LatSq.Save();
         studyInfo.Save();
     }
 
