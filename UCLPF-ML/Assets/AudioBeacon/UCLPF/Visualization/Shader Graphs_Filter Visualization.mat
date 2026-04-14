@@ -27,12 +27,12 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Circle_SF: 4.72
+    - _Circle_SF: 5
     - _Half_Angle: 35981.75
     - _Height: -1
     - _Line_Distance: 3
     - _Line_Thickness: 0.01
-    - _Point_SF: 1
+    - _Point_SF: 0
     - _Test: 0
     m_Colors:
     - _Listener_Position: {r: 0, g: 0, b: 0, a: 0}

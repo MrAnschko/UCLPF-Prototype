@@ -70,8 +70,8 @@ public class BeaconHandler : MonoBehaviour
     public void StartAudio()
     {
         float offset = 0;
-        float cycle = ProcessInfos.CYCLE_TIME;
-        for( int i = 0; i<activeBeacons.Count;i++,offset+=cycle/activeBeacons.Count)
+        float cycle = ProcessInfos.START_DIFF* activeBeacons.Count;
+        for (int i = 0; i < activeBeacons.Count; i++, offset += ProcessInfos.START_DIFF)
         {
             activeBeacons[i].StartPlayingRepeatedly(cycle,offset);
         }

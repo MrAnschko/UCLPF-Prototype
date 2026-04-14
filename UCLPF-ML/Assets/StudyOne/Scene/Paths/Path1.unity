@@ -1306,7 +1306,7 @@ PrefabInstance:
     - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: sonificationHandler
       value: 
-      objectReference: {fileID: 11400000, guid: 6a06ea2223a753b4aac37c83bfc22898, type: 2}
+      objectReference: {fileID: 11400000, guid: 9ae7b0e730e1a5640b67252b7fa461e9, type: 2}
     - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: steps.Array.data[1]
       value: 
