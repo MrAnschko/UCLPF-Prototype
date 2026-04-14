@@ -123,6 +123,7 @@ public class PathHandler : MonoBehaviour
     // 2-4 for few beacons 6-8 for many
     int ChooseSourceNumber(ProcessInfos.BeaconClass bClass)
     {
+        ProcessInfos.currentBeaconClass = bClass;
         int number = UnityEngine.Random.Range(0, 2);
         number += 2 + (int)bClass * 4; // min total 2 + 0 (low number) or 4 (many ) -> 2-4 (low) or 6-8 (many)
         return number;

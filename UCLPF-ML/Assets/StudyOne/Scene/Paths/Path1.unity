@@ -1332,6 +1332,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
+      propertyPath: OrderAudioSourceClass.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: OrderAudioSourceClass.Array.data[1]
       value: 1
       objectReference: {fileID: 0}

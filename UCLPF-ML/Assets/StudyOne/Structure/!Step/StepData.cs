@@ -12,6 +12,7 @@ public class StepData : DataContainer
     int stepIndex;
     [SerializeField]
     public List<BeaconData> Beacons;
+    [SerializeField] ProcessInfos.BeaconClass beaconClass;
     [SerializeField]
     public Vector3 StepEnd;
     
@@ -19,6 +20,7 @@ public class StepData : DataContainer
     {
         stepIndex = ProcessInfos.CurrentStep;
         path = ProcessInfos.currentPath;
+        beaconClass = ProcessInfos.currentBeaconClass;
         Save(ProcessInfos.UserID + "_Path" + path + "_Step" + stepIndex+"_StepData");
     }
 }
