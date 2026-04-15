@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20d7531f7abe56479c115a57033488c, type: 3}
+  m_Name: NTLX_Weights
+  m_EditorClassIdentifier: 
+  ShuffleOrder: 0
+  Name: Nasa-TLX Score
+  WhenAsked: 1
+  Questions:
+  - question: 'Mental Demand: \n How mentally demanding was the task?'
+    type: 3
+    SliderStartDesc: Very Low
+    SliderEndDesc: Very High
+  - question: 'Physical Demand: How physically demanding was the task?'
+    type: 3
+    SliderStartDesc: Very Low
+    SliderEndDesc: Very High
+  - question: Temporal Demand:\n How hurried or rushed was the pace of the task
+    type: 3
+    SliderStartDesc: Very Low
+    SliderEndDesc: Very High
+  - question: Performance:\n How succesful were you in accomplishing what you were
+      asked to do
+    type: 3
+    SliderStartDesc: Perfect
+    SliderEndDesc: Failure
+  - question: Effort:\n Ho hard did you have to work to accomplish your level of
+      performance
+    type: 3
+    SliderStartDesc: Very Low
+    SliderEndDesc: Very High
+  - question: Frustration:\n How insecure, discoureged, irritated, stressed and annoyed
+      were you?
+    type: 3
+    SliderStartDesc: Very Low
+    SliderEndDesc: Very High

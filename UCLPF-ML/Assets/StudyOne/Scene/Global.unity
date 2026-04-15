@@ -1027,12 +1027,15 @@ MonoBehaviour:
   studyInfo:
     userIdentifier: UserID
     MethodOrder: 
-    PathOrder: 000000000100000002000000
+    PathOrder: 
   pathIndex: -1
   InteractionModes:
   - {fileID: 11400000, guid: 4cdbc7df6417ca34cb21d14f525f1bf4, type: 2}
   - {fileID: 11400000, guid: 4cdbc7df6417ca34cb21d14f525f1bf4, type: 2}
   - {fileID: 11400000, guid: 4cdbc7df6417ca34cb21d14f525f1bf4, type: 2}
+  endStudies:
+  - {fileID: 11400000, guid: bbf6053eb78ecff45867d460dab72fe0, type: 2}
+  - {fileID: 11400000, guid: a24f8dcd3167242418c3cb71fcb9a0d4, type: 2}
 --- !u!4 &1142839146
 Transform:
   m_ObjectHideFlags: 0

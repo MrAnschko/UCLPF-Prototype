@@ -17,6 +17,8 @@ public class StudyHandler : MonoBehaviour
     int pathIndex = -1;
     [SerializeField]
     List<ModeSettings> InteractionModes;
+    [SerializeField] List<QuestionnaireSO> endStudies;
+    IEnumerator<QuestionnaireSO> qEnumerator;
 
     public static StudyHandler Instance; // is a singleton
 
@@ -83,8 +85,26 @@ public class StudyHandler : MonoBehaviour
         {
             if(PathHandler.instance!=null)
                 PathHandler.instance.UnloadPath();
+            StartQuestionnare();
         }
         
+    }
+
+    public void StartQuestionnare()
+    {
+        if (endStudies.Count > 0) 
+        {
+            qEnumerator = endStudies.GetEnumerator();
+            NextQuestionnaire();
+        }
+    }
+
+    public void NextQuestionnaire()
+    {
+        if (qEnumerator.MoveNext())
+        {
+            QuestionnaireHandler.StartQuestionnaire(qEnumerator.Current, NextQuestionnaire);
+        }
     }
 
     public void InitiateCombination()

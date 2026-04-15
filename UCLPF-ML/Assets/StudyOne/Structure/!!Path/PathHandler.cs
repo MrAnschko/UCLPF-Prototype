@@ -16,6 +16,7 @@ public class PathHandler : MonoBehaviour
     [SerializeField] private Scene PathScene;
     [SerializeField] private PathData pData;
     [SerializeField] private QuestionnaireSO endPathQuestionnaire;
+    [SerializeField] private QuestionnaireSO nasaTLX;
     [Header("Step Handling")]
     [SerializeField] private List<StepHandler> steps = new();
     [SerializeField] private int pathIndex = 0;
@@ -115,10 +116,18 @@ public class PathHandler : MonoBehaviour
     void StartPathQuestionnaire()
     {
         
-        QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
+        QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, StartNTLX);
     }
 
-    
+    void StartNTLX()
+    {
+        if (nasaTLX != null)
+        {
+            QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
+        }
+    }
+
+
     // choose number of beacons. 
     // 2-4 for few beacons 6-8 for many
     int ChooseSourceNumber(ProcessInfos.BeaconClass bClass)

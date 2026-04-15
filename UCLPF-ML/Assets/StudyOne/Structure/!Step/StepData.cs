@@ -15,6 +15,7 @@ public class StepData : DataContainer
     [SerializeField] ProcessInfos.BeaconClass beaconClass;
     [SerializeField] public List<Vector3> intermediatePoints;
     [SerializeField] public Vector3 StepEnd;
+    
 
     
     public void Save()

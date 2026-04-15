@@ -39,6 +39,8 @@ public class QuestionnaireHandler : MonoBehaviour
     public void StartQuestionnaire()
     {
         menu.SetActive(true);
+        if (questionnaire.ShuffleOrder)
+            questionnaire.Questions.Shuffle();
         enumerator = questionnaire.Questions.GetEnumerator();
         enumerator.MoveNext();
         answers = new AnswerSheet(questionnaire);
@@ -48,13 +50,18 @@ public class QuestionnaireHandler : MonoBehaviour
     public void ChangeQuestionValue(SliderEventData data)
     {
         float floatAnswer = data.NewValue;
+        AddAnswer(floatAnswer);
+        AnswerTextTMP.text = "Answer: " + floatAnswer.ToString();
+
+    }
+
+    void AddAnswer(float floatAnswer)
+    {
         Answer currentA = answers?.answers.Last();
         if (currentA != null)
         {
             currentA.answer = floatAnswer.ToString();
         }
-        AnswerTextTMP.text = "Answer: " + floatAnswer.ToString();
-
     }
 
 
@@ -64,7 +71,7 @@ public class QuestionnaireHandler : MonoBehaviour
         // go over each question
         if (enumerator.MoveNext())
         {
-
+            AddAnswer(slider.Value);
             SetupQuestion();
             
         }
@@ -125,6 +132,10 @@ public class QuestionnaireHandler : MonoBehaviour
             slider.MaxValue = 11;
             buttonResponse = NextQuestion;
         }
+        if (qType == Question.Type.TLX)
+            SetupNTLX();
+        if(qType == Question.Type.Choice)
+            SetupChoice();
     }
 
     public void SetupPointTask()
@@ -153,6 +164,34 @@ public class QuestionnaireHandler : MonoBehaviour
         menu.SetActive(true);
         SliderPlate.gameObject.SetActive(true);
         NextQuestion();
+    }
+
+    public void SetupNTLX()
+    {
+        Question currentQuestion = enumerator.Current;
+        SliderPlate.gameObject.SetActive(true);
+
+        LowerEndTMP.text = currentQuestion.SliderStartDesc;
+        UpperEndTMP.text = currentQuestion.SliderEndDesc;
+        slider.MinValue = 0;
+        slider.MaxValue = 20;
+        slider.SliderStepDivisions = 20;
+        slider.Value = 10;
+        buttonResponse = NextQuestion;
+    }
+
+    public void SetupChoice()
+    {
+        Question currentQuestion = enumerator.Current;
+        SliderPlate.gameObject.SetActive(true);
+
+        LowerEndTMP.text = currentQuestion.SliderStartDesc;
+        UpperEndTMP.text = currentQuestion.SliderEndDesc;
+        slider.MinValue = 0;
+        slider.SliderStepDivisions = 1;
+        slider.Value = 0;
+        slider.MaxValue = 1;
+        buttonResponse = NextQuestion;
     }
 
     private void Awake() // TODO: Proper handling 

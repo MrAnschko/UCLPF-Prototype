@@ -10,8 +10,14 @@ public class Question
     {
         Likert,
         BeaconNumber,
-        PointTask
+        PointTask,
+        TLX,
+        Choice
     }
     [SerializeField] public string question;
     [SerializeField] public Type type;
+
+    [SerializeField] public string SliderStartDesc;
+    [SerializeField] public string SliderEndDesc;
+    
 }

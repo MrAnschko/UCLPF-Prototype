@@ -13,6 +13,8 @@ public class QuestionnaireSO : ScriptableObject
         AfterStep
     }
 
+    [SerializeField] public bool ShuffleOrder;
+
     [SerializeField] public string Name;
     [SerializeField] public PosedPoint WhenAsked;
     [SerializeField] public List<Question> Questions;
