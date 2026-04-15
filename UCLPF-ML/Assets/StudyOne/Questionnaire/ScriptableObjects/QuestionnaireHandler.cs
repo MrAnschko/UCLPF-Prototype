@@ -81,6 +81,7 @@ public class QuestionnaireHandler : MonoBehaviour
     {
         answers.Save();
         menu.SetActive(false);
+        FilterVisualization.instance.gameObject.SetActive(true);
         onQuestionnaireEnd.SafeInvoke();
     }
 
@@ -92,7 +93,8 @@ public class QuestionnaireHandler : MonoBehaviour
             Debug.LogError("No Questions");
         }
         Question.Type qType = currentQuestion.type;
-        
+        FilterVisualization.instance.gameObject.SetActive(false);
+
         answers.answers.Add(new(qType));
         QuestionTMP.text = currentQuestion.question;
         if (qType == Question.Type.PointTask)
@@ -136,6 +138,7 @@ public class QuestionnaireHandler : MonoBehaviour
     {
         Question currentQuestion = enumerator.Current;
         menu.SetActive(false);
+        FilterVisualization.instance.gameObject.SetActive(true);
         PointTaskHandler.BeginTask(currentQuestion.question, FinishPointTask);
     }
 

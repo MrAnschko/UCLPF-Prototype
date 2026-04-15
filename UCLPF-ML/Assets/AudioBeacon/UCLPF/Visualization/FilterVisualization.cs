@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class FilterVisualization : MonoBehaviour, LPSettingsInformer
 {
+    public static FilterVisualization instance;
+    
     [SerializeField] Material visualizationMaterial;
     [SerializeField] GameObject pointObject;
+
 
     public void UpdateSettings()
     {
@@ -19,6 +22,13 @@ public class FilterVisualization : MonoBehaviour, LPSettingsInformer
 
     private void Awake()
     {
+        if(instance!= null)
+        {
+            Debug.LogError($"Tried making multiple Filter Visualizations!\n Deleting most recent {this.gameObject}");
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
         LPGlobalSettings.RegisterSelf(this);
     }
 
