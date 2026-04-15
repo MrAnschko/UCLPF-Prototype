@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class LoggingManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static List<LoggerInterface> loggerList;
+
+    public static void RegisterLogger(LoggerInterface logger)
     {
-        
+        if (loggerList == null) { loggerList = new List<LoggerInterface>(); }
+        loggerList.Add(logger);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void DeRegisterLogger(LoggerInterface logger)
     {
-        
+        logger.Save();
+        loggerList.Remove(logger);
+    }
+
+    private void FixedUpdate()
+    {
+       SaveAllData();
+    }
+
+    void SaveAllData()
+    {
+        foreach (LoggerInterface logger in loggerList)
+            logger.AddData();
     }
 }

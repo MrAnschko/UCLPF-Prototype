@@ -82,20 +82,13 @@ public class BeaconHandler : MonoBehaviour
     {
         highTracking = new AzimuthTracking(highestBeacon.gameObject,"high");
         lowTracking = new AzimuthTracking(lowestBeacon.gameObject,"low");
-        fUpdate += WhileDataLogging;
     }
 
-    public void WhileDataLogging()
-    {
-        highTracking?.AddData();
-        lowTracking?.AddData();
-    }
 
     public void StopDataLogging()
     {
-        highTracking?.Save();
-        lowTracking?.Save();
-        fUpdate -= WhileDataLogging;
+        LoggingManager.DeRegisterLogger(highTracking);
+        LoggingManager.DeRegisterLogger(lowTracking);
     }
 
     public void StopAudio()

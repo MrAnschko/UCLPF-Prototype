@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 
 [Serializable]
-public class AzimuthTracking : DataContainer
+public class AzimuthTracking : DataContainer,LoggerInterface
 {
     [SerializeField] public GameObject trackedObject; // The object that is supposed to be tracked.
     [SerializeField] public string desc;
@@ -14,6 +14,7 @@ public class AzimuthTracking : DataContainer
 
     public AzimuthTracking(GameObject gameObject, string desc)
     {
+        LoggingManager.RegisterLogger(this);
         trackedObject = gameObject;
         this.desc = desc;
     }
@@ -38,7 +39,7 @@ public class AzimuthTracking : DataContainer
 
     ~AzimuthTracking()
     {
-        Save();
+        LoggingManager .RegisterLogger(this);
     }
 
 }

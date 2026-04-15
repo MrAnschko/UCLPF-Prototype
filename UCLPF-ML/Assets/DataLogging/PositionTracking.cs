@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PositionTracking : DataContainer
+public class PositionTracking : DataContainer,LoggerInterface
 {
 
     [SerializeField] List<Vector2> rel_positions = new();
@@ -17,6 +17,7 @@ public class PositionTracking : DataContainer
         this.goal = new();
         this.goal.x = goal.x; // Only use xy, for tracking xz position -> elevation disregarded
         this.goal.y = goal.z;
+        LoggingManager.RegisterLogger(this);
         
     }
 
@@ -39,6 +40,6 @@ public class PositionTracking : DataContainer
 
     ~PositionTracking()
     {
-        Save();
+        LoggingManager.DeRegisterLogger(this);
     }
 }
