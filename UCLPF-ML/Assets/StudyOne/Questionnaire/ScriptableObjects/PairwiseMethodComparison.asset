@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20d7531f7abe56479c115a57033488c, type: 3}
+  m_Name: PairwiseMethodComparison
+  m_EditorClassIdentifier: 
+  ShuffleOrder: 1
+  Name: Method Preference
+  WhenAsked: 0
+  Questions:
+  - question: Which Method did you Prefer out of these?
+    type: 4
+    SliderStartDesc: Circle
+    SliderEndDesc: Flashlight
+  - question: Which Method did you Prefer out of these?
+    type: 4
+    SliderStartDesc: Flashlight
+    SliderEndDesc: Point
+  - question: Which Method did you Prefer out of these?
+    type: 4
+    SliderStartDesc: Point
+    SliderEndDesc: Circle
