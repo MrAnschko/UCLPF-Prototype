@@ -120,7 +120,7 @@ MonoBehaviour:
     enabled: 0
   - permission: com.magicleap.permission.PUPIL_SIZE
     label: PUPIL_SIZE
-    enabled: 0
+    enabled: 1
   - permission: com.magicleap.permission.SPATIAL_MAPPING
     label: SPATIAL_MAPPING
     enabled: 0
@@ -129,13 +129,13 @@ MonoBehaviour:
     enabled: 0
   - permission: com.magicleap.permission.EYE_CAMERA
     label: EYE_CAMERA
-    enabled: 0
+    enabled: 1
   - permission: com.magicleap.permission.SPACE_IMPORT_EXPORT
     label: SPACE_IMPORT_EXPORT
     enabled: 0
   - permission: com.magicleap.permission.FACIAL_EXPRESSION
     label: FACIAL_EXPRESSION
-    enabled: 0
+    enabled: 1
   normalPermissions:
   - permission: com.magicleap.permission.HAND_TRACKING
     label: HAND_TRACKING
