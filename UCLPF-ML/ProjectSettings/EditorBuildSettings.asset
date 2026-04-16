@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/StudyOne/Structure/PathBuilder/PathBuilder.unity
-    guid: 2ff2efb044bbe074ca1e1f59e8a8e951
-  - enabled: 1
     path: Assets/StudyOne/Scene/Global.unity
     guid: ec57b23ffdaa11840b9fcf4773597f6d
   - enabled: 1

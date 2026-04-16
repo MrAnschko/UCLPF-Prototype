@@ -41,6 +41,7 @@ public class UserLeading : MonoBehaviour
     // Method to initiate the leading process
     public void StartLeading(Action callbackWhenDone)
     {
+        leader = Leader.instance.transform;
         User.instance.DirIndicator.DirectionalTarget = leader;
         User.instance.DirIndicator.gameObject.SetActive(true);
         callback = callbackWhenDone;
