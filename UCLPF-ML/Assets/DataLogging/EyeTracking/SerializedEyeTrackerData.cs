@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Rendering.ShadowCascadeGUI;
-using static UnityEngine.Rendering.DebugUI;
 
 
 
