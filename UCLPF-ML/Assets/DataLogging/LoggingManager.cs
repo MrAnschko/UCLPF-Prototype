@@ -20,12 +20,18 @@ public class LoggingManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-       SaveAllData();
+        Debug.Log("fTst");
+        SaveAllData();
     }
 
     void SaveAllData()
     {
+        if(loggerList == null) {return; }
         foreach (LoggerInterface logger in loggerList)
             logger.AddData();
+    }
+    private void Update()
+    {
+        Debug.Log("Tst");
     }
 }

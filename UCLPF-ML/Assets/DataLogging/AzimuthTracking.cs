@@ -39,7 +39,7 @@ public class AzimuthTracking : DataContainer,LoggerInterface
 
     ~AzimuthTracking()
     {
-        LoggingManager .RegisterLogger(this);
+        LoggingManager.DeRegisterLogger(this);
     }
 
 }

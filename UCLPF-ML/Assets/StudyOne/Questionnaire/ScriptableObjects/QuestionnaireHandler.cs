@@ -110,7 +110,7 @@ public class QuestionnaireHandler : MonoBehaviour
         }
         if (qType == Question.Type.Likert)
         {
-            SliderPlate.gameObject.SetActive(true);
+            SliderPlate.SetActive(true);
 
             LowerEndTMP.text = "Strongly \n Disagree";
             UpperEndTMP.text = "Strongly \n Agree";
@@ -122,7 +122,7 @@ public class QuestionnaireHandler : MonoBehaviour
         }
         if (qType == Question.Type.BeaconNumber) 
         {
-            SliderPlate.gameObject.SetActive(true);
+            SliderPlate.SetActive(true);
 
             LowerEndTMP.text = "2";
             UpperEndTMP.text = "11";
@@ -142,7 +142,7 @@ public class QuestionnaireHandler : MonoBehaviour
     {
         Question currentQuestion = enumerator.Current;
         QuestionTMP.text = $"Once you are ready press next. Look at where you heard the {currentQuestion.question} Sound, then confirm using the controller trigger button.";
-        SliderPlate.gameObject.SetActive(false);
+        SliderPlate.SetActive(false);
         buttonResponse = StartPointTask;
     }
     public void StartPointTask()
@@ -162,14 +162,14 @@ public class QuestionnaireHandler : MonoBehaviour
         }
 
         menu.SetActive(true);
-        SliderPlate.gameObject.SetActive(true);
+        SliderPlate.SetActive(true);
         NextQuestion();
     }
 
     public void SetupNTLX()
     {
         Question currentQuestion = enumerator.Current;
-        SliderPlate.gameObject.SetActive(true);
+        SliderPlate.SetActive(true);
 
         LowerEndTMP.text = currentQuestion.SliderStartDesc;
         UpperEndTMP.text = currentQuestion.SliderEndDesc;
@@ -183,7 +183,7 @@ public class QuestionnaireHandler : MonoBehaviour
     public void SetupChoice()
     {
         Question currentQuestion = enumerator.Current;
-        SliderPlate.gameObject.SetActive(true);
+        SliderPlate.SetActive(true);
 
         LowerEndTMP.text = currentQuestion.SliderStartDesc;
         UpperEndTMP.text = currentQuestion.SliderEndDesc;

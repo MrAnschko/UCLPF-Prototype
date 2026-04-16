@@ -12,6 +12,7 @@ public class StepHandler : MonoBehaviour
     // Data to save
     public StepData stepD = new();
     public PositionTracking posTr;
+    public EyeTrackingData eyeTracking;
     public QuestionnaireSO EndPathQuestionnaire;
 
     [Header("Leading")]
@@ -53,34 +54,27 @@ public class StepHandler : MonoBehaviour
         beaconHandler.Sonification = sonification;
         beaconHandler.SelectBeacons(numberSources);
         beaconHandler.StartAudio();
-        _onFixedUpdate = DuringWalking;
         // Data Collection
         stepD.StepEnd = leading.StepEnd.position;
         stepD.Beacons = beaconHandler.ActiveBeaconsData;
 
         stepD.Save();
         posTr = new PositionTracking(leading.StepEnd.position);
+        eyeTracking = new();
         leading.StartLeading(EndWalk);
-
-    }
-
-    // Function to be called while the 
-    public void DuringWalking()
-    {
-        posTr.AddData();
 
     }
 
     public void EndWalk()
     {
-        // for now just start the Questionnaire
-        _onFixedUpdate -= DuringWalking;
+
         // STOP sounds;
         beaconHandler.StopAudio();
         // go to Questionnaire
         StartStepQuestionnaire();
 
         posTr.Save();
+        eyeTracking.Save();
     }
 
     public void StartPointTask()

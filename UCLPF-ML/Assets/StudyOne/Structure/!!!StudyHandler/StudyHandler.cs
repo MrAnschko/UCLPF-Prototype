@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 
 // Class that handles the overall Structure of the Study
-
+[RequireComponent(typeof(LoggingManager))]
 public class StudyHandler : MonoBehaviour
 {
     [SerializeField]

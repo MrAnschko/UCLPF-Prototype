@@ -85,17 +85,12 @@ public class BeaconHandler : MonoBehaviour
     }
 
 
-    public void StopDataLogging()
-    {
-        LoggingManager.DeRegisterLogger(highTracking);
-        LoggingManager.DeRegisterLogger(lowTracking);
-    }
 
     public void StopAudio()
     {
         //Function to STOP all (active) audio Beacons
         foreach (var beacon in activeBeacons) { beacon.StopPlaying(); }
-        StopDataLogging();
+        
     }
 
     private void FixedUpdate()

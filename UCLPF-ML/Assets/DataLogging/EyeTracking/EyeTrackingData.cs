@@ -1,17 +1,23 @@
 using MagicLeap.Android;
 using MagicLeap.OpenXR.Features.EyeTracker;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.OpenXR;
 
+[Serializable]
 public class EyeTrackingData : DataContainer, LoggerInterface
 {
-    bool permissionGranted = false;
+    [DoNotSerialize]bool permissionGranted = false;
 
-    private MagicLeapEyeTrackerFeature eyeTrackerFeature;
+    [DoNotSerialize]private MagicLeapEyeTrackerFeature eyeTrackerFeature;
 
-    GeometricData geometricData;
+    [SerializeField]List<SerializedEyeTrackerData> eyeTrackerDatas;
+    [SerializeField] string test = "test";
+
+    
 
     void RequestPermission()
     {
@@ -21,18 +27,29 @@ public class EyeTrackingData : DataContainer, LoggerInterface
     public EyeTrackingData()
     { 
         RequestPermission();
-        if(permissionGranted)
+        if (permissionGranted)
+        {
+            LoggingManager.RegisterLogger(this);
             StartEyeTracker();
+            
+        }
+        eyeTrackerDatas = new();
+    }
+
+    ~EyeTrackingData()
+    {
+        LoggingManager.DeRegisterLogger(this);
     }
 
     public void AddData()
     {
-        throw new System.NotImplementedException();
+        if (permissionGranted)
+            GetEyeData();
     }
 
     public void Save()
     {
-        throw new System.NotImplementedException();
+        Save(ProcessInfos.UserID + "_Path" + ProcessInfos.currentPath + "_Step" + ProcessInfos.CurrentStep + "_EyeTracking"); ;
     }
 
     void StartEyeTracker()
@@ -45,4 +62,14 @@ public class EyeTrackingData : DataContainer, LoggerInterface
         }
     }
 
+    void GetEyeData()
+    {
+        if((eyeTrackerFeature != null))
+        {
+            EyeTrackerData data;
+            data = eyeTrackerFeature.GetEyeTrackerData();
+            eyeTrackerDatas.Add(new SerializedEyeTrackerData(data));
+        }
+
+    }
 }
