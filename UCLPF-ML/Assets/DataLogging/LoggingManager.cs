@@ -20,7 +20,7 @@ public class LoggingManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("fTst");
+
         SaveAllData();
     }
 
@@ -30,8 +30,5 @@ public class LoggingManager : MonoBehaviour
         foreach (LoggerInterface logger in loggerList)
             logger.AddData();
     }
-    private void Update()
-    {
-        Debug.Log("Tst");
-    }
+
 }
