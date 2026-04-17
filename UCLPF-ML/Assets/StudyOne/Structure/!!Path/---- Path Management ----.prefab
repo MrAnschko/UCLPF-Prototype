@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8168467794181648519}
   - component: {fileID: 4063298598648285605}
   - component: {fileID: 314069283683002909}
+  - component: {fileID: 5704864995490539658}
   m_Layer: 0
   m_Name: Step2
   m_TagString: Untagged
@@ -81,18 +82,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepD:
-    path: 0
     stepIndex: 0
     Beacons: []
+    beaconClass: 0
+    intermediatePoints: []
     StepEnd: {x: 0, y: 0, z: 0}
   posTr:
     rel_positions: []
     goal: {x: 0, y: 0}
     goalDists: []
     time: []
+  eyeTracking:
+    eyeTrackerDatas: []
+    test: test
   EndPathQuestionnaire: {fileID: 0}
-  Goal: {fileID: 2569212431298310899}
-  acceptanceRadius: 0.5
+  leading: {fileID: 0}
   beaconHandler: {fileID: 314069283683002909}
 --- !u!114 &314069283683002909
 MonoBehaviour:
@@ -132,6 +136,22 @@ MonoBehaviour:
     desc: 
     Azimuths: []
     time: []
+--- !u!114 &5704864995490539658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676630320385481614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5ab384a08a70f41966e67b6d40972c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leader: {fileID: 0}
+  StepEnd: {fileID: 0}
+  intermediateSteps: []
+  acceptanceRadius: 0
 --- !u!1 &1173988886662586686
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +313,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &9172008638048963595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +506,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &6371684705935636998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,6 +741,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &3440172071399886586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,6 +934,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &3669399433567021076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,6 +1210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &2423612461679395789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6325538248496424198}
   - component: {fileID: 3848929885342315700}
+  - component: {fileID: 3369276846002655271}
   m_Layer: 0
   m_Name: ---- Path Management ----
   m_TagString: Untagged
@@ -1220,12 +1296,25 @@ MonoBehaviour:
     PathOrder: 0
     steps: []
   endPathQuestionnaire: {fileID: 11400000, guid: 5725eee190c722e47a2a079de35f87d8, type: 2}
+  nasaTLX: {fileID: 0}
   steps:
   - {fileID: 1174755975636886355}
   - {fileID: 4063298598648285605}
   pathIndex: 0
-  OrderAudioSourceNumber: 020000000300000004000000090000000a0000000b000000
+  OrderAudioSourceClass: 
   sonificationHandler: {fileID: 11400000, guid: a0ac627010947694cb61b7c399305e6f, type: 2}
+--- !u!114 &3369276846002655271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6990105935479921588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688dc32d9171fd347a5f926b4fa41901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7024647507781736364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,6 +1476,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &5934190586681591849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1669,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &7653890448055850146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,6 +1862,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &8135775460310948718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,6 +2055,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &3619986089798352161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2115,6 +2248,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &8228342115323851407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,6 +2441,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &385974670995192662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,6 +2481,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1141305012583214214}
     m_Modifications:
+    - target: {fileID: 2388062199835864548, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+      propertyPath: StepEnd
+      value: 
+      objectReference: {fileID: 428657550803987987}
+    - target: {fileID: 2388062199835864548, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+      propertyPath: acceptanceRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388062199835864548, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+      propertyPath: intermediateSteps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388062199835864548, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+      propertyPath: intermediateSteps.Array.data[0]
+      value: 
+      objectReference: {fileID: 8179609180554959017}
+    - target: {fileID: 2388062199835864548, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+      propertyPath: intermediateSteps.Array.data[1]
+      value: 
+      objectReference: {fileID: 6992062921115968283}
     - target: {fileID: 2935335766653228826, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2375,6 +2550,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+--- !u!4 &428657550803987987 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1692653623554377585, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+  m_PrefabInstance: {fileID: 1337400064419129698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1174755975636886355 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 198989683715459633, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
@@ -2389,5 +2569,15 @@ MonoBehaviour:
 --- !u!4 &4193711166495932024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2935335766653228826, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+  m_PrefabInstance: {fileID: 1337400064419129698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6992062921115968283 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8324809815809673849, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
+  m_PrefabInstance: {fileID: 1337400064419129698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8179609180554959017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7137265823190217163, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
   m_PrefabInstance: {fileID: 1337400064419129698}
   m_PrefabAsset: {fileID: 0}

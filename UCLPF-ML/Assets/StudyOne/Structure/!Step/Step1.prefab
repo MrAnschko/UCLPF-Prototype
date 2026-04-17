@@ -163,6 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &6296208896699859094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +245,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1845636636642130176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7137265823190217163}
+  m_Layer: 0
+  m_Name: IM1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7137265823190217163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845636636642130176}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: -0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1436615238381826209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2166396043098994290
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +439,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &6917852186258736515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +684,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &6092400210582081163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,6 +766,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3292913789609375160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436615238381826209}
+  m_Layer: 0
+  m_Name: IntermediateSteps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1436615238381826209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292913789609375160}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7137265823190217163}
+  - {fileID: 8324809815809673849}
+  m_Father: {fileID: 2935335766653228826}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3500435680620277251
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +962,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &8273964302485157732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1207,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &728153227008757293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,6 +1452,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &4483289359837601997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,6 +1697,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &6154962429166134334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,6 +1984,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &1608912947671867202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2077,6 +2229,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &31784649477398910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,6 +2474,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &3209990252968227045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2628,6 +2802,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a68de3c50cb0d4ca5f6288a20ee0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clpf:
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
+  - currentCutoffFrequency: 22050
+    goalCutoffFrequency: 0
+    seekRate: 1
+    qFactor: 0.707
+    sampleRate: 48000
 --- !u!114 &7473069775791999948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2710,6 +2895,7 @@ GameObject:
   - component: {fileID: 2935335766653228826}
   - component: {fileID: 198989683715459633}
   - component: {fileID: 7558941131036835689}
+  - component: {fileID: 2388062199835864548}
   m_Layer: 0
   m_Name: Step1
   m_TagString: Untagged
@@ -2730,6 +2916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1436615238381826209}
   - {fileID: 1692653623554377585}
   - {fileID: 7375545649893890520}
   m_Father: {fileID: 0}
@@ -2749,15 +2936,19 @@ MonoBehaviour:
   stepD:
     stepIndex: 0
     Beacons: []
+    beaconClass: 0
+    intermediatePoints: []
     StepEnd: {x: 0, y: 0, z: 0}
   posTr:
     rel_positions: []
     goal: {x: 0, y: 0}
     goalDists: []
     time: []
+  eyeTracking:
+    eyeTrackerDatas: []
+    test: test
   EndPathQuestionnaire: {fileID: 11400000, guid: ce0a5298991a06947b101c09d846c16a, type: 2}
-  Goal: {fileID: 1692653623554377585}
-  acceptanceRadius: 0.5
+  leading: {fileID: 0}
   beaconHandler: {fileID: 7558941131036835689}
 --- !u!114 &7558941131036835689
 MonoBehaviour:
@@ -2797,3 +2988,50 @@ MonoBehaviour:
     desc: 
     Azimuths: []
     time: []
+--- !u!114 &2388062199835864548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895525915783046887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5ab384a08a70f41966e67b6d40972c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leader: {fileID: 0}
+  StepEnd: {fileID: 0}
+  intermediateSteps: []
+  acceptanceRadius: 0
+--- !u!1 &8899302909372977809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8324809815809673849}
+  m_Layer: 0
+  m_Name: IM2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8324809815809673849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8899302909372977809}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.71, y: 0, z: -1.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1436615238381826209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

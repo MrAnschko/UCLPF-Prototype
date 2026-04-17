@@ -13,4 +13,8 @@
   <uses-permission android:name="com.magicleap.permission.PUPIL_SIZE" />
   <uses-permission android:name="com.magicleap.permission.EYE_CAMERA" />
   <uses-permission android:name="com.magicleap.permission.FACIAL_EXPRESSION" />
+  <uses-permission android:name="com.magicleap.permission.SPACE_IMPORT_EXPORT" />
+  <uses-permission android:name="com.magicleap.permission.SPATIAL_ANCHOR" />
+  <uses-permission android:name="com.magicleap.permission.SPACE_MANAGER" />
+  <uses-permission android:name="com.magicleap.permission.SPATIAL_MAPPING" />
 </manifest>
