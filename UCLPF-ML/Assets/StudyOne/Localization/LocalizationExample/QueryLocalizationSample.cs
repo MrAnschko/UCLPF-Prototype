@@ -6,7 +6,7 @@ using MagicLeap.OpenXR.Features.LocalizationMaps;
 public class QueryLocalizationSample : MonoBehaviour
 {
     private MagicLeapLocalizationMapFeature localizationMapFeature = null;
-
+    bool localized = false
     private void Start()
     {
         // Obtain the instance of the localization Map Feature
@@ -36,12 +36,14 @@ public class QueryLocalizationSample : MonoBehaviour
         LocalizationEventData data;
         if (localizationMapFeature.GetLatestLocalizationMapData(out data))
         {
-            if (data.State == LocalizationMapState.Localized)
+            if (data.State == LocalizationMapState.Localized && (!localized || data.Confidence == LocalizationMapConfidence.Fair))
             {
                 Pose pose = localizationMapFeature.GetMapOrigin();
+                
                 Debug.Log($"Localized to space: {data.Map.Name}. Origin : {localizationMapFeature.GetMapOrigin()}");
                 this.transform.position = pose.position;
                 this.transform.rotation = pose.rotation;
+                localized = true;
             }
             else
             {
