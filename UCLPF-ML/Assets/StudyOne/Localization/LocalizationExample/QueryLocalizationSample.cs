@@ -6,7 +6,7 @@ using MagicLeap.OpenXR.Features.LocalizationMaps;
 public class QueryLocalizationSample : MonoBehaviour
 {
     private MagicLeapLocalizationMapFeature localizationMapFeature = null;
-    bool localized = false
+    bool localized = false;
     private void Start()
     {
         // Obtain the instance of the localization Map Feature
