@@ -10,12 +10,13 @@ using UnityEngine.XR.OpenXR;
 [Serializable]
 public class EyeTrackingData : DataContainer, LoggerInterface
 {
-    [DoNotSerialize]bool permissionGranted = false;
-
-    [DoNotSerialize]private MagicLeapEyeTrackerFeature eyeTrackerFeature;
+    [DoNotSerialize] bool permissionGranted = false;
+    [DoNotSerialize] bool eyeTrackerStarted = false;
+    [DoNotSerialize] private MagicLeapEyeTrackerFeature eyeTrackerFeature;
 
     [SerializeField]List<SerializedEyeTrackerData> eyeTrackerDatas;
     [SerializeField] string test = "test";
+    
 
     
 
@@ -25,14 +26,8 @@ public class EyeTrackingData : DataContainer, LoggerInterface
     }
 
     public EyeTrackingData()
-    { 
-        RequestPermission();
-        if (permissionGranted)
-        {
-            LoggingManager.RegisterLogger(this);
-            StartEyeTracker();
-            
-        }
+    {
+        LoggingManager.RegisterLogger(this);
         eyeTrackerDatas = new();
     }
 
@@ -43,6 +38,9 @@ public class EyeTrackingData : DataContainer, LoggerInterface
 
     public void AddData()
     {
+        RequestPermission();
+        if (permissionGranted && !eyeTrackerStarted)
+            StartEyeTracker();
         if (permissionGranted)
             GetEyeData();
     }
@@ -58,6 +56,7 @@ public class EyeTrackingData : DataContainer, LoggerInterface
         if (eyeTrackerFeature != null && eyeTrackerFeature.enabled)
         {
             eyeTrackerFeature.CreateEyeTracker();
+            eyeTrackerStarted = true;   
             Debug.Log("Eye Tracker initialized.");
         }
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class UserLeading : MonoBehaviour
 {
-    private const float ACCEPTANCE_TIME = 0.5f;
+    private const float ACCEPTANCE_TIME = 0.2f;
 
 
     [SerializeField] Transform leader; // Transform that is used to inform the user about the next step position

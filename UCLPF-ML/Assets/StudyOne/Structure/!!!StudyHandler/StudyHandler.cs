@@ -19,6 +19,7 @@ public class StudyHandler : MonoBehaviour
     List<ModeSettings> InteractionModes;
     [SerializeField] List<QuestionnaireSO> endStudies;
     IEnumerator<QuestionnaireSO> qEnumerator;
+    LatinSquare<ProcessInfos.InteractionMethod> InteractionLatinSquare;
 
     public static StudyHandler Instance; // is a singleton
 
@@ -41,6 +42,9 @@ public class StudyHandler : MonoBehaviour
         }
         Instance = this;
         overallInfo.Load();
+        InteractionLatinSquare = new();
+        InteractionLatinSquare.Load();
+
         InitiateCombination();
 
         int count = 0;
@@ -50,20 +54,21 @@ public class StudyHandler : MonoBehaviour
             ProcessInfos.SetNewID();
         } while (overallInfo.TakenIDs.Contains(ProcessInfos.UserID) && count<1000); // Safeguard. to prevent loop. Shouldn't happen in general but who knows.
         overallInfo.TakenIDs.Add(ProcessInfos.UserID);
-        
-        
+
+
+
 
     }
     private void Start()
     {
+
+        CustomDebug.Log("Starting");
         IDInformer.StartInformation(StartNextMethod);
     }
 
     private void OnDestroy()
     {
         overallInfo.Save();
-        LatinSquare<ProcessInfos.InteractionMethod> LatSq = new();
-        LatSq.Save();
         studyInfo.Save();
     }
 
@@ -110,18 +115,21 @@ public class StudyHandler : MonoBehaviour
     public void InitiateCombination()
     {
         studyInfo.MethodOrder = ChooseCombination();
+        // TODO: 
+        //studyInfo.PathOrder = new();
+        //foreach (var method in studyInfo.MethodOrder)
+        //    studyInfo.PathOrder.Add((ProcessInfos.Path)method);
         overallInfo.AddOccurrence(studyInfo.MethodOrder);
     }
 
     // Method to chose a combination of Path and 
     public List<ProcessInfos.InteractionMethod> ChooseCombination()
     {
-        // Get all mins
-        List<int> mins = overallInfo.MinimumMethodOrdersIndex();
-        //
-        int choice = Random.Range(0,mins.Count);
 
-        return ProcessInfos.IntToMethodOrder(mins[choice]);
+        // TODO: Insert Latin Square/Cube/Whatever here to refine method
+        List<ProcessInfos.InteractionMethod> order = InteractionLatinSquare.Choice();
+        InteractionLatinSquare.Save();
+        return order;
     }
 
     // Called when the next Scene is to be Loaded
