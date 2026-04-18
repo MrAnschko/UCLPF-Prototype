@@ -21,7 +21,7 @@ public class PathHandler : MonoBehaviour
     [SerializeField] private List<StepHandler> steps = new();
     [SerializeField] private int pathIndex = 0;
     [Header("Audio")]
-    [SerializeField] ProcessInfos.BeaconClass[] OrderAudioSourceClass;
+    [SerializeField] List<ProcessInfos.BeaconClass> OrderAudioSourceClass;
     [SerializeField] SonificationHandler sonificationHandler;
     
 
@@ -105,7 +105,8 @@ public class PathHandler : MonoBehaviour
 
     void SetupStep(int index)
     {
-
+        OrderAudioSourceClass.Shuffle();
+        OrderAudioSourceClass.Insert(0,ProcessInfos.BeaconClass.Many);
         int numberBeacons = ChooseSourceNumber(OrderAudioSourceClass[index]);
         steps[index].StartWalk(numberBeacons, sonificationHandler);
         
