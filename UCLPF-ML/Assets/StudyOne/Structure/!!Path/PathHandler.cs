@@ -125,6 +125,10 @@ public class PathHandler : MonoBehaviour
         {
             QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
         }
+        else
+        {
+            EndPath();
+        }
     }
 
 
