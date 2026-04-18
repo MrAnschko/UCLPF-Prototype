@@ -37,7 +37,7 @@ public class QueryLocalizationSample : MonoBehaviour
         if (localizationMapFeature.GetLatestLocalizationMapData(out data))
         {
             CustomDebug.Log(data.Confidence.ToString());
-            if (data.State == LocalizationMapState.Localized && (!localized || data.Confidence == LocalizationMapConfidence.Fair))
+            if (data.State == LocalizationMapState.Localized && (!localized || data.Confidence >= LocalizationMapConfidence.Good))
             {
                 Pose pose = localizationMapFeature.GetMapOrigin();
                 

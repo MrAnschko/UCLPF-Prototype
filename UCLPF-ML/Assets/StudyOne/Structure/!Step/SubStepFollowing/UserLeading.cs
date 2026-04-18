@@ -46,13 +46,14 @@ public class UserLeading : MonoBehaviour
         User.instance.DirIndicator.gameObject.SetActive(true);
         callback = callbackWhenDone;
         currentGoal = 0;
-        leader.position = intermediateSteps[currentGoal].position;
+        Leader.instance.transform.position = intermediateSteps[currentGoal].position;
         updateFunction = LeadingFunction;
     }
 
     // Method that handles the leading update
     public void LeadingFunction() 
     {
+        leader.position = GoalTransform.position;
         if (NearGoal)
         {
             timeAtGoal += Time.deltaTime;
