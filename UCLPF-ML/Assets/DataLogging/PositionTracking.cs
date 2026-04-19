@@ -28,6 +28,7 @@ public class PositionTracking : DataContainer,LoggerInterface
         Vector3 cameraPos = Camera.main.transform.position;
         rel_position.x = goal.x - cameraPos.x;
         rel_position.y = goal.y - cameraPos.z;
+        rel_position = CustomWorldOrigin.DirUnityToMap(rel_position);
         rel_positions.Add(rel_position);
         goalDists.Add(rel_position.magnitude);
         time.Add(ProcessInfos.StepTime);

@@ -1,18 +1,18 @@
 using MagicLeap.OpenXR.Features.LocalizationMaps;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.OpenXR;
 using UnityEngine.XR.OpenXR.NativeTypes;
 
 public class CustomWorldOrigin : MonoBehaviour
 {
-    Action ReOrderedCallback;
+    public static Action ReOrderedCallback;
 
     private static CustomWorldOrigin instance;
     private MagicLeapLocalizationMapFeature localizationMapFeature = null;
+    
     bool localized = false;
+    bool alignActive = true;
     private void Awake()
     {
         if (instance != null)
@@ -22,7 +22,7 @@ public class CustomWorldOrigin : MonoBehaviour
             return;
         }
         instance = this;
-
+        DontDestroyOnLoad(gameObject);
 
         // Obtain the instance of the localization Map Feature
         localizationMapFeature = OpenXRSettings.Instance.GetFeature<MagicLeapLocalizationMapFeature>();
@@ -68,6 +68,11 @@ public class CustomWorldOrigin : MonoBehaviour
 
     void AlignToMapOrign(LocalizationEventData data)
     {
+        // Only align if necessary.
+        if (!alignActive)
+        {
+            return;
+        }
         CustomDebug.Log(data.Confidence.ToString());
         if (data.State == LocalizationMapState.Localized && (!localized || data.Confidence >= LocalizationMapConfidence.Fair))
         {
@@ -77,10 +82,15 @@ public class CustomWorldOrigin : MonoBehaviour
             this.transform.position = pose.position;
 
             this.transform.rotation = pose.rotation;
+            ReOrderedCallback.SafeInvoke();
             localized = true;
         }
     }
 
+    public void StopAlignment()
+    {
+        alignActive = false;
+    }
 
     //makes new Transform transformed according to the transform defined by the world origing
     // Local Coordinates -> Unity Coordinates;

@@ -30,6 +30,8 @@ public class CustomDebug : MonoBehaviour
 
     public static void Log(string msg)
     {
+        if (instance == null)
+            return;
         instance.OutputTMP.text = msg;
     }
 

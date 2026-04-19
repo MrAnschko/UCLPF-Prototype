@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class SceneLoading
 {
-    private static int PathIndexStart = 1;
+    private static int PathIndexStart = 2;
 
 
     public static void LoadPath(ProcessInfos.Path path)

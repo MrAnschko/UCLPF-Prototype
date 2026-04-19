@@ -1252,7 +1252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6325538248496424198}
   - component: {fileID: 3848929885342315700}
-  - component: {fileID: 3369276846002655271}
+  - component: {fileID: 5159628731662594561}
   m_Layer: 0
   m_Name: ---- Path Management ----
   m_TagString: Untagged
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   pathIndex: 0
   OrderAudioSourceClass: 
   sonificationHandler: {fileID: 11400000, guid: a0ac627010947694cb61b7c399305e6f, type: 2}
---- !u!114 &3369276846002655271
+--- !u!114 &5159628731662594561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6990105935479921588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688dc32d9171fd347a5f926b4fa41901, type: 3}
+  m_Script: {fileID: 11500000, guid: 87d70320d7c68f546bd0806c8116a782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7024647507781736364
