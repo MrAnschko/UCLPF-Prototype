@@ -40,3 +40,7 @@ MonoBehaviour:
     type: 0
     SliderStartDesc: 
     SliderEndDesc: 
+  - question: If you wish to take a break now is a great time.
+    type: 4
+    SliderStartDesc: 
+    SliderEndDesc: 
