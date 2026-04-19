@@ -1296,7 +1296,7 @@ MonoBehaviour:
     PathOrder: 0
     steps: []
   endPathQuestionnaire: {fileID: 11400000, guid: 5725eee190c722e47a2a079de35f87d8, type: 2}
-  nasaTLX: {fileID: 0}
+  nasaTLX: {fileID: 11400000, guid: a24f8dcd3167242418c3cb71fcb9a0d4, type: 2}
   steps:
   - {fileID: 1174755975636886355}
   - {fileID: 4063298598648285605}

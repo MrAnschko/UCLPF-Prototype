@@ -35,6 +35,8 @@ public class FilterVisualization : MonoBehaviour, LPSettingsInformer
     private void OnDestroy()
     {
         LPGlobalSettings.UnregisterSelf(this);
+        if(instance == this)
+            instance = null;
     }
 
     private void Update()

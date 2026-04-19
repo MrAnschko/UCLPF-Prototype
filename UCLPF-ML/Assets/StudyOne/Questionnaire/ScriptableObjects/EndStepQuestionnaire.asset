@@ -12,16 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20d7531f7abe56479c115a57033488c, type: 3}
   m_Name: EndStepQuestionnaire
   m_EditorClassIdentifier: 
+  ShuffleOrder: 0
   Name: 
   WhenAsked: 2
   Questions:
   - question: high-pitched
     type: 2
+    SliderStartDesc: 
+    SliderEndDesc: 
+  - question: low-pitched
+    type: 2
+    SliderStartDesc: 
+    SliderEndDesc: 
   - question: How many Beacons did you notice?
     type: 1
+    SliderStartDesc: 
+    SliderEndDesc: 
   - question: I was able to identify pitch using the Method.
     type: 0
-  - question: I feel like ai was able to correctly identify the location of a beacon.
+    SliderStartDesc: 
+    SliderEndDesc: 
+  - question: I feel like I was able to correctly identify the location of a beacon.
     type: 0
+    SliderStartDesc: 
+    SliderEndDesc: 
   - question: I am confident that I correctly identified the number of beacons
     type: 0
+    SliderStartDesc: 
+    SliderEndDesc: 

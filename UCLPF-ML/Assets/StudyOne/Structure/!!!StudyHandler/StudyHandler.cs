@@ -115,7 +115,7 @@ public class StudyHandler : MonoBehaviour
     public void InitiateCombination()
     {
         studyInfo.MethodOrder = ChooseCombination();
-        // TODO: 
+        // Comment: Making Same path order very time and hoping Latin Square design fixes it.
         //studyInfo.PathOrder = new();
         //foreach (var method in studyInfo.MethodOrder)
         //    studyInfo.PathOrder.Add((ProcessInfos.Path)method);
