@@ -15,9 +15,9 @@ MonoBehaviour:
   interactionMethod: 2
   qFactor: 0.707
   cutoffInitialFreq: 22050
-  cutoffMinimalFreq: 250
+  cutoffMinimalFreq: 20
   half_angle: 314
   pointDistFactor: 0
   circleDistFactor: 5
-  horizonBehavior: 0
+  horizonBehavior: 1
   planePosition: -1
