@@ -59,7 +59,7 @@ public class CustomWorldOrigin : MonoBehaviour
         LocalizationEventData data;
         if (localizationMapFeature.GetLatestLocalizationMapData(out data))
         {
-            CustomDebug.Log(data.Confidence.ToString());
+            //CustomDebug.Log(data.Confidence.ToString());
             AlignToMapOrign(data);
 
         }
@@ -73,7 +73,7 @@ public class CustomWorldOrigin : MonoBehaviour
         {
             return;
         }
-        CustomDebug.Log(data.Confidence.ToString());
+        //CustomDebug.Log(data.Confidence.ToString());
         if (data.State == LocalizationMapState.Localized && (!localized || data.Confidence >= LocalizationMapConfidence.Fair))
         {
             Pose pose = localizationMapFeature.GetMapOrigin();

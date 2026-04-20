@@ -15,6 +15,7 @@ public class Gaze : MonoBehaviour
     private Camera mainCamera;
 
     [SerializeField] static float planePosition = -1;
+    [SerializeField] AnimationCurve responseCurve;
 
     private bool permissionGranted;
 
@@ -56,7 +57,11 @@ public class Gaze : MonoBehaviour
 
         if (isTracked && hasData)
         {
-            transform.rotation = rotation;
+            Vector3 pointerFwd = transform.rotation * Vector3.forward;
+            Vector3 gazeFwd = rotation * Vector3.forward;
+            float similarity = Vector3.Dot(pointerFwd.normalized, gazeFwd.normalized);
+            CustomDebug.Log(similarity.ToString());
+            transform.rotation = Quaternion.Lerp(transform.rotation,rotation, responseCurve.Evaluate((1-similarity)/2));
         }
 
 
@@ -86,6 +91,7 @@ public class Gaze : MonoBehaviour
         float d_y = m[6];
         float d_z = m[10];
 
+        planePosition = LPGlobalSettings.PlanePosition;
         float alpha = (d_y < -0.001f) ? (planePosition - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
 
         // position on the plane
