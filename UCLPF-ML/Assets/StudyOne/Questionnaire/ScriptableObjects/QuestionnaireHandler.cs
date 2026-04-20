@@ -88,7 +88,8 @@ public class QuestionnaireHandler : MonoBehaviour
     {
         answers.Save();
         menu.SetActive(false);
-        FilterVisualization.instance.gameObject.SetActive(true);
+        if(FilterVisualization.instance !=null)
+            FilterVisualization.instance.gameObject.SetActive(true);
         onQuestionnaireEnd.SafeInvoke();
     }
 
@@ -100,7 +101,8 @@ public class QuestionnaireHandler : MonoBehaviour
             Debug.LogError("No Questions");
         }
         Question.Type qType = currentQuestion.type;
-        FilterVisualization.instance.gameObject.SetActive(false);
+        if(FilterVisualization.instance != null)
+            FilterVisualization.instance.gameObject.SetActive(false);
 
         answers.answers.Add(new(qType));
         QuestionTMP.text = currentQuestion.question;
@@ -114,10 +116,12 @@ public class QuestionnaireHandler : MonoBehaviour
 
             LowerEndTMP.text = "Strongly \n Disagree";
             UpperEndTMP.text = "Strongly \n Agree";
-            slider.MinValue = 1;
+
+            slider.Value = 4f;
+            slider.MinValue = 1f;
+            slider.MaxValue = 7f;
             slider.SliderStepDivisions = 6;
-            slider.Value = 4;
-            slider.MaxValue = 7;
+
             buttonResponse = NextQuestion;
         }
         if (qType == Question.Type.BeaconNumber) 
@@ -126,10 +130,10 @@ public class QuestionnaireHandler : MonoBehaviour
 
             LowerEndTMP.text = "2";
             UpperEndTMP.text = "11";
-            slider.MinValue = 2;
-            slider.Value = 2;
+            slider.Value = 2f;
+            slider.MinValue = 2f;
+            slider.MaxValue = 11f;
             slider.SliderStepDivisions = 9;
-            slider.MaxValue = 11;
             buttonResponse = NextQuestion;
         }
         if (qType == Question.Type.TLX)

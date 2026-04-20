@@ -14,9 +14,9 @@ public class BeaconHandler : MonoBehaviour
     [Header("SceneInformation")]
     [SerializeField] List<Beacon> beaconList;
     [SerializeField] List<Beacon> activeBeacons;
-    [SerializeField] Beacon highestBeacon;
+    [SerializeField] public Beacon highestBeacon;
     [SerializeField] AzimuthTracking highTracking;
-    [SerializeField] Beacon lowestBeacon;
+    [SerializeField] public Beacon lowestBeacon;
     [SerializeField] AzimuthTracking lowTracking;
 
     // State management
@@ -89,6 +89,8 @@ public class BeaconHandler : MonoBehaviour
     public void StopAudio()
     {
         //Function to STOP all (active) audio Beacons
+        highTracking.Save();
+        lowTracking.Save();
         foreach (var beacon in activeBeacons) { beacon.StopPlaying(); }
         
     }

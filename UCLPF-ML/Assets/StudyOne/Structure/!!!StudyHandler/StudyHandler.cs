@@ -46,6 +46,7 @@ public class StudyHandler : MonoBehaviour
         InteractionLatinSquare.Load();
 
         InitiateCombination();
+        studyInfo.Save();
 
         int count = 0;
         do
@@ -54,7 +55,7 @@ public class StudyHandler : MonoBehaviour
             ProcessInfos.SetNewID();
         } while (overallInfo.TakenIDs.Contains(ProcessInfos.UserID) && count<1000); // Safeguard. to prevent loop. Shouldn't happen in general but who knows.
         overallInfo.TakenIDs.Add(ProcessInfos.UserID);
-
+        overallInfo.Save();
 
 
 
@@ -95,6 +96,7 @@ public class StudyHandler : MonoBehaviour
         
     }
 
+    [ContextMenu("Start Questionnaire")]
     public void StartQuestionnare()
     {
         if (endStudies.Count > 0) 

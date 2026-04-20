@@ -69,7 +69,7 @@ public class StepHandler : MonoBehaviour
     {
 
         // STOP sounds;
-        beaconHandler.StopAudio();
+        
         posTr.Save();
         eyeTracking.Save();
         // go to Questionnaire
@@ -103,6 +103,7 @@ public class StepHandler : MonoBehaviour
     public void EndStepQuestionnaire()
     {
         //_onUpdate -= DuringStepQuestionnaire;
+        beaconHandler.StopAudio();
         EndStep();
     }
 

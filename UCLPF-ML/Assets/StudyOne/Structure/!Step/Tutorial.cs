@@ -1,18 +1,39 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]TMP_Text text;
+
+    private void Start()
     {
-        
+        SetText(ProcessInfos.CurrentMethod);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetText(ProcessInfos.InteractionMethod method)
     {
-        
+        if(method == ProcessInfos.InteractionMethod.Circle)
+        {
+            text.text = "You will have the short option to practice with the method.\r\n" +
+                "This is the so called <u>Circle</u> method. Depending on where you look a circle with you as center will be drawn. Objects farther away from the circle circumference will be muffled. If you look up you can hear all sources unmuffled.\r\n\r\n" +
+                "Follow the purple marker.\r\n\r\nGreen cylinders are sound sources. They will be invisible in the future.";
+        }
+        if (method == ProcessInfos.InteractionMethod.View)
+        {
+            text.text = "You will have the short option to practice with the method.\r\n" +
+                "This is the so called <u>View</u> method. Imagine it like a flashlight coming from you pupils. Objects farther away from the light will be muffled.\r\n\r\n" +
+                "Follow the purple marker.\r\n\r\nGreen cylinders are sound sources. They will be invisible in the future.";
+        }
+
+        if (method == ProcessInfos.InteractionMethod.Point)
+        {
+            text.text = "You will have the short option to practice with the method.\r\n" +
+                "This is the so called <u>Point</u> method. Depending on where you look a circle with you as center will be drawn. Objects farther away from the circle circumference will be muffled. If you look up you can hear all sources unmuffled.\r\n\r\n" +
+                "Follow the purple marker.\r\n\r\nGreen cylinders are sound sources. They will be invisible in the future.";
+        }
     }
 }

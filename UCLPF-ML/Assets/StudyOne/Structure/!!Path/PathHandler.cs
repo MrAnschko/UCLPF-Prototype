@@ -24,6 +24,21 @@ public class PathHandler : MonoBehaviour
     [SerializeField] List<ProcessInfos.BeaconClass> OrderAudioSourceClass;
     [SerializeField] SonificationHandler sonificationHandler;
     
+    public static Beacon high
+    {
+        get
+        {
+            return instance.steps[instance.pathIndex].beaconHandler.highestBeacon;
+        }
+    }
+
+    public static Beacon low
+    {
+        get
+        {
+            return instance.steps[instance.pathIndex].beaconHandler.lowestBeacon;
+        }
+    }
 
     Action _onEndPath;
 
@@ -84,7 +99,10 @@ public class PathHandler : MonoBehaviour
 
         OnEndPath = StudyHandler.Instance.LoadNextPath; // Make it so that once the path ends the next one is loaded
         PathIndex = 0;
-        
+
+
+        OrderAudioSourceClass.Shuffle();
+        OrderAudioSourceClass.Insert(0, ProcessInfos.BeaconClass.Many);
         SetupStep(PathIndex);
         ProcessInfos.timeAtStartPath = Time.time;
         ProcessInfos.currentPath = this.path;
@@ -105,8 +123,7 @@ public class PathHandler : MonoBehaviour
 
     void SetupStep(int index)
     {
-        OrderAudioSourceClass.Shuffle();
-        OrderAudioSourceClass.Insert(0,ProcessInfos.BeaconClass.Many);
+
         int numberBeacons = ChooseSourceNumber(OrderAudioSourceClass[index]);
         steps[index].StartWalk(numberBeacons, sonificationHandler);
         
@@ -114,6 +131,7 @@ public class PathHandler : MonoBehaviour
         steps[index].OnEndStep = ReachedStep;
     }
 
+    [ContextMenu("StartQuestionnaire")]
     void StartPathQuestionnaire()
     {
         
@@ -124,7 +142,7 @@ public class PathHandler : MonoBehaviour
     {
         if (nasaTLX != null)
         {
-            QuestionnaireHandler.StartQuestionnaire(endPathQuestionnaire, EndPath);
+            QuestionnaireHandler.StartQuestionnaire(nasaTLX, EndPath);
         }
         else
         {
