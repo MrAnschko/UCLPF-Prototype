@@ -29,7 +29,9 @@ public class FilterVisualization : MonoBehaviour, LPSettingsInformer
             return;
         }
         instance = this;
+        LPGlobalSettings.PlanePosition = this.transform.position.y;
         LPGlobalSettings.RegisterSelf(this);
+        UpdateSettings();
     }
 
     private void OnDestroy()

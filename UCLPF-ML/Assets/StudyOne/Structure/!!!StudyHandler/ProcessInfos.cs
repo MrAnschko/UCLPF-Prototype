@@ -34,7 +34,7 @@ public static class ProcessInfos
         }
     }
 
-    public static float START_DIFF = 0.6f; // Time in between starting two sources
+    public static float START_DIFF = 0.5f; // Time in between starting two sources
     public static ModeSettings UCLPF_MODE;
     public static string UserID = "DEFAULT";
     private static bool RNG_Set = false;
