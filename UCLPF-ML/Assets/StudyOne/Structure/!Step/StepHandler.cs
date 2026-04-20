@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BeaconHandler)),RequireComponent(typeof(UserLeading))]
@@ -12,7 +13,7 @@ public class StepHandler : MonoBehaviour
     // Data to save
     public StepData stepD = new();
     public PositionTracking posTr;
-    public EyeTrackingData eyeTracking;
+    [DoNotSerialize] EyeTrackingData eyeTracking;
     public QuestionnaireSO EndPathQuestionnaire;
 
     [Header("Leading")]
@@ -89,6 +90,7 @@ public class StepHandler : MonoBehaviour
 
     }
 
+    [ContextMenu("StartQuestionnaire")]
     public void StartStepQuestionnaire()
     {
         QuestionnaireHandler.StartQuestionnaire(EndPathQuestionnaire, EndStepQuestionnaire);

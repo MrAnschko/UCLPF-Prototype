@@ -117,9 +117,10 @@ public class QuestionnaireHandler : MonoBehaviour
             LowerEndTMP.text = "Strongly \n Disagree";
             UpperEndTMP.text = "Strongly \n Agree";
 
-            slider.Value = 4f;
-            slider.MinValue = 1f;
             slider.MaxValue = 7f;
+            slider.MinValue = 1f;
+            slider.Value = 4f;
+            
             slider.SliderStepDivisions = 6;
 
             buttonResponse = NextQuestion;
@@ -130,9 +131,10 @@ public class QuestionnaireHandler : MonoBehaviour
 
             LowerEndTMP.text = "2";
             UpperEndTMP.text = "11";
-            slider.Value = 2f;
-            slider.MinValue = 2f;
+
             slider.MaxValue = 11f;
+            slider.MinValue = 2f;
+            slider.Value = 2f;
             slider.SliderStepDivisions = 9;
             buttonResponse = NextQuestion;
         }

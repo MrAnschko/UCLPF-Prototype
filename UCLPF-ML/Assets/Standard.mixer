@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-2278827995332905979
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: e5a834ed5cede9e4fa75ab62f94409a1
-  m_EffectName: Microsoft Spatializer Mixer
-  m_MixLevel: 700b5ee860c5c4140ad9ab25de392123
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -50,7 +36,6 @@ AudioMixerGroupController:
   m_Pitch: 45be773f3778f31428c8db0d713f5127
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: -2278827995332905979}
   - {fileID: 24400004}
   m_UserColorIndex: 0
   m_Mute: 0

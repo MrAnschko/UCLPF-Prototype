@@ -28,7 +28,7 @@ public class EyeTrackingData : DataContainer, LoggerInterface
     public EyeTrackingData()
     {
         LoggingManager.RegisterLogger(this);
-        eyeTrackerDatas = new();
+        eyeTrackerDatas = new List<SerializedEyeTrackerData>();
     }
 
     ~EyeTrackingData()
@@ -63,7 +63,7 @@ public class EyeTrackingData : DataContainer, LoggerInterface
 
     void GetEyeData()
     {
-        if((eyeTrackerFeature != null))
+        if((eyeTrackerFeature != null) && eyeTrackerFeature.enabled)
         {
             EyeTrackerData data;
             data = eyeTrackerFeature.GetEyeTrackerData();

@@ -4146,6 +4146,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24300002, guid: da2a36b00c5b79d4b96752a7e87cda86, type: 2}
     - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
+      propertyPath: path
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: steps.Array.size
       value: 7
       objectReference: {fileID: 0}

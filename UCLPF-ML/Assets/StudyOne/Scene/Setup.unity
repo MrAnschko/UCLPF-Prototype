@@ -375,7 +375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.22, y: -28.14}
+  m_AnchoredPosition: {x: 216.22, y: -37.34}
   m_SizeDelta: {x: 432.44, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807640221
@@ -824,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1501469201172723769, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 17.88
       objectReference: {fileID: 0}
     - target: {fileID: 1501469201172723769, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -852,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3454612825677468852, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 37.879997
       objectReference: {fileID: 0}
     - target: {fileID: 3454612825677468852, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -902,13 +902,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9122635379080897896, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
-      propertyPath: m_SizeDelta.x
+    - target: {fileID: 8208457988364249924, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9122635379080897896, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 267.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122635379080897896, guid: c6682c9e6509c1546aa66516c41523ab, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 37.879997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -969,7 +973,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7738662775b45f84488419ac243c9e66, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 7738662775b45f84488419ac243c9e66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.226
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 7738662775b45f84488419ac243c9e66, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.097
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -991,7 +1003,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300506427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21b8ece1447936f43ab259246979bcce, type: 3}
   m_Name: 
@@ -1242,6 +1254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63ef2f7bad42a44ae7ebeb595d4a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  responseCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1810985660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1338,7 +1356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 216.22, y: -28.14}
+  m_AnchoredPosition: {x: 216.22, y: -37.34}
   m_SizeDelta: {x: 412.44, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844530580
@@ -1375,8 +1393,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: We set up the virtual world correctly. Please make sure the hologram and
-    the world are aligned. Then click next.
+  m_text: We need to set up the virtual world correctly. Please make sure the hologram
+    and the world are aligned. Then click next.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
