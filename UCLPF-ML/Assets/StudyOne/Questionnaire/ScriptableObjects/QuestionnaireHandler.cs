@@ -68,10 +68,11 @@ public class QuestionnaireHandler : MonoBehaviour
     [ContextMenu("NextQuestion")]
     public void NextQuestion()
     {
+        AddAnswer(slider.Value);
         // go over each question
         if (enumerator.MoveNext())
         {
-            AddAnswer(slider.Value);
+            
             SetupQuestion();
             
         }
@@ -142,17 +143,23 @@ public class QuestionnaireHandler : MonoBehaviour
             SetupNTLX();
         if(qType == Question.Type.Choice)
             SetupChoice();
+        //Canvas.ForceUpdateCanvases();
     }
 
     public void SetupPointTask()
     {
+        menu.SetActive(false);
         Question currentQuestion = enumerator.Current;
-        QuestionTMP.text = $"Once you are ready press next. Look at where you heard the {currentQuestion.question} Sound, then confirm using the controller trigger button.";
+        QuestionTMP.text = $"Once you have read the instructions press next. Look at where you heard the {currentQuestion.question} Sound, then confirm using the controller trigger button.";
+        
+        AnswerTextTMP.text = "Next";
         SliderPlate.SetActive(false);
+        menu.SetActive(true);
         buttonResponse = StartPointTask;
     }
     public void StartPointTask()
     {
+
         Question currentQuestion = enumerator.Current;
         menu.SetActive(false);
         FilterVisualization.instance.gameObject.SetActive(true);

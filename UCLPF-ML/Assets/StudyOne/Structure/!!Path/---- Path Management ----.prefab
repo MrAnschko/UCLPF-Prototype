@@ -92,9 +92,6 @@ MonoBehaviour:
     goal: {x: 0, y: 0}
     goalDists: []
     time: []
-  eyeTracking:
-    eyeTrackerDatas: []
-    test: test
   EndPathQuestionnaire: {fileID: 0}
   leading: {fileID: 0}
   beaconHandler: {fileID: 314069283683002909}
@@ -1302,7 +1299,7 @@ MonoBehaviour:
   - {fileID: 4063298598648285605}
   pathIndex: 0
   OrderAudioSourceClass: 
-  sonificationHandler: {fileID: 11400000, guid: a0ac627010947694cb61b7c399305e6f, type: 2}
+  sonificationHandler: {fileID: 11400000, guid: ec81e9fcfa67f7a49806bd5b2003a187, type: 2}
 --- !u!114 &5159628731662594561
 MonoBehaviour:
   m_ObjectHideFlags: 0
