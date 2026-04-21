@@ -32,7 +32,7 @@ public class Tutorial : MonoBehaviour
         if (method == ProcessInfos.InteractionMethod.Point)
         {
             text.text = "You will have the short option to practice with the method.\r\n" +
-                "This is the so called <u>Point</u> method. Depending on where you look a circle with you as center will be drawn. Objects farther away from the circle circumference will be muffled. If you look up you can hear all sources unmuffled.\r\n\r\n" +
+                "This is the so called <u>Point</u> method. Depending on where you look a point will be drawn. Objects farther away from the point will be muffled. If you look up you can hear all sources unmuffled.\r\n\r\n" +
                 "Follow the purple marker.\r\n\r\nGreen cylinders are sound sources. They will be invisible in the future.";
         }
     }

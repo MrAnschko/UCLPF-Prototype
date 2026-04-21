@@ -53,7 +53,7 @@ public class FilterVisualization : MonoBehaviour, LPSettingsInformer
         {
 
             Vector3 direction = pointObject.transform.forward;
-            visualizationMaterial.SetVector("_Listener_Position", Camera.main.transform.position);
+            visualizationMaterial.SetVector("_Listener_Position", pointObject.transform.position);
             visualizationMaterial.SetVector("_View_Direction", direction);
 
             this.transform.rotation.SetLookRotation(direction);

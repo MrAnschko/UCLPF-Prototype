@@ -34,6 +34,13 @@ public class Gaze : MonoBehaviour
 
     private void Update()
     {
+
+        SetToGazeRotation();
+
+    }
+
+    void SetToGazeRotation()
+    {
         if (!permissionGranted)
             return;
 
@@ -57,14 +64,13 @@ public class Gaze : MonoBehaviour
 
         if (isTracked && hasData)
         {
-            Vector3 pointerFwd = transform.rotation * Vector3.forward;
-            Vector3 gazeFwd = rotation * Vector3.forward;
-            float similarity = Vector3.Dot(pointerFwd.normalized, gazeFwd.normalized);
-            CustomDebug.Log(similarity.ToString());
-            transform.rotation = Quaternion.Lerp(transform.rotation,rotation, responseCurve.Evaluate((1-similarity)/2));
+            //Vector3 pointerFwd = transform.rotation * Vector3.forward;
+            //Vector3 gazeFwd = rotation * Vector3.forward;
+            //float similarity = ((1-Quaternion.Dot(transform.rotation, rotation))/(2*Mathf.Cos(Mathf.PI/3600)));
+            //CustomDebug.Log(similarity.ToString());
+            transform.position = position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.5f);// rotation;// Quaternion.Lerp(transform.rotation,rotation, responseCurve.Evaluate((1-similarity)/2));
         }
-
-
     }
 
     private void OnPermissionGranted(string permission)
