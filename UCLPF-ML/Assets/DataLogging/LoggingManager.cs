@@ -31,4 +31,14 @@ public class LoggingManager : MonoBehaviour
             logger.AddData();
     }
 
+    private void OnDestroy()
+    {
+        //loggerList = new();
+    }
+
+    public void Clear()
+    {
+        loggerList = new();
+    }
+
 }

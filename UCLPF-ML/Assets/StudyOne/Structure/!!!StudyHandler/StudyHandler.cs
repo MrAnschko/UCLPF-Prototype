@@ -83,9 +83,12 @@ public class StudyHandler : MonoBehaviour
             
             ProcessInfos.UCLPF_MODE = InteractionModes[(int)studyInfo.MethodOrder[PathIndex]];
             ProcessInfos.UCLPF_MODE.ApplySettings();
+            LoggingManager lm = gameObject.GetComponent<LoggingManager>();
+            if (lm != null)
+                lm.Clear();
             ProcessInfos.CurrentMethod = studyInfo.MethodOrder[PathIndex];
             SceneLoading.LoadPath(studyInfo.PathOrder[PathIndex]);
-
+            
         }
         else
         {
