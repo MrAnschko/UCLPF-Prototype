@@ -28,7 +28,7 @@ public class LoggingManager : MonoBehaviour
     {
         if(loggerList == null) {return; }
         foreach (LoggerInterface logger in loggerList)
-            logger.AddData();
+            logger?.AddData();
     }
 
     private void OnDestroy()

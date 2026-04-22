@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -16,12 +17,18 @@ public class AzimuthTracking : DataContainer,LoggerInterface
     {
         LoggingManager.RegisterLogger(this);
         trackedObject = gameObject;
+        
         this.desc = desc;
     }
 
     // Tracks the change of Azimuth since the step beginning.
     public void AddData()
     {
+        if( trackedObject.IsDestroyed())
+        {
+            Save();
+            return;
+        }
         Vector3 view_direction = LPGlobalSettings.PointObject.transform.forward;
         Vector3 rel_position = Camera.main.transform.position - trackedObject.transform.position;
         rel_position.y = 0f; // set only planar

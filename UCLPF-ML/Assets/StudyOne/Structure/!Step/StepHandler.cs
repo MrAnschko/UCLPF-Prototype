@@ -56,7 +56,10 @@ public class StepHandler : MonoBehaviour
         beaconHandler.SelectBeacons(numberSources);
         beaconHandler.StartAudio();
         // Data Collection
-        stepD.StepEnd = leading.StepEnd.position;
+        stepD.StepEnd = CustomWorldOrigin.PosUnityToMap(leading.StepEnd.position);
+        stepD.intermediatePoints = new();
+        foreach (Transform tf in leading.intermediateSteps)
+            stepD.intermediatePoints.Add(CustomWorldOrigin.PosUnityToMap(tf.position));
         stepD.Beacons = beaconHandler.ActiveBeaconsData;
 
         stepD.Save();

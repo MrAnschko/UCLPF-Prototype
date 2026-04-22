@@ -12,7 +12,7 @@ public class UserLeading : MonoBehaviour
 
     [SerializeField] Transform leader; // Transform that is used to inform the user about the next step position
     [SerializeField] public Transform StepEnd; // the position that will end the Step. not included in the end step
-    [SerializeField] List<Transform> intermediateSteps; // List of intermidiate steps
+    [SerializeField] public List<Transform> intermediateSteps; // List of intermidiate steps
     int currentGoal = 0;
     [Header("Goal Behavior")]
     [SerializeField] float acceptanceRadius; // the position that will end the Step. not included in the end step
