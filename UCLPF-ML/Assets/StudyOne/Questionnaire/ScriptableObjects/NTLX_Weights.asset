@@ -24,7 +24,7 @@ MonoBehaviour:
     type: 3
     SliderStartDesc: Very Low
     SliderEndDesc: Very High
-  - question: Temporal Demand:\n How hurried or rushed was the pace of the task
+  - question: 'Temporal Demand: How hurried or rushed was the pace of the task'
     type: 3
     SliderStartDesc: Very Low
     SliderEndDesc: Very High

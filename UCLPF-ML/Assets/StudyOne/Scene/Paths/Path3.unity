@@ -993,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7738662775b45f84488419ac243c9e66, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3634,7 +3634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6640,10 +6640,6 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
-      propertyPath: sonificationHandler
-      value: 
-      objectReference: {fileID: 11400000, guid: 9ae7b0e730e1a5640b67252b7fa461e9, type: 2}
-    - target: {fileID: 3848929885342315700, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: steps.Array.data[0]
       value: 
       objectReference: {fileID: 198989685045940645}
@@ -8283,9 +8279,6 @@ MonoBehaviour:
   - {fileID: 152781557704746035}
   - {fileID: 3374981419696820467}
   - {fileID: 3972272162712603432}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   activeBeacons: []
   highestBeacon: {fileID: 0}
   highTracking:
