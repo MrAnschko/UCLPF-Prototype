@@ -49,6 +49,7 @@ public class Beacon : MonoBehaviour
     public void StartPlayingRepeatedly(float cycletime, double offset)
     {
         
+        gameObject.SetActive(true);
         playing = StartCoroutine(PlayRepeatedly(cycletime, offset));
     }
 

@@ -75,8 +75,10 @@ public class StepHandler : MonoBehaviour
         // STOP sounds;
         beaconHandler.StopAudio();
         posTr.Save();
+        LoggingManager.DeRegisterLogger(posTr);
         posTr = null;
         eyeTracking.Save();
+        LoggingManager.DeRegisterLogger(eyeTracking);
         eyeTracking = null;
         // go to Questionnaire
         StartStepQuestionnaire();

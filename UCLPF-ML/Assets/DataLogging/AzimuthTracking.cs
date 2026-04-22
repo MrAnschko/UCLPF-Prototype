@@ -26,7 +26,7 @@ public class AzimuthTracking : DataContainer,LoggerInterface
     {
         if( trackedObject.IsDestroyed())
         {
-            Save();
+            
             return;
         }
         Vector3 view_direction = LPGlobalSettings.PointObject.transform.forward;

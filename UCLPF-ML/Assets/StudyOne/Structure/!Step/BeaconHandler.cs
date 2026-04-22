@@ -90,8 +90,10 @@ public class BeaconHandler : MonoBehaviour
     {
         //Function to STOP all (active) audio Beacons
         highTracking.Save();
+        LoggingManager.DeRegisterLogger(highTracking);
         highTracking = null;
         lowTracking.Save();
+        LoggingManager.DeRegisterLogger(lowTracking);
         lowTracking = null;
 
         foreach (var beacon in activeBeacons) { beacon.StopPlaying(); }

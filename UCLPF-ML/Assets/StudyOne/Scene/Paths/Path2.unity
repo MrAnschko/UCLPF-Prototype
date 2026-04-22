@@ -1303,10 +1303,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3.67
       objectReference: {fileID: 0}
-    - target: {fileID: 4434574877984399709, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4573677128803150721, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -1322,10 +1318,6 @@ PrefabInstance:
     - target: {fileID: 4977605578966478196, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 5339298955922873591, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5391810147338772144, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,10 +1410,6 @@ PrefabInstance:
     - target: {fileID: 8264714051272556569, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393923815679392704, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8452210982557018283, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: OutputAudioMixerGroup
