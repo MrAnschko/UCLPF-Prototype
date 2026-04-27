@@ -74,6 +74,7 @@ public class StepHandler : MonoBehaviour
 
         // STOP sounds;
         beaconHandler.StopAudio();
+        stepD.Save();
         posTr.Save();
         LoggingManager.DeRegisterLogger(posTr);
         posTr = null;

@@ -111,10 +111,11 @@ public class PathHandler : MonoBehaviour
 
         OrderAudioSourceClass.Shuffle();
         OrderAudioSourceClass.Insert(0, ProcessInfos.BeaconClass.Many);
-        SetupStep(PathIndex);
         ProcessInfos.timeAtStartPath = Time.time;
         ProcessInfos.currentPath = this.path;
         pData.PathOrder = ProcessInfos.PathCount;
+        SetupStep(PathIndex);
+
     }
 
     void ReachedStep()

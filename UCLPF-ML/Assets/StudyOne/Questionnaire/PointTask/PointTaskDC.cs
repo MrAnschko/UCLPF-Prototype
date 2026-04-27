@@ -37,7 +37,7 @@ public class PointTaskDC : DataContainer
         closestBeaconData = closestBeacon.beaconData;
 
         Vector3 closestDir = closestBeacon.transform.position - Gaze.instance.transform.position;
-        highAngle = Vector3.Angle(Gaze.instance.transform.rotation * Vector3.forward, closestDir.normalized);
+        closesAngle = Vector3.Angle(Gaze.instance.transform.rotation * Vector3.forward, closestDir.normalized);
 
 
         Save(ProcessInfos.UserID + "_Path" + ProcessInfos.currentPath + "_Step" + ProcessInfos.CurrentStep + "_PointTasc_" + desc);

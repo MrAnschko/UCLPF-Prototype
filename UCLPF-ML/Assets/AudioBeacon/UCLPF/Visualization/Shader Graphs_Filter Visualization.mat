@@ -28,11 +28,11 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Circle_SF: 0
-    - _Half_Angle: 35981.75
+    - _Half_Angle: 8.594367
     - _Height: -0.94
     - _Line_Distance: 3
     - _Line_Thickness: 0.01
-    - _Point_SF: 5
+    - _Point_SF: 0
     - _Test: 0
     m_Colors:
     - _Listener_Position: {r: 0, g: 0, b: 0, a: 0}
