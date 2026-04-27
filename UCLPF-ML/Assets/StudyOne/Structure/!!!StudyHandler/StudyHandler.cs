@@ -46,7 +46,7 @@ public class StudyHandler : MonoBehaviour
         InteractionLatinSquare.Load();
 
         InitiateCombination();
-        studyInfo.Save();
+        
 
         int count = 0;
         do
@@ -56,7 +56,7 @@ public class StudyHandler : MonoBehaviour
         } while (overallInfo.TakenIDs.Contains(ProcessInfos.UserID) && count<1000); // Safeguard. to prevent loop. Shouldn't happen in general but who knows.
         overallInfo.TakenIDs.Add(ProcessInfos.UserID);
         overallInfo.Save();
-
+        studyInfo.Save();
 
 
     }
@@ -120,10 +120,8 @@ public class StudyHandler : MonoBehaviour
     public void InitiateCombination()
     {
         studyInfo.MethodOrder = ChooseCombination();
-        // Comment: Making Same path order very time and hoping Latin Square design fixes it.
-        //studyInfo.PathOrder = new();
-        //foreach (var method in studyInfo.MethodOrder)
-        //    studyInfo.PathOrder.Add((ProcessInfos.Path)method);
+        // Comment: Making Same path order very time.
+;
         overallInfo.AddOccurrence(studyInfo.MethodOrder);
     }
 
