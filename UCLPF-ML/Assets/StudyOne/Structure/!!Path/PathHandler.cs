@@ -40,6 +40,14 @@ public class PathHandler : MonoBehaviour
         }
     }
 
+    public static List<Beacon> ActiveBeacons
+    {
+        get
+        {
+            return instance.steps[instance.pathIndex].beaconHandler.activeBeacons;
+        }
+    }
+
     Action _onEndPath;
 
     public Action OnEndPath

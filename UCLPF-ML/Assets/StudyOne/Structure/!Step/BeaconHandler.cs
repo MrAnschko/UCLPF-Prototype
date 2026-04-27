@@ -13,7 +13,7 @@ public class BeaconHandler : MonoBehaviour
 
     [Header("SceneInformation")]
     [SerializeField] List<Beacon> beaconList;
-    [SerializeField] List<Beacon> activeBeacons;
+    [SerializeField] public List<Beacon> activeBeacons;
     [SerializeField] public Beacon highestBeacon;
     [SerializeField] AzimuthTracking highTracking;
     [SerializeField] public Beacon lowestBeacon;

@@ -46,4 +46,17 @@ public static class ExtensionMethods
     {
         if (action != null) action(value);
     }
+
+    public static T MinItem<T>(this List<T> list, Func<T, float> function)
+    {
+        float min = float.PositiveInfinity;
+        T minItem = default(T);
+        foreach (T item in list)
+        {
+            float val = function(item);
+            minItem = (val < min) ? item : minItem;
+            min = (val < min) ? val : min;
+        }
+        return minItem;
+    }
 }
