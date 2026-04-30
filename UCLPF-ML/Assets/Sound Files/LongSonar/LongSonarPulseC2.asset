@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a698b604e6656d4d9f5a0304406c399, type: 3}
-  m_Name: SonarPulseF
+  m_Name: LongSonarPulseC2
   m_EditorClassIdentifier: 
-  clipName: F
-  frequency: 349.23
-  clip: {fileID: 8300000, guid: 6081e06e06909aa4d902a879ca8b44d8, type: 3}
+  clipName: C2
+  frequency: 523.26
+  clip: {fileID: 8300000, guid: 428aa883fdd28a44da898e015b7363ae, type: 3}

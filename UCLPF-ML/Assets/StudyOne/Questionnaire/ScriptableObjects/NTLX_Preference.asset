@@ -17,17 +17,17 @@ MonoBehaviour:
   WhenAsked: 0
   Questions:
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Effort
     SliderEndDesc: Performance
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Temporal Demand
     SliderEndDesc: Frustration
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Temporal Demand
     SliderEndDesc: Effort
@@ -37,57 +37,57 @@ MonoBehaviour:
     SliderStartDesc: Physical Demand
     SliderEndDesc: Frustration
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Performance
     SliderEndDesc: Frustration
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Physical Demand
     SliderEndDesc: Temporal Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Physical Demand
     SliderEndDesc: Performance
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Temporal Demand
     SliderEndDesc: Mental Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Frustration
     SliderEndDesc: Effort
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Performance
     SliderEndDesc: Mental Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Performance
     SliderEndDesc: Temporal Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Mental Demand
     SliderEndDesc: Effort
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Mental Demand
     SliderEndDesc: Physical Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Effort
     SliderEndDesc: Physical Demand
   - question: Choose the Scale Title that represents the more important contributor
-      to workload for the specific tastk you performed
+      to workload for the specific task you performed
     type: 4
     SliderStartDesc: Frustration
     SliderEndDesc: Mental Demand

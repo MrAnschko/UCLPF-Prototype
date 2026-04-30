@@ -20,7 +20,7 @@ public class StudyHandler : MonoBehaviour
     [SerializeField] List<QuestionnaireSO> endStudies;
     IEnumerator<QuestionnaireSO> qEnumerator;
     LatinSquare<ProcessInfos.InteractionMethod> InteractionLatinSquare;
-
+    [SerializeField] GameObject ThankMessage;
     public static StudyHandler Instance; // is a singleton
 
     public int PathIndex {
@@ -109,11 +109,17 @@ public class StudyHandler : MonoBehaviour
         }
     }
 
+    [ContextMenu("Next Questionnaire")]
+
     public void NextQuestionnaire()
     {
         if (qEnumerator.MoveNext())
         {
             QuestionnaireHandler.StartQuestionnaire(qEnumerator.Current, NextQuestionnaire);
+        }
+        else
+        {
+            ShowEndMessage();
         }
     }
 
@@ -141,5 +147,14 @@ public class StudyHandler : MonoBehaviour
         LoadNextPath();
     }
 
+    public void ShowEndMessage()
+    {
+        ThankMessage.SetActive(true);
+    }
 
+    public void EndStudy()
+    {
+        Debug.Log("End Application");
+        Application.Quit();
+    }
 }
