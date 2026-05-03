@@ -10,6 +10,7 @@
   ],
   "dependencies": {
     "com.magicleap.mrtk3": "1.4.0",
+    "com.magicleap.soundfield": "3.4.9-241114.78.099e091",
     "com.magicleap.unitysdk": "2.6.0",
     "com.microsoft.mrtk.graphicstools.unity": "file:MixedReality/com.microsoft.mrtk.graphicstools.unity-0.7.1.tgz",
     "com.microsoft.mrtk.tts.windows": "file:MixedReality/com.microsoft.mrtk.tts.windows-1.0.4.tgz",
