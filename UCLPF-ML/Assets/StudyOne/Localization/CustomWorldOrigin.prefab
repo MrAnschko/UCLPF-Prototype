@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4fd3f61110ebd44fa1abb2ce96d37d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ToggleAlignmentRef: {fileID: 2473536702234959757, guid: 0d70d03a067ff4845bd96bb7997e4ab8, type: 3}

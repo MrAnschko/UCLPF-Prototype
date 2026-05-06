@@ -1,6 +1,7 @@
 using MagicLeap.OpenXR.Features.LocalizationMaps;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.OpenXR;
 using UnityEngine.XR.OpenXR.NativeTypes;
 
@@ -10,7 +11,10 @@ public class CustomWorldOrigin : MonoBehaviour
 
     private static CustomWorldOrigin instance;
     private MagicLeapLocalizationMapFeature localizationMapFeature = null;
-    
+
+    [SerializeField] InputActionReference ToggleAlignmentRef;
+    InputAction ToggleAlignmentAct;
+
     bool localized = false;
     bool alignActive = true;
     private void Awake()
@@ -23,6 +27,8 @@ public class CustomWorldOrigin : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        ToggleAlignmentAct = ToggleAlignmentRef.action;
+        ToggleAlignmentAct.performed += ToggleAlignment;
 
         // Obtain the instance of the localization Map Feature
         localizationMapFeature = OpenXRSettings.Instance.GetFeature<MagicLeapLocalizationMapFeature>();
@@ -143,6 +149,14 @@ public class CustomWorldOrigin : MonoBehaviour
             return rotation;
         }
         return Quaternion.Inverse(instance.transform.rotation) * rotation;
+    }
+
+    void ToggleAlignment(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            alignActive = !alignActive;
+        }
     }
 
 }
