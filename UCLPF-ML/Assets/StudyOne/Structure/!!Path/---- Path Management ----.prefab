@@ -1300,7 +1300,7 @@ MonoBehaviour:
   - {fileID: 4063298598648285605}
   pathIndex: 0
   OrderAudioSourceClass: 
-  sonificationHandler: {fileID: 11400000, guid: d0de7b7c901c27c4ea74dd8c8e893880, type: 2}
+  sonificationHandler: {fileID: 11400000, guid: 50f5558faa5fda34cb44d76ee407ccfd, type: 2}
 --- !u!114 &5159628731662594561
 MonoBehaviour:
   m_ObjectHideFlags: 0
