@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Point
   m_EditorClassIdentifier: 
   interactionMethod: 1
-  qFactor: 0.707
+  qFactor: 3
   cutoffInitialFreq: 22050
   cutoffMinimalFreq: 20
   half_angle: 314

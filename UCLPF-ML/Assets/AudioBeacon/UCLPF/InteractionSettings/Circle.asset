@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Circle
   m_EditorClassIdentifier: 
   interactionMethod: 2
-  qFactor: 0.707
+  qFactor: 3
   cutoffInitialFreq: 22050
   cutoffMinimalFreq: 20
   half_angle: 314
