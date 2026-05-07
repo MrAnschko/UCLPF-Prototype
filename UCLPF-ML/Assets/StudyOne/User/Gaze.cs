@@ -15,7 +15,7 @@ public class Gaze : MonoBehaviour
     private Camera mainCamera;
 
     [SerializeField] static float planePosition = -1;
-    [SerializeField] AnimationCurve responseCurve;
+    
 
     private bool permissionGranted;
 

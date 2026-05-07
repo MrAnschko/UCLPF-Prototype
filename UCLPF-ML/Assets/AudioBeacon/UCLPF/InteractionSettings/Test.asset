@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   interactionMethod: 3
-  qFactor: 3
+  qFactor: 1.5
   cutoffInitialFreq: 22050
   cutoffMinimalFreq: 200
   half_angle: 314

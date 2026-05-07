@@ -2458,6 +2458,183 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d70320d7c68f546bd0806c8116a782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1638292295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1638292299}
+  - component: {fileID: 1638292298}
+  - component: {fileID: 1638292297}
+  - component: {fileID: 1638292296}
+  - component: {fileID: 1638292300}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1638292296
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638292295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1638292297
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638292295}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e552e7bb97736bc448c7254e7b969c2c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1638292298
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638292295}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1638292299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638292295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638292300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638292295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7454d87f45756a48b62c116e053e616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visibilityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.470742
+      value: 0.0020040288
+      inSlope: -0.02816131
+      outSlope: -0.02816131
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.13520607
+    - serializedVersion: 3
+      time: 1.0013428
+      value: 1
+      inSlope: 0.67848635
+      outSlope: 0.67848635
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16792172
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  angleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 8
+      value: 0.5
+      inSlope: -0.004517599
+      outSlope: -0.004517599
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.29325882
+    - serializedVersion: 3
+      time: 15
+      value: 0
+      inSlope: -0.004252855
+      outSlope: -0.004252855
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19395715
+      outWeight: 0.31691524
+    - serializedVersion: 3
+      time: 20
+      value: -2
+      inSlope: 0.0011457495
+      outSlope: 0.0011457495
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2601512
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  material: {fileID: 2100000, guid: e552e7bb97736bc448c7254e7b969c2c, type: 2}
+  visibilityRenderer: {fileID: 0}
 --- !u!1 &1697816407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,39 +2758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63ef2f7bad42a44ae7ebeb595d4a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  responseCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.43081695
-      value: 0.5154251
-      inSlope: 1.3596199
-      outSlope: 1.3596199
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.0072642122
-      outSlope: -0.0072642122
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1823594728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,3 +4112,4 @@ SceneRoots:
   - {fileID: 4287533099499903648}
   - {fileID: 545623112}
   - {fileID: 1572570790}
+  - {fileID: 1638292299}
