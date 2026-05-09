@@ -11,6 +11,7 @@ public class Beacon : MonoBehaviour
 
 
     AudioSource audioSource;
+    SourceVisualization visualization;
     public SonificationClip sonClip;
     AudioClip clip;
     public float Frequency
@@ -44,6 +45,10 @@ public class Beacon : MonoBehaviour
         beaconData = new();
         beaconData.position = transform.position;
         beaconData.ClipInfo = sonClip;
+
+        visualization = GetComponentInChildren<SourceVisualization>();
+        if(visualization!=null) visualization.beaconData = beaconData;
+
     }
 
     public void StartPlayingRepeatedly(float cycletime, double offset)

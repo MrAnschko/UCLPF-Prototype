@@ -1284,12 +1284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63ef2f7bad42a44ae7ebeb595d4a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  responseCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &1810985660
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class StepHandler : MonoBehaviour
     // Data to save
     public StepData stepD = new();
     public PositionTracking posTr;
+    public LookBehaviour lookBehaviour;
     [DoNotSerialize] EyeTrackingData eyeTracking;
     public QuestionnaireSO EndPathQuestionnaire;
 
@@ -21,6 +22,7 @@ public class StepHandler : MonoBehaviour
 
     [Header("Beacons")]
     public BeaconHandler beaconHandler;
+    
 
 
 
@@ -65,6 +67,8 @@ public class StepHandler : MonoBehaviour
         stepD.Save();
         posTr = new PositionTracking(leading.StepEnd.position);
         eyeTracking = new();
+        lookBehaviour = new();
+        lookBehaviour.StartLogging();
         leading.StartLeading(EndWalk);
 
     }
@@ -76,6 +80,9 @@ public class StepHandler : MonoBehaviour
         beaconHandler.StopAudio();
         stepD.Save();
         posTr.Save();
+        lookBehaviour.StopLogging();
+
+
         LoggingManager.DeRegisterLogger(posTr);
         posTr = null;
         eyeTracking.Save();
