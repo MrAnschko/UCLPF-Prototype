@@ -40,7 +40,7 @@ public class SourceVisualization : MonoBehaviour
     {
         get
         {
-            return state > 0.5f;
+            return visibilityCurve.Evaluate(state) > 0.3f;
         }
     }
 

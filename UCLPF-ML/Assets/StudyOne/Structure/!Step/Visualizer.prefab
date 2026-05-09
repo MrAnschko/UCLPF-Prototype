@@ -146,7 +146,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 3
+      time: 5
       value: 0.5
       inSlope: -0.004517599
       outSlope: -0.004517599
@@ -164,6 +164,15 @@ MonoBehaviour:
       inWeight: 0.19395715
       outWeight: 0.31691524
     - serializedVersion: 3
+      time: 15
+      value: 0
+      inSlope: -0.10276404
+      outSlope: -0.10276404
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.50288737
+    - serializedVersion: 3
       time: 20
       value: -2
       inSlope: 0.0011457495
@@ -177,4 +186,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   material: {fileID: 2100000, guid: e552e7bb97736bc448c7254e7b969c2c, type: 2}
   visibilityRenderer: {fileID: 0}
-  clip: {fileID: 0}
+  beaconData:
+    clipInfo: {fileID: 0}
+    Frequency: 0
+    ClipName: 
+    position: {x: 0, y: 0, z: 0}
