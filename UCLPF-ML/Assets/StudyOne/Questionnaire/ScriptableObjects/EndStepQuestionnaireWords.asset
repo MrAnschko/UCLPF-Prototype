@@ -10,21 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f20d7531f7abe56479c115a57033488c, type: 3}
-  m_Name: EndStepQuestionnaire
+  m_Name: EndStepQuestionnaireWords
   m_EditorClassIdentifier: 
   ShuffleOrder: 0
   Name: 
   WhenAsked: 2
   Questions:
-  - question: If you wish to take a break now is a great time.
-    type: 2
-    SliderStartDesc: 
-    SliderEndDesc: 
-  - question: high-pitched
-    type: 2
-    SliderStartDesc: 
-    SliderEndDesc: 
-  - question: low-pitched
+  - question: highest number
     type: 2
     SliderStartDesc: 
     SliderEndDesc: 
@@ -44,7 +36,8 @@ MonoBehaviour:
     type: 0
     SliderStartDesc: 
     SliderEndDesc: 
-  - question: If you wish to take a break now is a great time.
+  - question: If you wish to take a break now is a great time. Click 'Next' once
+      you're ready to continue.
     type: 4
     SliderStartDesc: 
     SliderEndDesc: 

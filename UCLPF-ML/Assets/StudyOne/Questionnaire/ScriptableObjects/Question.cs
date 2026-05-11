@@ -12,7 +12,8 @@ public class Question
         BeaconNumber,
         PointTask,
         TLX,
-        Choice
+        Choice,
+        Break
     }
     [SerializeField] public string question;
     [SerializeField] public Type type;

@@ -29,7 +29,8 @@ MonoBehaviour:
     SliderStartDesc: Very Low
     SliderEndDesc: Very High
   - question: 'Performance: How succesful were you in accomplishing what you were
-      asked to do'
+      asked to do? Beware: The Scale might be unintuitive. A low number describes
+      a good performance.'
     type: 3
     SliderStartDesc: Perfect
     SliderEndDesc: Failure

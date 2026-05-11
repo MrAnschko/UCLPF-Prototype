@@ -6040,7 +6040,9 @@ MonoBehaviour:
     goal: {x: 0, y: 0}
     goalDists: []
     time: []
-  EndPathQuestionnaire: {fileID: 11400000, guid: ce0a5298991a06947b101c09d846c16a, type: 2}
+  lookBehaviour:
+    Data: []
+  EndPathQuestionnaire: {fileID: 11400000, guid: 923377cfdb54ff149a482085d29fc50c, type: 2}
   leading: {fileID: 2388062200631899760}
   beaconHandler: {fileID: 7558941130230375677}
 --- !u!1 &203309692485362171
