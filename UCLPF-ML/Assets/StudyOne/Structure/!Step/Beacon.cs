@@ -51,11 +51,11 @@ public class Beacon : MonoBehaviour
 
     }
 
-    public void StartPlayingRepeatedly(float cycletime, double offset)
+    public void StartPlayingRepeatedly(float cycletime, double offset,double duration)
     {
         
         gameObject.SetActive(true);
-        playing = StartCoroutine(PlayRepeatedly(cycletime, offset));
+        playing = StartCoroutine(PlayRepeatedly(cycletime, offset, duration));
     }
 
     public void StopPlaying()
@@ -74,11 +74,11 @@ public class Beacon : MonoBehaviour
     }
 
 
-    IEnumerator PlayRepeatedly(float cycleTime, double offset)
+    IEnumerator PlayRepeatedly(float cycleTime, double offset,double duration)
     {
-
+        duration = (duration <= 0.0f)? double.PositiveInfinity: duration+ AudioSettings.dspTime;
         
-        for (double time = AudioSettings.dspTime + offset; ; time += cycleTime)
+        for (double time = AudioSettings.dspTime + offset;time<duration ; time += cycleTime)
         {
             yield return new WaitUntil(() => (AudioSettings.dspTime >= time - safety_time));
             

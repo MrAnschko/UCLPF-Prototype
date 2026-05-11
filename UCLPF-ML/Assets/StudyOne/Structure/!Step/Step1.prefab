@@ -2691,6 +2691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonification: {fileID: 0}
+  playDuration: 150
   beaconList:
   - {fileID: 6869133407826482530}
   - {fileID: 5281451877250855825}

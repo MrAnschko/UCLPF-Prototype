@@ -9,9 +9,10 @@ public class BeaconHandler : MonoBehaviour
 
     [Header("Sonification")]
     [SerializeField] SonificationHandler sonification;
-    
+
 
     [Header("SceneInformation")]
+    [SerializeField] double playDuration;
     [SerializeField] List<Beacon> beaconList;
     [SerializeField] public List<Beacon> activeBeacons;
     [SerializeField] public Beacon highestBeacon;
@@ -73,7 +74,7 @@ public class BeaconHandler : MonoBehaviour
         float cycle = ProcessInfos.START_DIFF* activeBeacons.Count;
         for (int i = 0; i < activeBeacons.Count; i++, offset += ProcessInfos.START_DIFF)
         {
-            activeBeacons[i].StartPlayingRepeatedly(cycle,offset);
+            activeBeacons[i].StartPlayingRepeatedly(cycle,offset, playDuration);
         }
         StartDataLogging();
     }
