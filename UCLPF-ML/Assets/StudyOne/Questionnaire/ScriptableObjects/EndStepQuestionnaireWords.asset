@@ -24,7 +24,7 @@ MonoBehaviour:
     type: 1
     SliderStartDesc: 
     SliderEndDesc: 
-  - question: I was able to identify pitch using the Method.
+  - question: I was able to understand the words using the method.
     type: 0
     SliderStartDesc: 
     SliderEndDesc: 
@@ -38,6 +38,6 @@ MonoBehaviour:
     SliderEndDesc: 
   - question: If you wish to take a break now is a great time. Click 'Next' once
       you're ready to continue.
-    type: 4
+    type: 5
     SliderStartDesc: 
     SliderEndDesc: 
