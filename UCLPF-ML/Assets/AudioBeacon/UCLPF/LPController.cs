@@ -40,7 +40,7 @@ public class LPController : MonoBehaviour, LPSettingsInformer
 
     static float horizon_alpha(float t, float original_factor)
     {
-        return (t > 1.0f) ? t * AudioSettings.outputSampleRate * 0.5f : (1.0f - t) * original_factor; //use Samplerate as max, therefore if above horizon it may dampen.
+        return (t > 1.0f) ? (t-1.0f) * AudioSettings.outputSampleRate : (1.0f - t) * original_factor; //use Samplerate as max, therefore if above horizon it may dampen.
     }
 
 

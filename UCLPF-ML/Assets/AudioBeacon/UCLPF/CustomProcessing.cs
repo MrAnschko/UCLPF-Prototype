@@ -45,7 +45,7 @@ public class CustomProcessing : MonoBehaviour
     void OnAudioFilterRead(float[] data, int channels)
     {
 
-        float attenuation = gain;
+        
         if (!running)
             return;
         for (int i = 0; i < data.Length; )

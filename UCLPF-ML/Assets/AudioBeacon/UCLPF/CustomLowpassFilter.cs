@@ -31,7 +31,8 @@ public class CustomLowpassFilter
     public float CutoffFrequency { 
         get => goalCutoffFrequency;
         set { 
-            goalCutoffFrequency = value;
+
+            goalCutoffFrequency = Mathf.Min(value,sampleRate*0.95f);
         }
     }
     public float QFactor {

@@ -539,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1666,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2625,7 +2625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3164,7 +3164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3634,7 +3634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895525915783046887, guid: 9df3b9367536dd14b955014a8ab363d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6898,7 +6898,7 @@ PrefabInstance:
       objectReference: {fileID: 24300002, guid: da2a36b00c5b79d4b96752a7e87cda86, type: 2}
     - target: {fileID: 7637023002656165765, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7639568224285525892, guid: b7f639bee7c6a8b4e893eca10615dc9b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8315,6 +8315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonification: {fileID: 0}
+  playDuration: 0
   beaconList:
   - {fileID: 6869133408639291126}
   - {fileID: 5281451878581397509}

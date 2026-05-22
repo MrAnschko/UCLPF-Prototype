@@ -28,15 +28,15 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _Circle_SF: 0
-    - _Half_Angle: 35981.75
+    - _Half_Angle: 8.594367
     - _Height: -0.94
     - _Line_Distance: 3
     - _Line_Thickness: 0.01
-    - _Point_SF: 5
+    - _Point_SF: 0
     - _Test: 0
     m_Colors:
-    - _Listener_Position: {r: 0, g: 0, b: 0, a: 0}
-    - _View_Direction: {r: 0, g: 0, b: 1, a: 0}
+    - _Listener_Position: {r: 1.86, g: 0.04, b: -0.17, a: 0}
+    - _View_Direction: {r: 0.6303803, g: -0.7761915, b: 0.0121419355, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6958054650681683310
 MonoBehaviour:
