@@ -22,7 +22,10 @@ public class StudyInfo:DataContainer
 
     public void Save()
     {
+        
         userIdentifier = UserIdentifier;
         Save(UserIdentifier+"_StudyInfo");
+        WorldTransformationDC tf = new();
+        tf.Save();
     }
 }

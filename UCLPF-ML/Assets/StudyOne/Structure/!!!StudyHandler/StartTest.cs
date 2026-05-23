@@ -7,6 +7,7 @@ public class StartTest : MonoBehaviour
 {
     const int GloabalSceneIndex = 1;
 
+    [ContextMenu("Start")]
     public void StartStudy() {
         SceneManager.LoadScene(GloabalSceneIndex);
     }

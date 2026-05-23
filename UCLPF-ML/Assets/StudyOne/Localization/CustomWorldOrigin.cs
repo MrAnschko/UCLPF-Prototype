@@ -9,7 +9,7 @@ public class CustomWorldOrigin : MonoBehaviour
 {
     public static Action ReOrderedCallback;
 
-    private static CustomWorldOrigin instance;
+    public static CustomWorldOrigin instance;
     private MagicLeapLocalizationMapFeature localizationMapFeature = null;
 
     [SerializeField] InputActionReference ToggleAlignmentRef;
