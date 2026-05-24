@@ -12,6 +12,8 @@ public class WorldTransformationDC : DataContainer
 
     public void Save()
     {
+        if (CustomWorldOrigin.instance == null)
+            return;
         CustomToUnity = CustomWorldOrigin.instance.transform.localToWorldMatrix;
         UnityToCustom = CustomWorldOrigin.instance.transform.worldToLocalMatrix;
         Save(ProcessInfos.UserID + "_Transformation");

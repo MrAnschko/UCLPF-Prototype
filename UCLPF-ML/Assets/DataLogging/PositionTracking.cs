@@ -26,6 +26,7 @@ public class PositionTracking : DataContainer,LoggerInterface
     {
         Vector2 rel_position = new();
         Vector3 cameraPos = Camera.main.transform.position;
+        cameraPos = CustomWorldOrigin.PosUnityToMap(cameraPos);
         goalDists.Add(new Vector2(goal.x - cameraPos.x,goal.y - cameraPos.z).magnitude);
         rel_position.x = cameraPos.x;
         rel_position.y = cameraPos.z;

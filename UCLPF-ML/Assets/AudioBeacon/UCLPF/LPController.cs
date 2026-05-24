@@ -66,6 +66,8 @@ public class LPController : MonoBehaviour, LPSettingsInformer
         LPGlobalSettings.UnregisterSelf(this);
     }
 
+    // some of this is based on https://github.com/Unity-Technologies/NativeAudioPlugins/blob/master/NativeCode/Plugin_Spatializer.cpp
+    // 
     void UpdateFilter()
     {
         // Get View
