@@ -1,0 +1,113 @@
+// Please note that this will only work on Unity 5.2 or higher.
+#pragma once
+
+#include "AudioPluginUtil.h"
+
+extern float hrtf_settingbuffer[];
+extern float hrtf_debugbuffer[]; // Buffer for debug Purposes. Saved in buffer Callback
+
+namespace SpatializerSettingsHRTF
+{
+    enum
+    {
+        P_TotalMix,
+        P_EnableHRTF,
+        P_QFactor, 
+        P_CutoffInitFeq,
+        P_CutoffMinFeq,
+        P_HalfAngle,
+        P_SeekSpeed,
+        P_PDistFactor,
+        P_CDistFactor,
+        P_CrossfadeFactor,
+        P_HorizonBehavior,
+        P_NUM
+    };
+
+    struct EffectData
+    {
+        float p[P_NUM];
+    };
+
+
+    int InternalRegisterEffectDefinition(UnityAudioEffectDefinition& definition)
+    {
+        int numparams = P_NUM;
+        definition.paramdefs = new UnityAudioParameterDefinition[numparams];
+        AudioPluginUtil::RegisterParameter(definition, "Total Mix", "%", 0.0f, 1.0f, 1.0f, 100.0f, 1.0f, P_TotalMix, "How much of the Method should be mixed in");
+        AudioPluginUtil::RegisterParameter(definition, "Enable HRTF", "", 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, P_EnableHRTF, "If the HRTF should be enabled (0 for No, 1 for Yes)");
+        AudioPluginUtil::RegisterParameter(definition, "Q Factor", "", 0.001f, 20.0f, 0.707f, 1.0f, 1.0f, P_QFactor, "The Quality Factor of the lowpass filter.");
+        AudioPluginUtil::RegisterParameter(definition, "Max Freq", "Hz", 0.01f, 24000.0f, 22000.0f, 1.0f, 3.0f, P_CutoffInitFeq, "Cutoff frequency of the Filter");
+        AudioPluginUtil::RegisterParameter(definition, "Min Freq", "Hz", 0.01f, 24000.0f, 22000.0f, 1.0f, 3.0f, P_CutoffMinFeq, "Minimal Cutoff frequency of the Filter");
+        AudioPluginUtil::RegisterParameter(definition, "Half Angle", "Degree", 0.01f, AudioPluginUtil::kPI*10, 0.5f, 180 / AudioPluginUtil::kPI, 2.0f, P_HalfAngle, "Angle at which the cutoff frequency is halved");
+        AudioPluginUtil::RegisterParameter(definition, "SeekSpeed", "", 0.01f, AudioPluginUtil::kMaxSampleRate, 1.0f, 1.0f, 10.0f, P_SeekSpeed, "How much the cutoff frequency may maximally be increased by per sample");
+        AudioPluginUtil::RegisterParameter(definition, "Point SF", "", 0.0f, 10.0f, 1.0f, 1.0f, 1.0f, P_PDistFactor, "Factor by which point distance is scaled");
+        AudioPluginUtil::RegisterParameter(definition, "Circle SF", "", 0.0f, 10.0f, 1.0f, 1.0f, 1.0f, P_CDistFactor, "Factor by which circle distance is scaled");
+        AudioPluginUtil::RegisterParameter(definition, "Crossfade F", "", 1.0f, 44100.0f, 4410.0f, 1.0f, 1.0f, P_CrossfadeFactor, "Fraction of how many samples of total buffer it takes for the signal to crossfade to a new hrtf ");
+        AudioPluginUtil::RegisterParameter(definition, "HorizonBehavior", "", 0.0f, 2.0f, 1.0f, 1.0f, 1.0f, P_HorizonBehavior, "0-1: Lerp Between Listener and Object, 1-2 Lerp between Objekt and a large number");
+        return numparams;
+    }
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK CreateCallback(UnityAudioEffectState* state)
+    {
+        EffectData* effectdata = new EffectData;
+        memset(effectdata, 0, sizeof(EffectData));
+        state->effectdata = effectdata;
+
+        AudioPluginUtil::InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->p);
+        return UNITY_AUDIODSP_OK;
+    }
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ReleaseCallback(UnityAudioEffectState* state)
+    {
+        EffectData* data = state->GetEffectData<EffectData>();
+        delete data;
+        return UNITY_AUDIODSP_OK;
+    }
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK SetFloatParameterCallback(UnityAudioEffectState* state, int index, float value)
+    {
+        EffectData* data = state->GetEffectData<EffectData>();
+        if (index >= P_NUM)
+            return UNITY_AUDIODSP_ERR_UNSUPPORTED;
+        data->p[index] = value;
+        return UNITY_AUDIODSP_OK;
+    }
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK GetFloatParameterCallback(UnityAudioEffectState* state, int index, float* value, char *valuestr)
+    {
+        EffectData* data = state->GetEffectData<EffectData>();
+        if (index >= P_NUM)
+            return UNITY_AUDIODSP_ERR_UNSUPPORTED;
+        if (value != NULL)
+            *value = data->p[index];
+        if (valuestr != NULL)
+            valuestr[0] = 0;
+        return UNITY_AUDIODSP_OK;
+    }
+
+    int UNITY_AUDIODSP_CALLBACK GetFloatBufferCallback(UnityAudioEffectState* state, const char* name, float* buffer, int numsamples)
+    {
+        if (strncmp(name, "SourcePos", 9) == 0) {
+            if (numsamples != 16)
+                return UNITY_AUDIODSP_ERR_UNSUPPORTED;
+            memcpy(buffer, hrtf_debugbuffer, sizeof(float) * 16);
+        }
+        return UNITY_AUDIODSP_OK;
+    }
+
+
+
+    UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
+    {
+
+        memcpy(outbuffer, inbuffer, length * outchannels * sizeof(float));
+
+        EffectData* data = state->GetEffectData<EffectData>();
+
+        hrtf_settingbuffer[0] = 1.0f;
+        for(int param=0; param<P_NUM;param++)
+            hrtf_settingbuffer[param+1] = data->p[param]; // copy settings into the buffer
+        return UNITY_AUDIODSP_OK;
+    }
+}
