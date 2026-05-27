@@ -42,54 +42,54 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.26100.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -284,40 +284,13 @@
   <ItemGroup>
     <ClCompile Include="..\AudioPluginUtil.cpp" />
     <ClCompile Include="..\hrtftable.cpp" />
-    <ClCompile Include="..\Plugin_ConvolutionReverb.cpp" />
-    <ClCompile Include="..\Plugin_CorrelationMeter.cpp" />
-    <ClCompile Include="..\Plugin_Equalizer.cpp" />
-    <ClCompile Include="..\Plugin_Granulator.cpp" />
-    <ClCompile Include="..\Plugin_ImpactGenerator.cpp" />
-    <ClCompile Include="..\Plugin_ImpulseGenerator.cpp" />
-    <ClCompile Include="..\Plugin_Lofinator.cpp" />
-    <ClCompile Include="..\Plugin_LevelMixer.cpp" />
-    <ClCompile Include="..\Plugin_LoudnessMeter.cpp" />
-    <ClCompile Include="..\Plugin_ModalFilter.cpp" />
-    <ClCompile Include="..\Plugin_Multiband.cpp" />
-    <ClCompile Include="..\Plugin_NoiseBox.cpp" />
-    <ClCompile Include="..\Plugin_Oscilloscope.cpp" />
-    <ClCompile Include="..\Plugin_PitchDetector.cpp" />
-    <ClCompile Include="..\Plugin_RingModulator.cpp" />
-    <ClCompile Include="..\Plugin_Routing.cpp" />
-    <ClCompile Include="..\Plugin_Spatializer.cpp" />
-    <ClCompile Include="..\Plugin_SpatializerReverb.cpp" />
-    <ClCompile Include="..\Plugin_StereoWidener.cpp" />
-    <ClCompile Include="..\Plugin_Synthesizer.cpp" />
-    <ClCompile Include="..\Plugin_TeeBee.cpp" />
-    <ClCompile Include="..\Plugin_TeeDee.cpp" />
-    <ClCompile Include="..\Plugin_Teleport.cpp" />
-    <ClCompile Include="..\Plugin_TubeResonator.cpp" />
-    <ClCompile Include="..\Plugin_Vocoder.cpp" />
-    <ClCompile Include="..\Plugin_WahWah.cpp" />
+    <ClCompile Include="..\Plugin_CustomSpatializerHRTF.cpp" />
+    <ClCompile Include="..\Plugin_SpatializerSettingsHRTF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\AudioPluginInterface.h" />
     <ClInclude Include="..\AudioPluginUtil.h" />
     <ClInclude Include="..\PluginList.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AudioPluginDemo.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

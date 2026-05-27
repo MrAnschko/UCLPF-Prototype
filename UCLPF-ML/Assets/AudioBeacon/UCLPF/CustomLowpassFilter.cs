@@ -81,7 +81,7 @@ public class CustomLowpassFilter
     {
         if (currentCutoffFrequency != goalCutoffFrequency)
         {
-            currentCutoffFrequency = currentCutoffFrequency+Mathf.Clamp(-seekRate, goalCutoffFrequency - currentCutoffFrequency, seekRate);
+            currentCutoffFrequency = currentCutoffFrequency+Mathf.Clamp(goalCutoffFrequency - currentCutoffFrequency ,- seekRate, seekRate);
             SetFactors(currentCutoffFrequency, qFactor);
         }
         float y = 0;

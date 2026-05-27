@@ -4,7 +4,7 @@
 #include "AudioPluginUtil.h"
 
 
-float hrtf_settingbuffer[12] = { 0.0f }; // Make a buffer to save all the settings in.
+float hrtf_settingbuffer[13] = { 0.0f }; // Make a buffer to save all the settings in.
 float hrtf_debugbuffer[16] = { 0.0f }; // Buffer for debug Purposes Currently transmits a Object matrix
 extern float hrtfSrcData[]; // Data for the HRTF. (Impulse responses for different elevations and azimuth degrees
 
@@ -254,6 +254,7 @@ namespace CustomSpatializerHRTF
         float cdist_factor =        hrtf_settingbuffer[9]; // Factor by which circle distance is scaled 
         float crossfade_samples =   hrtf_settingbuffer[10]; // percentage of num samples at which the signal should be fully crossfaded to the new impulse 
         float horizon_factor =      hrtf_settingbuffer[11]; // 0-1: Lerp Between Listener and Object, 1-2 Lerp between Objekt and a large number 
+        float plane_height   =      hrtf_settingbuffer[12]; // Height of the interaction plane 
 
 
         float sr = (float)state->samplerate;
@@ -305,7 +306,7 @@ namespace CustomSpatializerHRTF
         // Intersection
         float c_dist, p_dist;
 
-        float alpha = (d_y < -0.001f) ? (-1 - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
+        float alpha = (d_y < -0.001f) ? (plane_height - l_y) / d_y : 0; // set the alpha to zero in case there is no (positive) intersection
 
         // position on the plane
 
