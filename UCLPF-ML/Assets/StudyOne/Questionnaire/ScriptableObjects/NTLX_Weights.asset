@@ -35,7 +35,7 @@ MonoBehaviour:
     SliderStartDesc: Perfect
     SliderEndDesc: Failure
   - question: 'Effort: How hard did you have to work to accomplish your level of
-      performance'
+      performance?'
     type: 3
     SliderStartDesc: Very Low
     SliderEndDesc: Very High

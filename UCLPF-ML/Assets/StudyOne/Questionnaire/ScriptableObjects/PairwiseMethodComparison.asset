@@ -16,15 +16,15 @@ MonoBehaviour:
   Name: Method Preference
   WhenAsked: 0
   Questions:
-  - question: Which Method did you Prefer out of these?
+  - question: Which method did you prefer out of these?
     type: 4
     SliderStartDesc: Circle
     SliderEndDesc: Flashlight
-  - question: Which Method did you Prefer out of these?
+  - question: Which method did you prefer out of these?
     type: 4
     SliderStartDesc: Flashlight
     SliderEndDesc: Point
-  - question: Which Method did you Prefer out of these?
+  - question: Which method did you prefer out of these?
     type: 4
     SliderStartDesc: Point
     SliderEndDesc: Circle
