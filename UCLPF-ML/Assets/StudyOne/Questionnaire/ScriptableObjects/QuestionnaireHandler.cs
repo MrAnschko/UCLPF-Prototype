@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class QuestionnaireHandler : MonoBehaviour
 {
     [SerializeField]QuestionnaireSO questionnaire;
@@ -105,6 +106,8 @@ public class QuestionnaireHandler : MonoBehaviour
 
         answers.answers.Add(new(qType));
         QuestionTMP.text = currentQuestion.question;
+        QuestionTMP.ForceMeshUpdate();
+        
         if (qType == Question.Type.PointTask)
         {
             SetupPointTask();
@@ -143,7 +146,8 @@ public class QuestionnaireHandler : MonoBehaviour
             SetupChoice();
         if(qType == Question.Type.Break)
             SetupBreak();
-        Canvas.ForceUpdateCanvases();
+        
+        StartCoroutine(ReloadWindow());
     }
 
     public void SetupPointTask()
@@ -185,6 +189,7 @@ public class QuestionnaireHandler : MonoBehaviour
         SliderPlate.SetActive(true);
 
         LowerEndTMP.text = currentQuestion.SliderStartDesc;
+        
         UpperEndTMP.text = currentQuestion.SliderEndDesc;
         slider.MinValue = 0;
         slider.MaxValue = 20;
@@ -232,5 +237,22 @@ public class QuestionnaireHandler : MonoBehaviour
     public void CallButtonResponse()
     {
         buttonResponse.SafeInvoke();
+    }
+
+    IEnumerator ReloadWindow()
+    {
+        menu.SetActive(false);
+        yield return null;
+        menu.SetActive(true);
+        yield return null;
+        menu.SetActive(false);
+        yield return null;
+        menu.SetActive(true);
+        yield return null;
+        menu.SetActive(false);
+        yield return null;
+        menu.SetActive(true);
+        yield return null;
+        Debug.Log("Updated");
     }
 }
