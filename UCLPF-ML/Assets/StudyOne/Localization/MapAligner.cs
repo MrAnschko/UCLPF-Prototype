@@ -25,4 +25,9 @@ public class MapAligner : MonoBehaviour
         transform.rotation = CustomWorldOrigin.RotMapToUnity(initialRot);
     }
 
+    private void OnDestroy()
+    {
+        CustomWorldOrigin.ReOrderedCallback -= Align;
+    }
+
 }
