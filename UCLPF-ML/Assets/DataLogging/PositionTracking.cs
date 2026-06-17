@@ -26,11 +26,11 @@ public class PositionTracking : DataContainer,LoggerInterface
     {
         Vector2 rel_position = new();
         Vector3 cameraPos = Camera.main.transform.position;
-        cameraPos = CustomWorldOrigin.PosUnityToMap(cameraPos);
         goalDists.Add(new Vector2(goal.x - cameraPos.x,goal.y - cameraPos.z).magnitude);
+        cameraPos = CustomWorldOrigin.PosUnityToMap(cameraPos);
         rel_position.x = cameraPos.x;
         rel_position.y = cameraPos.z;
-        rel_position = CustomWorldOrigin.PosUnityToMap(rel_position);
+        //rel_position = CustomWorldOrigin.PosUnityToMap(rel_position);
         rel_positions.Add(rel_position);
         //goalDists.Add(rel_position.magnitude);
         time.Add(ProcessInfos.StepTime);
